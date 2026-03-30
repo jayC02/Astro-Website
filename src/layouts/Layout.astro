@@ -1,9 +1,12 @@
 ---
-import "../styles/global.css"; // make sure global.css is in src/styles/
+import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
-const { title = "WarrantFlow", description = "Automate building warrant & planning permission document packs." } = Astro.props;
+const {
+  title = "Scottish Energy Services",
+  description = "Book RdSAP and Legionella risk assessments with instant online quote estimates.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -15,7 +18,7 @@ const { title = "WarrantFlow", description = "Automate building warrant & planni
     <title>{title}</title>
   </head>
 
-  <body class="min-h-screen bg-black text-white">
+  <body class="min-h-screen bg-white text-slate-900">
     <Navbar />
     <main>
       <slot />

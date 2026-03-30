@@ -1,38 +1,192 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import AnimatedHero from '../components/AnimatedHero.jsx';
-import AnimatedCard from '../components/AnimatedCard.jsx';
-import RevealSection from '../components/RevealSection.jsx';
-import LenisWrapper from '../components/LenisWrapper.jsx';
-import HeroSection from '../components/HeroSection.jsx';
-import FloatingImage from '../components/FloatingImage.jsx';
-import Fog from '../components/Fog.jsx';
-import ModelViewer from '../components/ModelViewer.jsx';
-import FloorPlan from '../components/FloorPlan.jsx';
-import HowItWorks from "../components/HowItWorks.astro";
-import FeatureGrid from "../components/FeatureGrid.astro";
-import Outputs from "../components/Outputs.astro";
-import FinalCTA from "../components/FinalCTA.astro";
-
 ---
-<Layout title="ArchitectPro — Automate Warrant & Planning Packs">
-  <LenisWrapper client:only="react" />
 
-  <!-- Hero -->
-  <Fog client:only="react" />
+<Layout
+  title="Scottish Energy Services | RdSAP & Legionella Risk Assessments"
+  description="Book fast RdSAP EPCs and Legionella risk assessments with instant quote estimates for flats, houses, and maisonettes."
+>
+  <section class="hero-section">
+    <div class="container-pro py-10 md:py-16">
+      <p class="badge">Simple online booking</p>
+      <h1 class="hero-title">RdSAP & Legionella risk assessments made easy.</h1>
+      <p class="hero-copy">
+        Get a live quote in seconds, choose your required date, add one or many properties, and submit your request directly to
+        Scottish Energy Services.
+      </p>
+    </div>
+  </section>
 
-  <!-- Proof / demo (pick ONE early; the other can go later) -->
-  <ModelViewer client:visible />
-  <!-- <FloorPlan client:visible /> -->
+  <section id="quote" class="pb-16">
+    <div class="container-pro">
+      <div class="quote-card">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Live quote request</h2>
+        <p class="mt-2 text-slate-600">Standard EPC (RdSAP) guide price: <strong>£70 per property</strong>.</p>
 
-  <!-- Marketing -->
-  <HowItWorks />
-  <FeatureGrid />
-  <Outputs />
+        <form id="quoteForm" class="mt-6 space-y-6">
+          <fieldset>
+            <legend class="form-label">Assessment type</legend>
+            <div class="service-grid">
+              <label class="check-card">
+                <input type="checkbox" name="services" value="rdsap" checked />
+                <span>
+                  <strong>RdSAP / EPC</strong>
+                  <small>£70 per property</small>
+                </span>
+              </label>
+              <label class="check-card">
+                <input type="checkbox" name="services" value="legionella" />
+                <span>
+                  <strong>Legionella risk assessment</strong>
+                  <small>£55 per property</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
 
-  <!-- Add these next (below) -->
-  <!-- <Pricing /> -->
-  <!-- <FAQ /> -->
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-3">
+              <h3 class="text-lg font-semibold text-slate-900">Property details</h3>
+              <button type="button" id="addProperty" class="btn-secondary">+ Add property</button>
+            </div>
 
-  <FinalCTA />
+            <div id="properties" class="space-y-4"></div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <label>
+              <span class="form-label">Preferred assessment date</span>
+              <input class="input" type="date" id="requiredDate" name="requiredDate" required />
+            </label>
+            <label>
+              <span class="form-label">Your email</span>
+              <input class="input" type="email" id="customerEmail" name="customerEmail" required placeholder="you@example.com" />
+            </label>
+          </div>
+
+          <label>
+            <span class="form-label">Comments / access information</span>
+            <textarea id="comment" name="comment" class="input min-h-28" placeholder="Tell us anything useful (parking, access times, tenancy details, etc.)."></textarea>
+          </label>
+
+          <div class="quote-summary" aria-live="polite">
+            <p class="text-sm text-slate-500">Estimated total</p>
+            <p id="quoteTotal" class="text-3xl font-bold text-slate-900">£70.00</p>
+            <p id="quoteBreakdown" class="text-sm text-slate-600">1 property × RdSAP (£70)</p>
+          </div>
+
+          <button type="submit" class="btn-primary w-full md:w-auto">Submit request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const prices = { rdsap: 70, legionella: 55 };
+    const propertiesContainer = document.getElementById('properties');
+    const addPropertyButton = document.getElementById('addProperty');
+    const form = document.getElementById('quoteForm');
+    const quoteTotal = document.getElementById('quoteTotal');
+    const quoteBreakdown = document.getElementById('quoteBreakdown');
+
+    let propertyCount = 0;
+
+    const createPropertyRow = () => {
+      propertyCount += 1;
+      const row = document.createElement('div');
+      row.className = 'property-row';
+      row.innerHTML = `
+        <label>
+          <span class="form-label">Address ${propertyCount}</span>
+          <input class="input" type="text" name="address_${propertyCount}" placeholder="${propertyCount} Example Street, Town, Postcode" required />
+        </label>
+        <label>
+          <span class="form-label">Property type</span>
+          <select class="input" name="propertyType_${propertyCount}" required>
+            <option value="Flat">Flat</option>
+            <option value="House">House</option>
+            <option value="Maisonette">Maisonette</option>
+            <option value="Bungalow">Bungalow</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+      `;
+      propertiesContainer.appendChild(row);
+      updateQuote();
+    };
+
+    const getSelectedServices = () => {
+      return [...document.querySelectorAll('input[name="services"]:checked')].map((el) => el.value);
+    };
+
+    const updateQuote = () => {
+      const selectedServices = getSelectedServices();
+      const properties = propertiesContainer.querySelectorAll('.property-row').length || 1;
+
+      if (selectedServices.length === 0) {
+        quoteTotal.textContent = '£0.00';
+        quoteBreakdown.textContent = 'Select at least one assessment type to generate a quote.';
+        return;
+      }
+
+      const perProperty = selectedServices.reduce((sum, service) => sum + prices[service], 0);
+      const total = perProperty * properties;
+      const labels = selectedServices.map((service) =>
+        service === 'rdsap' ? 'RdSAP (£70)' : 'Legionella (£55)'
+      );
+
+      quoteTotal.textContent = `£${total.toFixed(2)}`;
+      quoteBreakdown.textContent = `${properties} ${properties === 1 ? 'property' : 'properties'} × ${labels.join(' + ')}`;
+    };
+
+    createPropertyRow();
+
+    addPropertyButton?.addEventListener('click', () => {
+      createPropertyRow();
+    });
+
+    form?.addEventListener('change', updateQuote);
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const selectedServices = getSelectedServices();
+
+      if (selectedServices.length === 0) {
+        alert('Please select at least one assessment type.');
+        return;
+      }
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
+      const propertyDetails = propertyRows
+        .map((row, index) => {
+          const rowNumber = index + 1;
+          const address = data[`address_${rowNumber}`] || '';
+          const propertyType = data[`propertyType_${rowNumber}`] || '';
+          return `${rowNumber}. ${propertyType} - ${address}`;
+        })
+        .join('\n');
+
+      const serviceNames = selectedServices
+        .map((service) => (service === 'rdsap' ? 'RdSAP / EPC' : 'Legionella risk assessment'))
+        .join(', ');
+
+      const total = quoteTotal.textContent;
+      const subject = encodeURIComponent('New assessment quote request');
+      const body = [
+        `Services: ${serviceNames}`,
+        `Required date: ${data.requiredDate}`,
+        `Customer email: ${data.customerEmail}`,
+        `Estimated quote: ${total}`,
+        '',
+        'Properties:',
+        propertyDetails,
+        '',
+        `Comments: ${data.comment || 'None supplied'}`,
+      ].join('\n');
+
+      window.location.href = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
 </Layout>

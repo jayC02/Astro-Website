@@ -58,12 +58,8 @@
     @apply flex items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3;
   }
 
-  .check-card small {
-    @apply block text-slate-500;
-  }
-
   .property-row {
-    @apply grid gap-4 rounded-xl border border-slate-200 p-4 md:grid-cols-3;
+    @apply grid gap-4 rounded-xl border border-slate-200 p-4 md:grid-cols-4;
   }
 
   .quote-summary {

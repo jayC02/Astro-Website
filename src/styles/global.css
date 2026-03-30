@@ -28,7 +28,26 @@
   }
 
   .section-transition {
-    @apply h-24 md:h-32 bg-gradient-to-b from-white via-sky-50/80 to-white;
+    @apply relative isolate overflow-hidden h-24 md:h-32;
+  }
+
+  .section-transition--guide {
+    @apply bg-gradient-to-b from-white via-sky-100/70 to-white;
+    clip-path: polygon(0 0, 100% 12%, 100% 88%, 0 100%);
+  }
+
+  .section-transition--contact {
+    @apply bg-gradient-to-b from-white via-indigo-100/70 to-white;
+    clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 88%);
+  }
+
+  .transition-orb {
+    @apply absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300/40 blur-3xl;
+    animation: floatPulse 5s ease-in-out infinite;
+  }
+
+  .transition-orb--alt {
+    @apply bg-indigo-300/40;
   }
 
   .badge {
@@ -77,5 +96,17 @@
 
   .btn-secondary {
     @apply inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100;
+  }
+}
+
+@keyframes floatPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 0.9;
   }
 }

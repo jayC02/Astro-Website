@@ -71,7 +71,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="quote-summary" aria-live="polite">
             <p class="text-sm text-slate-500">Estimated total</p>
             <p id="quoteTotal" class="text-3xl font-bold text-slate-900">£0.00</p>
-            <p id="quoteBreakdown" class="text-sm text-slate-600">Add at least one property with address and postcode to generate a quote.</p>
+            <p id="quoteBreakdown" class="text-sm text-slate-600 whitespace-pre-line">Add at least one property with address and postcode to generate a quote.</p>
           </div>
 
           <button type="submit" class="btn-primary w-full md:w-auto">Submit request</button>
@@ -80,9 +80,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <section class="section-transition section-transition--guide" aria-hidden="true">
-    <div class="transition-orb"></div>
-  </section>
+  <section class="section-transition section-transition--guide" aria-hidden="true"></section>
 
   <section id="guide" class="pb-20">
     <div class="container-pro space-y-6">
@@ -118,9 +116,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <section class="section-transition section-transition--contact" aria-hidden="true">
-    <div class="transition-orb transition-orb--alt"></div>
-  </section>
+  <section class="section-transition section-transition--contact" aria-hidden="true"></section>
 
   <section id="contact" class="pb-20">
     <div class="container-pro">
@@ -147,7 +143,7 @@ import Layout from '../layouts/Layout.astro';
             <textarea class="input min-h-32" id="contactMessage" name="contactMessage" required placeholder="How can we help?"></textarea>
           </label>
 
-          <button type="submit" class="btn-primary w-full md:w-auto">Send message</button>
+          <button type="submit" id="contactSubmit" class="btn-primary w-full md:w-auto">Send message</button>
         </form>
       </div>
     </div>
@@ -169,6 +165,9 @@ import Layout from '../layouts/Layout.astro';
     const quoteTotal = document.getElementById('quoteTotal');
     const quoteBreakdown = document.getElementById('quoteBreakdown');
     const contactForm = document.getElementById('contactForm');
+    const contactSubmit = document.getElementById('contactSubmit');
+    const quoteSubmit = form?.querySelector('button[type="submit"]');
+    const submitEndpoint = 'https://formsubmit.co/ajax/jay@scottishenergyservices.co.uk';
 
     let propertyCount = 0;
 
@@ -259,7 +258,7 @@ import Layout from '../layouts/Layout.astro';
       }, 0);
 
       quoteTotal.textContent = `£${total.toFixed(2)}`;
-      quoteBreakdown.textContent = breakdownLines.join(' | ');
+      quoteBreakdown.textContent = breakdownLines.join('\n');
     };
 
     createPropertyRow();
@@ -270,7 +269,7 @@ import Layout from '../layouts/Layout.astro';
 
     form?.addEventListener('change', updateQuote);
 
-    form?.addEventListener('submit', (event) => {
+    form?.addEventListener('submit', async (event) => {
       event.preventDefault();
       const selectedServices = getSelectedServices();
 
@@ -310,11 +309,41 @@ import Layout from '../layouts/Layout.astro';
         '',
         `Comments: ${data.comment || 'None supplied'}`,
       ].join('\n');
+      const submitButtonLabel = quoteSubmit?.textContent;
+      if (quoteSubmit) {
+        quoteSubmit.disabled = true;
+        quoteSubmit.textContent = 'Sending...';
+      }
 
-      window.location.href = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
+      try {
+        const response = await fetch(submitEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            _subject: 'New assessment quote request',
+            email: data.customerEmail,
+            message: body,
+          }),
+        });
+
+        if (!response.ok) throw new Error('Quote request failed');
+        alert('Thanks — your quote request has been sent successfully.');
+        form.reset();
+        propertiesContainer.innerHTML = '';
+        propertyCount = 0;
+        createPropertyRow();
+      } catch (error) {
+        const fallbackMailto = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
+        window.location.href = fallbackMailto;
+      } finally {
+        if (quoteSubmit) {
+          quoteSubmit.disabled = false;
+          quoteSubmit.textContent = submitButtonLabel || 'Submit request';
+        }
+      }
     });
 
-    contactForm?.addEventListener('submit', (event) => {
+    contactForm?.addEventListener('submit', async (event) => {
       event.preventDefault();
 
       const contactData = new FormData(contactForm);
@@ -327,8 +356,35 @@ import Layout from '../layouts/Layout.astro';
         'Message:',
         `${data.contactMessage}`,
       ].join('\n');
+      const contactLabel = contactSubmit?.textContent;
+      if (contactSubmit) {
+        contactSubmit.disabled = true;
+        contactSubmit.textContent = 'Sending...';
+      }
 
-      window.location.href = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
+      try {
+        const response = await fetch(submitEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            _subject: `Website contact message from ${data.contactName}`,
+            email: data.contactEmail,
+            message: body,
+          }),
+        });
+
+        if (!response.ok) throw new Error('Contact message failed');
+        alert('Thanks — your message has been sent.');
+        contactForm.reset();
+      } catch (error) {
+        const fallbackMailto = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
+        window.location.href = fallbackMailto;
+      } finally {
+        if (contactSubmit) {
+          contactSubmit.disabled = false;
+          contactSubmit.textContent = contactLabel || 'Send message';
+        }
+      }
     });
   </script>
 </Layout>

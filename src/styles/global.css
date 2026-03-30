@@ -41,13 +41,10 @@
     clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 88%);
   }
 
-  .transition-orb {
-    @apply absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300/40 blur-3xl;
-    animation: floatPulse 5s ease-in-out infinite;
-  }
-
-  .transition-orb--alt {
-    @apply bg-indigo-300/40;
+  #quote,
+  #guide,
+  #contact {
+    scroll-margin-top: 5rem;
   }
 
   .badge {
@@ -96,17 +93,5 @@
 
   .btn-secondary {
     @apply inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100;
-  }
-}
-
-@keyframes floatPulse {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(0.9);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.15);
-    opacity: 0.9;
   }
 }

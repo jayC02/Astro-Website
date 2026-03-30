@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Scottish Energy Services | RdSAP & Legionella Risk Assessments"
-  description="Book fast RdSAP EPCs and Legionella risk assessments with instant quote estimates for flats, houses, and maisonettes."
+  description="Book fast RdSAP EPCs and Legionella risk assessments with dynamic quote estimates based on property type and location."
 >
   <section class="hero-section">
     <div class="container-pro py-10 md:py-16">
@@ -14,6 +14,7 @@ import Layout from '../layouts/Layout.astro';
         Get a live quote in seconds, choose your required date, add one or many properties, and submit your request directly to
         Scottish Energy Services.
       </p>
+      <a href="/services" class="btn-secondary mt-6">What are EPC & Legionella certificates?</a>
     </div>
   </section>
 
@@ -21,7 +22,10 @@ import Layout from '../layouts/Layout.astro';
     <div class="container-pro">
       <div class="quote-card">
         <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Live quote request</h2>
-        <p class="mt-2 text-slate-600">Standard EPC (RdSAP) guide price: <strong>£70 per property</strong>.</p>
+        <p class="mt-2 text-slate-600">
+          Dynamic EPC pricing: Flat £70, House £85, Bungalow £80, Maisonette £75. Properties outside Glasgow/Edinburgh include
+          a travel premium.
+        </p>
 
         <form id="quoteForm" class="mt-6 space-y-6">
           <fieldset>
@@ -72,7 +76,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="quote-summary" aria-live="polite">
             <p class="text-sm text-slate-500">Estimated total</p>
             <p id="quoteTotal" class="text-3xl font-bold text-slate-900">£70.00</p>
-            <p id="quoteBreakdown" class="text-sm text-slate-600">1 property × RdSAP (£70)</p>
+            <p id="quoteBreakdown" class="text-sm text-slate-600">1 property × RdSAP (Flat in Glasgow/Edinburgh)</p>
           </div>
 
           <button type="submit" class="btn-primary w-full md:w-auto">Submit request</button>
@@ -82,7 +86,15 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <script>
-    const prices = { rdsap: 70, legionella: 55 };
+    const servicePrices = { legionella: 55 };
+    const epcByPropertyType = {
+      Flat: 70,
+      House: 85,
+      Bungalow: 80,
+      Maisonette: 75,
+      Other: 85,
+    };
+    const travelPremium = 20;
     const propertiesContainer = document.getElementById('properties');
     const addPropertyButton = document.getElementById('addProperty');
     const form = document.getElementById('quoteForm');
@@ -110,6 +122,13 @@ import Layout from '../layouts/Layout.astro';
             <option value="Other">Other</option>
           </select>
         </label>
+        <label>
+          <span class="form-label">Location</span>
+          <select class="input" name="locationZone_${propertyCount}" required>
+            <option value="city">Glasgow / Edinburgh</option>
+            <option value="outside">Outside Glasgow / Edinburgh (+£${travelPremium})</option>
+          </select>
+        </label>
       `;
       propertiesContainer.appendChild(row);
       updateQuote();
@@ -121,7 +140,8 @@ import Layout from '../layouts/Layout.astro';
 
     const updateQuote = () => {
       const selectedServices = getSelectedServices();
-      const properties = propertiesContainer.querySelectorAll('.property-row').length || 1;
+      const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
+      const properties = propertyRows.length || 1;
 
       if (selectedServices.length === 0) {
         quoteTotal.textContent = '£0.00';
@@ -129,14 +149,30 @@ import Layout from '../layouts/Layout.astro';
         return;
       }
 
-      const perProperty = selectedServices.reduce((sum, service) => sum + prices[service], 0);
-      const total = perProperty * properties;
-      const labels = selectedServices.map((service) =>
-        service === 'rdsap' ? 'RdSAP (£70)' : 'Legionella (£55)'
-      );
+      const breakdownLines = [];
+      const total = propertyRows.reduce((sum, row, index) => {
+        const rowNumber = index + 1;
+        const propertyType = row.querySelector(`[name="propertyType_${rowNumber}"]`)?.value || 'Other';
+        const locationZone = row.querySelector(`[name="locationZone_${rowNumber}"]`)?.value || 'city';
+
+        const epcPrice = selectedServices.includes('rdsap') ? epcByPropertyType[propertyType] ?? epcByPropertyType.Other : 0;
+        const legionellaPrice = selectedServices.includes('legionella') ? servicePrices.legionella : 0;
+        const locationPremium = locationZone === 'outside' ? travelPremium : 0;
+
+        const rowTotal = epcPrice + legionellaPrice + locationPremium;
+        const locationLabel = locationZone === 'outside' ? 'Outside main cities' : 'Glasgow/Edinburgh';
+        const parts = [];
+
+        if (epcPrice) parts.push(`RdSAP ${propertyType} (£${epcPrice})`);
+        if (legionellaPrice) parts.push(`Legionella (£${legionellaPrice})`);
+        if (locationPremium) parts.push(`Travel premium (+£${locationPremium})`);
+
+        breakdownLines.push(`Property ${rowNumber}: ${locationLabel} — ${parts.join(' + ')}`);
+        return sum + rowTotal;
+      }, 0);
 
       quoteTotal.textContent = `£${total.toFixed(2)}`;
-      quoteBreakdown.textContent = `${properties} ${properties === 1 ? 'property' : 'properties'} × ${labels.join(' + ')}`;
+      quoteBreakdown.textContent = breakdownLines.join(' | ');
     };
 
     createPropertyRow();
@@ -164,7 +200,8 @@ import Layout from '../layouts/Layout.astro';
           const rowNumber = index + 1;
           const address = data[`address_${rowNumber}`] || '';
           const propertyType = data[`propertyType_${rowNumber}`] || '';
-          return `${rowNumber}. ${propertyType} - ${address}`;
+          const locationZone = data[`locationZone_${rowNumber}`] === 'outside' ? 'Outside Glasgow/Edinburgh' : 'Glasgow/Edinburgh';
+          return `${rowNumber}. ${propertyType} (${locationZone}) - ${address}`;
         })
         .join('\n');
 

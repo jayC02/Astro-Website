@@ -1,0 +1,28 @@
+---
+import Section from "./Section.astro";
+
+const features = [
+  { title: "Warrant & planning templates", desc: "Consistent layouts, schedules, and notes across every project." },
+  { title: "Change once, update everywhere", desc: "Edits cascade through the pack so you don’t rework 10 documents." },
+  { title: "Fewer submission back-and-forths", desc: "Reduce missing-info issues with structured outputs and checks." },
+  { title: "Designed for small teams", desc: "Move faster without needing a dedicated admin/document controller." },
+  { title: "Clear audit trail", desc: "Track what changed and when, ready for internal QA or client review." },
+  { title: "Export in one click", desc: "Generate a tidy bundle for email, portal uploads, or client handover." },
+];
+---
+
+<Section
+  id="features"
+  eyebrow="Features"
+  title="Automation that feels like a superpower"
+  subtitle="The goal isn’t to replace judgment — it’s to remove repetitive document work so you can focus on design."
+>
+  <div class="grid gap-6 md:grid-cols-2">
+    {features.map((f) => (
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/10">
+        <h3 class="text-lg font-semibold text-white">{f.title}</h3>
+        <p class="mt-2 text-white/70 leading-relaxed">{f.desc}</p>
+      </div>
+    ))}
+  </div>
+</Section>

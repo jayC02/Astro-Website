@@ -2,14 +2,37 @@
 import Layout from '../layouts/Layout.astro';
 import AnimatedHero from '../components/AnimatedHero.jsx';
 import AnimatedCard from '../components/AnimatedCard.jsx';
+import RevealSection from '../components/RevealSection.jsx';
+import LenisWrapper from '../components/LenisWrapper.jsx';
+import HeroSection from '../components/HeroSection.jsx';
+import FloatingImage from '../components/FloatingImage.jsx';
+import Fog from '../components/Fog.jsx';
+import ModelViewer from '../components/ModelViewer.jsx';
+import FloorPlan from '../components/FloorPlan.jsx';
+import HowItWorks from "../components/HowItWorks.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import Outputs from "../components/Outputs.astro";
+import FinalCTA from "../components/FinalCTA.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
+<Layout title="ArchitectPro — Automate Warrant & Planning Packs">
+  <LenisWrapper client:only="react" />
 
-<Layout>
-	<AnimatedHero client:load />
-        <AnimatedCard client:load>
-                <p class="text-gray-600">Hover over this card to see an animation.</p>
-        </AnimatedCard>
+  <!-- Hero -->
+  <Fog client:only="react" />
+
+  <!-- Proof / demo (pick ONE early; the other can go later) -->
+  <ModelViewer client:visible />
+  <!-- <FloorPlan client:visible /> -->
+
+  <!-- Marketing -->
+  <HowItWorks />
+  <FeatureGrid />
+  <Outputs />
+
+  <!-- Add these next (below) -->
+  <!-- <Pricing /> -->
+  <!-- <FAQ /> -->
+
+  <FinalCTA />
 </Layout>

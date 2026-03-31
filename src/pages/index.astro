@@ -20,7 +20,7 @@ import Layout from '../layouts/Layout.astro';
 
   <section id="quote" class="pb-16">
     <div class="container-pro">
-      <div class="quote-card">
+      <div class="quote-card quote-card--primary">
         <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Live quote request</h2>
         <p class="mt-2 text-slate-600">Complete the property details below to generate your live quote.</p>
         <div class="deal-banner mt-4">
@@ -28,7 +28,7 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-slate-800"><strong>EPC + Legionella deal: £100</strong> for both, discounted from £120.</p>
         </div>
 
-        <form id="quoteForm" class="mt-6 space-y-6">
+        <form id="quoteForm" class="quote-form mt-6 space-y-6">
           <div>
             <div class="flex items-center justify-between gap-4 mb-3">
               <h3 class="text-lg font-semibold text-slate-900">Property details</h3>
@@ -38,7 +38,7 @@ import Layout from '../layouts/Layout.astro';
             <div id="properties" class="space-y-4"></div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-4">
+          <div class="grid md:grid-cols-3 gap-4">
             <label>
               <span class="form-label">Preferred assessment date</span>
               <input class="input" type="date" id="requiredDate" name="requiredDate" required />
@@ -46,6 +46,10 @@ import Layout from '../layouts/Layout.astro';
             <label>
               <span class="form-label">Your email</span>
               <input class="input" type="email" id="customerEmail" name="customerEmail" required placeholder="you@example.com" />
+            </label>
+            <label>
+              <span class="form-label">Mobile number</span>
+              <input class="input" type="tel" id="customerPhone" name="customerPhone" required placeholder="07..." />
             </label>
           </div>
 
@@ -113,7 +117,7 @@ import Layout from '../layouts/Layout.astro';
         </p>
 
         <form id="contactForm" class="mt-6 space-y-4">
-          <div class="grid md:grid-cols-2 gap-4">
+          <div class="grid md:grid-cols-3 gap-4">
             <label>
               <span class="form-label">Your name</span>
               <input class="input" type="text" id="contactName" name="contactName" required placeholder="Jane Smith" />
@@ -121,6 +125,10 @@ import Layout from '../layouts/Layout.astro';
             <label>
               <span class="form-label">Your email</span>
               <input class="input" type="email" id="contactEmail" name="contactEmail" required placeholder="you@example.com" />
+            </label>
+            <label>
+              <span class="form-label">Mobile number</span>
+              <input class="input" type="tel" id="contactPhone" name="contactPhone" required placeholder="07..." />
             </label>
           </div>
 
@@ -336,6 +344,7 @@ import Layout from '../layouts/Layout.astro';
       const body = [
         `Required date: ${data.requiredDate}`,
         `Customer email: ${data.customerEmail}`,
+        `Customer mobile: ${data.customerPhone}`,
         `Estimated quote: ${total}`,
         '',
         'Properties:',
@@ -386,6 +395,7 @@ import Layout from '../layouts/Layout.astro';
       const body = [
         `Name: ${data.contactName}`,
         `Email: ${data.contactEmail}`,
+        `Mobile: ${data.contactPhone}`,
         '',
         'Message:',
         `${data.contactMessage}`,

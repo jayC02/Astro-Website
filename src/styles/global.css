@@ -80,7 +80,15 @@
   }
 
   .property-row {
-    @apply grid gap-4 rounded-xl border border-slate-200 p-4 md:grid-cols-4;
+    @apply relative grid gap-4 rounded-xl border border-slate-200 p-4 md:grid-cols-4;
+  }
+
+  .remove-property {
+    @apply absolute right-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 bg-white text-lg leading-none text-slate-500 transition hover:bg-slate-100 hover:text-slate-700;
+  }
+
+  .deal-banner {
+    @apply rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3;
   }
 
   .quote-summary {

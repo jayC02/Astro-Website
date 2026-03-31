@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Scottish Energy Services | RdSAP & Legionella Risk Assessments"
-  description="Book fast RdSAP EPCs and Legionella risk assessments with instant quote estimates for flats, houses, and maisonettes."
+  description="Book fast RdSAP EPCs and Legionella risk assessments with instant quote estimates."
 >
   <section class="hero-section">
     <div class="container-pro py-10 md:py-16">
@@ -14,6 +14,7 @@ import Layout from '../layouts/Layout.astro';
         Get a live quote in seconds, choose your required date, add one or many properties, and submit your request directly to
         Scottish Energy Services.
       </p>
+      <a href="#guide" class="btn-secondary mt-6">What are EPC & Legionella certificates?</a>
     </div>
   </section>
 
@@ -21,7 +22,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="container-pro">
       <div class="quote-card">
         <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Live quote request</h2>
-        <p class="mt-2 text-slate-600">Standard EPC (RdSAP) guide price: <strong>£70 per property</strong>.</p>
+        <p class="mt-2 text-slate-600">Complete the property details below to generate your live quote.</p>
 
         <form id="quoteForm" class="mt-6 space-y-6">
           <fieldset>
@@ -31,14 +32,12 @@ import Layout from '../layouts/Layout.astro';
                 <input type="checkbox" name="services" value="rdsap" checked />
                 <span>
                   <strong>RdSAP / EPC</strong>
-                  <small>£70 per property</small>
                 </span>
               </label>
               <label class="check-card">
                 <input type="checkbox" name="services" value="legionella" />
                 <span>
                   <strong>Legionella risk assessment</strong>
-                  <small>£55 per property</small>
                 </span>
               </label>
             </div>
@@ -71,8 +70,8 @@ import Layout from '../layouts/Layout.astro';
 
           <div class="quote-summary" aria-live="polite">
             <p class="text-sm text-slate-500">Estimated total</p>
-            <p id="quoteTotal" class="text-3xl font-bold text-slate-900">£70.00</p>
-            <p id="quoteBreakdown" class="text-sm text-slate-600">1 property × RdSAP (£70)</p>
+            <p id="quoteTotal" class="text-3xl font-bold text-slate-900">£0.00</p>
+            <p id="quoteBreakdown" class="text-sm text-slate-600 whitespace-pre-line">Add at least one property with address and postcode to generate a quote.</p>
           </div>
 
           <button type="submit" class="btn-primary w-full md:w-auto">Submit request</button>
@@ -81,13 +80,94 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <section class="section-transition section-transition--guide" aria-hidden="true"></section>
+
+  <section id="guide" class="pb-20">
+    <div class="container-pro space-y-6">
+      <article class="quote-card">
+        <h2 class="text-2xl font-bold text-slate-900">EPC (RdSAP) assessment</h2>
+        <p class="mt-3 text-slate-700">
+          An EPC (Energy Performance Certificate) rates a property's energy efficiency from A to G. RdSAP is the method commonly
+          used for existing homes in Scotland and across the UK.
+        </p>
+        <h3 class="mt-4 text-lg font-semibold text-slate-900">Why you might need an EPC</h3>
+        <ul class="mt-2 list-disc pl-5 text-slate-700 space-y-1">
+          <li>Before marketing a property for sale or rent.</li>
+          <li>When your current EPC has expired (most are valid for 10 years).</li>
+          <li>For grant and funding applications where energy rating evidence is required.</li>
+          <li>When applying for retrofit schemes or insulation/heating upgrades.</li>
+          <li>To understand recommended improvements that may reduce bills and improve compliance.</li>
+        </ul>
+      </article>
+
+      <article class="quote-card">
+        <h2 class="text-2xl font-bold text-slate-900">Legionella risk assessment</h2>
+        <p class="mt-3 text-slate-700">
+          A Legionella risk assessment reviews the property's water system and usage patterns to identify areas where Legionella
+          bacteria could grow.
+        </p>
+        <h3 class="mt-4 text-lg font-semibold text-slate-900">When you might need a Legionella assessment</h3>
+        <ul class="mt-2 list-disc pl-5 text-slate-700 space-y-1">
+          <li>As part of landlord health and safety responsibilities.</li>
+          <li>For properties with stored water tanks, infrequently used outlets, or complex plumbing.</li>
+          <li>When tenancy arrangements or management responsibilities change.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-transition section-transition--contact" aria-hidden="true"></section>
+
+  <section id="contact" class="pb-20">
+    <div class="container-pro">
+      <div class="quote-card">
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Contact</h2>
+        <p class="mt-2 text-slate-600">
+          Send a message directly through the website and it will open a prepared email to Scottish Energy Services.
+        </p>
+
+        <form id="contactForm" class="mt-6 space-y-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <label>
+              <span class="form-label">Your name</span>
+              <input class="input" type="text" id="contactName" name="contactName" required placeholder="Jane Smith" />
+            </label>
+            <label>
+              <span class="form-label">Your email</span>
+              <input class="input" type="email" id="contactEmail" name="contactEmail" required placeholder="you@example.com" />
+            </label>
+          </div>
+
+          <label>
+            <span class="form-label">Message</span>
+            <textarea class="input min-h-32" id="contactMessage" name="contactMessage" required placeholder="How can we help?"></textarea>
+          </label>
+
+          <button type="submit" id="contactSubmit" class="btn-primary w-full md:w-auto">Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <script>
-    const prices = { rdsap: 70, legionella: 55 };
+    const servicePrices = { legionella: 55 };
+    const epcByPropertyType = {
+      Flat: 70,
+      House: 85,
+      Bungalow: 80,
+      Maisonette: 75,
+      Other: 85,
+    };
+    const travelPremium = 20;
     const propertiesContainer = document.getElementById('properties');
     const addPropertyButton = document.getElementById('addProperty');
     const form = document.getElementById('quoteForm');
     const quoteTotal = document.getElementById('quoteTotal');
     const quoteBreakdown = document.getElementById('quoteBreakdown');
+    const contactForm = document.getElementById('contactForm');
+    const contactSubmit = document.getElementById('contactSubmit');
+    const quoteSubmit = form?.querySelector('button[type="submit"]');
+    const submitEndpoint = 'https://formsubmit.co/ajax/jay@scottishenergyservices.co.uk';
 
     let propertyCount = 0;
 
@@ -96,9 +176,15 @@ import Layout from '../layouts/Layout.astro';
       const row = document.createElement('div');
       row.className = 'property-row';
       row.innerHTML = `
+        <div class="md:col-span-2">
+          <label>
+            <span class="form-label">Address ${propertyCount}</span>
+            <input class="input" type="text" name="address_${propertyCount}" placeholder="${propertyCount} Example Street, Town" required />
+          </label>
+        </div>
         <label>
-          <span class="form-label">Address ${propertyCount}</span>
-          <input class="input" type="text" name="address_${propertyCount}" placeholder="${propertyCount} Example Street, Town, Postcode" required />
+          <span class="form-label">Postcode</span>
+          <input class="input" type="text" name="postcode_${propertyCount}" placeholder="G1 1AA" required />
         </label>
         <label>
           <span class="form-label">Property type</span>
@@ -119,9 +205,16 @@ import Layout from '../layouts/Layout.astro';
       return [...document.querySelectorAll('input[name="services"]:checked')].map((el) => el.value);
     };
 
+    const getLocationZoneFromPostcode = (postcode = '') => {
+      const normalized = postcode.trim().toUpperCase();
+      if (!normalized) return null;
+      if (normalized.startsWith('G') || normalized.startsWith('EH')) return 'city';
+      return 'outside';
+    };
+
     const updateQuote = () => {
       const selectedServices = getSelectedServices();
-      const properties = propertiesContainer.querySelectorAll('.property-row').length || 1;
+      const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
 
       if (selectedServices.length === 0) {
         quoteTotal.textContent = '£0.00';
@@ -129,14 +222,43 @@ import Layout from '../layouts/Layout.astro';
         return;
       }
 
-      const perProperty = selectedServices.reduce((sum, service) => sum + prices[service], 0);
-      const total = perProperty * properties;
-      const labels = selectedServices.map((service) =>
-        service === 'rdsap' ? 'RdSAP (£70)' : 'Legionella (£55)'
-      );
+      if (propertyRows.length === 0) {
+        quoteTotal.textContent = '£0.00';
+        quoteBreakdown.textContent = 'Add at least one property with address and postcode to generate a quote.';
+        return;
+      }
+
+      const breakdownLines = [];
+      const total = propertyRows.reduce((sum, row, index) => {
+        const rowNumber = index + 1;
+        const propertyType = row.querySelector(`[name="propertyType_${rowNumber}"]`)?.value || 'Other';
+        const address = row.querySelector(`[name="address_${rowNumber}"]`)?.value?.trim() || '';
+        const postcode = row.querySelector(`[name="postcode_${rowNumber}"]`)?.value || '';
+        const locationZone = getLocationZoneFromPostcode(postcode);
+
+        if (!address || !postcode || !locationZone) {
+          breakdownLines.push(`Property ${rowNumber}: waiting for full address + postcode`);
+          return sum;
+        }
+
+        const epcPrice = selectedServices.includes('rdsap') ? epcByPropertyType[propertyType] ?? epcByPropertyType.Other : 0;
+        const legionellaPrice = selectedServices.includes('legionella') ? servicePrices.legionella : 0;
+        const locationPremium = locationZone === 'outside' ? travelPremium : 0;
+
+        const rowTotal = epcPrice + legionellaPrice + locationPremium;
+        const locationLabel = locationZone === 'outside' ? 'Outside main cities' : 'Glasgow/Edinburgh';
+        const parts = [];
+
+        if (epcPrice) parts.push(`RdSAP ${propertyType} (£${epcPrice})`);
+        if (legionellaPrice) parts.push(`Legionella (£${legionellaPrice})`);
+        if (locationPremium) parts.push(`Travel premium (+£${locationPremium})`);
+
+        breakdownLines.push(`Property ${rowNumber}: ${locationLabel} — ${parts.join(' + ')}`);
+        return sum + rowTotal;
+      }, 0);
 
       quoteTotal.textContent = `£${total.toFixed(2)}`;
-      quoteBreakdown.textContent = `${properties} ${properties === 1 ? 'property' : 'properties'} × ${labels.join(' + ')}`;
+      quoteBreakdown.textContent = breakdownLines.join('\n');
     };
 
     createPropertyRow();
@@ -147,7 +269,7 @@ import Layout from '../layouts/Layout.astro';
 
     form?.addEventListener('change', updateQuote);
 
-    form?.addEventListener('submit', (event) => {
+    form?.addEventListener('submit', async (event) => {
       event.preventDefault();
       const selectedServices = getSelectedServices();
 
@@ -163,8 +285,10 @@ import Layout from '../layouts/Layout.astro';
         .map((row, index) => {
           const rowNumber = index + 1;
           const address = data[`address_${rowNumber}`] || '';
+          const postcode = data[`postcode_${rowNumber}`] || '';
           const propertyType = data[`propertyType_${rowNumber}`] || '';
-          return `${rowNumber}. ${propertyType} - ${address}`;
+          const locationZone = getLocationZoneFromPostcode(postcode) === 'outside' ? 'Outside Glasgow/Edinburgh' : 'Glasgow/Edinburgh';
+          return `${rowNumber}. ${propertyType} (${locationZone}) - ${address}, ${postcode}`;
         })
         .join('\n');
 
@@ -185,8 +309,82 @@ import Layout from '../layouts/Layout.astro';
         '',
         `Comments: ${data.comment || 'None supplied'}`,
       ].join('\n');
+      const submitButtonLabel = quoteSubmit?.textContent;
+      if (quoteSubmit) {
+        quoteSubmit.disabled = true;
+        quoteSubmit.textContent = 'Sending...';
+      }
 
-      window.location.href = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
+      try {
+        const response = await fetch(submitEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            _subject: 'New assessment quote request',
+            email: data.customerEmail,
+            message: body,
+          }),
+        });
+
+        if (!response.ok) throw new Error('Quote request failed');
+        alert('Thanks — your quote request has been sent successfully.');
+        form.reset();
+        propertiesContainer.innerHTML = '';
+        propertyCount = 0;
+        createPropertyRow();
+      } catch (error) {
+        const fallbackMailto = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
+        window.location.href = fallbackMailto;
+      } finally {
+        if (quoteSubmit) {
+          quoteSubmit.disabled = false;
+          quoteSubmit.textContent = submitButtonLabel || 'Submit request';
+        }
+      }
+    });
+
+    contactForm?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const contactData = new FormData(contactForm);
+      const data = Object.fromEntries(contactData.entries());
+      const subject = encodeURIComponent(`Website contact message from ${data.contactName}`);
+      const body = [
+        `Name: ${data.contactName}`,
+        `Email: ${data.contactEmail}`,
+        '',
+        'Message:',
+        `${data.contactMessage}`,
+      ].join('\n');
+      const contactLabel = contactSubmit?.textContent;
+      if (contactSubmit) {
+        contactSubmit.disabled = true;
+        contactSubmit.textContent = 'Sending...';
+      }
+
+      try {
+        const response = await fetch(submitEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            _subject: `Website contact message from ${data.contactName}`,
+            email: data.contactEmail,
+            message: body,
+          }),
+        });
+
+        if (!response.ok) throw new Error('Contact message failed');
+        alert('Thanks — your message has been sent.');
+        contactForm.reset();
+      } catch (error) {
+        const fallbackMailto = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
+        window.location.href = fallbackMailto;
+      } finally {
+        if (contactSubmit) {
+          contactSubmit.disabled = false;
+          contactSubmit.textContent = contactLabel || 'Send message';
+        }
+      }
     });
   </script>
 </Layout>

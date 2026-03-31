@@ -20,29 +20,15 @@ import Layout from '../layouts/Layout.astro';
 
   <section id="quote" class="pb-16">
     <div class="container-pro">
-      <div class="quote-card">
+      <div class="quote-card quote-card--primary">
         <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Live quote request</h2>
         <p class="mt-2 text-slate-600">Complete the property details below to generate your live quote.</p>
+        <div class="deal-banner mt-4">
+          <p class="text-sm font-semibold text-emerald-800">Special offer</p>
+          <p class="text-slate-800"><strong>EPC + Legionella deal: £100</strong> for both, discounted from £120.</p>
+        </div>
 
-        <form id="quoteForm" class="mt-6 space-y-6">
-          <fieldset>
-            <legend class="form-label">Assessment type</legend>
-            <div class="service-grid">
-              <label class="check-card">
-                <input type="checkbox" name="services" value="rdsap" checked />
-                <span>
-                  <strong>RdSAP / EPC</strong>
-                </span>
-              </label>
-              <label class="check-card">
-                <input type="checkbox" name="services" value="legionella" />
-                <span>
-                  <strong>Legionella risk assessment</strong>
-                </span>
-              </label>
-            </div>
-          </fieldset>
-
+        <form id="quoteForm" class="quote-form mt-6 space-y-6">
           <div>
             <div class="flex items-center justify-between gap-4 mb-3">
               <h3 class="text-lg font-semibold text-slate-900">Property details</h3>
@@ -52,7 +38,7 @@ import Layout from '../layouts/Layout.astro';
             <div id="properties" class="space-y-4"></div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-4">
+          <div class="grid md:grid-cols-3 gap-4">
             <label>
               <span class="form-label">Preferred assessment date</span>
               <input class="input" type="date" id="requiredDate" name="requiredDate" required />
@@ -60,6 +46,10 @@ import Layout from '../layouts/Layout.astro';
             <label>
               <span class="form-label">Your email</span>
               <input class="input" type="email" id="customerEmail" name="customerEmail" required placeholder="you@example.com" />
+            </label>
+            <label>
+              <span class="form-label">Mobile number</span>
+              <input class="input" type="tel" id="customerPhone" name="customerPhone" required placeholder="07..." />
             </label>
           </div>
 
@@ -127,7 +117,7 @@ import Layout from '../layouts/Layout.astro';
         </p>
 
         <form id="contactForm" class="mt-6 space-y-4">
-          <div class="grid md:grid-cols-2 gap-4">
+          <div class="grid md:grid-cols-3 gap-4">
             <label>
               <span class="form-label">Your name</span>
               <input class="input" type="text" id="contactName" name="contactName" required placeholder="Jane Smith" />
@@ -135,6 +125,10 @@ import Layout from '../layouts/Layout.astro';
             <label>
               <span class="form-label">Your email</span>
               <input class="input" type="email" id="contactEmail" name="contactEmail" required placeholder="you@example.com" />
+            </label>
+            <label>
+              <span class="form-label">Mobile number</span>
+              <input class="input" type="tel" id="contactPhone" name="contactPhone" required placeholder="07..." />
             </label>
           </div>
 
@@ -151,6 +145,7 @@ import Layout from '../layouts/Layout.astro';
 
   <script>
     const servicePrices = { legionella: 55 };
+    const bothDealPrice = 100;
     const epcByPropertyType = {
       Flat: 70,
       House: 85,
@@ -164,6 +159,7 @@ import Layout from '../layouts/Layout.astro';
     const form = document.getElementById('quoteForm');
     const quoteTotal = document.getElementById('quoteTotal');
     const quoteBreakdown = document.getElementById('quoteBreakdown');
+    const requiredDateInput = document.getElementById('requiredDate');
     const contactForm = document.getElementById('contactForm');
     const contactSubmit = document.getElementById('contactSubmit');
     const quoteSubmit = form?.querySelector('button[type="submit"]');
@@ -173,22 +169,42 @@ import Layout from '../layouts/Layout.astro';
 
     const createPropertyRow = () => {
       propertyCount += 1;
+      const propertyId = propertyCount;
       const row = document.createElement('div');
       row.className = 'property-row';
+      row.dataset.propertyId = String(propertyId);
       row.innerHTML = `
+        <button type="button" class="remove-property" aria-label="Remove property">×</button>
+        <fieldset class="md:col-span-2">
+          <legend class="form-label">Assessment type</legend>
+          <div class="service-grid">
+            <label class="check-card">
+              <input type="checkbox" name="services_${propertyId}" value="rdsap" checked />
+              <span>
+                <strong>RdSAP / EPC</strong>
+              </span>
+            </label>
+            <label class="check-card">
+              <input type="checkbox" name="services_${propertyId}" value="legionella" />
+              <span>
+                <strong>Legionella risk assessment</strong>
+              </span>
+            </label>
+          </div>
+        </fieldset>
         <div class="md:col-span-2">
           <label>
-            <span class="form-label">Address ${propertyCount}</span>
-            <input class="input" type="text" name="address_${propertyCount}" placeholder="${propertyCount} Example Street, Town" required />
+            <span class="form-label">Address ${propertyId}</span>
+            <input class="input" type="text" name="address_${propertyId}" placeholder="${propertyId} Example Street, Town" required />
           </label>
         </div>
         <label>
           <span class="form-label">Postcode</span>
-          <input class="input" type="text" name="postcode_${propertyCount}" placeholder="G1 1AA" required />
+          <input class="input" type="text" name="postcode_${propertyId}" placeholder="G1 1AA" required />
         </label>
         <label>
           <span class="form-label">Property type</span>
-          <select class="input" name="propertyType_${propertyCount}" required>
+          <select class="input" name="propertyType_${propertyId}" required>
             <option value="Flat">Flat</option>
             <option value="House">House</option>
             <option value="Maisonette">Maisonette</option>
@@ -197,12 +213,23 @@ import Layout from '../layouts/Layout.astro';
           </select>
         </label>
       `;
+
+      const removeButton = row.querySelector('.remove-property');
+      removeButton?.addEventListener('click', () => {
+        const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
+        if (propertyRows.length <= 1) return;
+        row.remove();
+        updateQuote();
+      });
+
       propertiesContainer.appendChild(row);
       updateQuote();
     };
 
-    const getSelectedServices = () => {
-      return [...document.querySelectorAll('input[name="services"]:checked')].map((el) => el.value);
+    const getSelectedServicesForRow = (row) => {
+      const propertyId = row.dataset.propertyId;
+      if (!propertyId) return [];
+      return [...row.querySelectorAll(`input[name="services_${propertyId}"]:checked`)].map((el) => el.value);
     };
 
     const getLocationZoneFromPostcode = (postcode = '') => {
@@ -213,14 +240,7 @@ import Layout from '../layouts/Layout.astro';
     };
 
     const updateQuote = () => {
-      const selectedServices = getSelectedServices();
       const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
-
-      if (selectedServices.length === 0) {
-        quoteTotal.textContent = '£0.00';
-        quoteBreakdown.textContent = 'Select at least one assessment type to generate a quote.';
-        return;
-      }
 
       if (propertyRows.length === 0) {
         quoteTotal.textContent = '£0.00';
@@ -231,26 +251,40 @@ import Layout from '../layouts/Layout.astro';
       const breakdownLines = [];
       const total = propertyRows.reduce((sum, row, index) => {
         const rowNumber = index + 1;
-        const propertyType = row.querySelector(`[name="propertyType_${rowNumber}"]`)?.value || 'Other';
-        const address = row.querySelector(`[name="address_${rowNumber}"]`)?.value?.trim() || '';
-        const postcode = row.querySelector(`[name="postcode_${rowNumber}"]`)?.value || '';
+        const propertyId = row.dataset.propertyId;
+        const selectedServices = getSelectedServicesForRow(row);
+        const propertyType = row.querySelector(`[name="propertyType_${propertyId}"]`)?.value || 'Other';
+        const address = row.querySelector(`[name="address_${propertyId}"]`)?.value?.trim() || '';
+        const postcode = row.querySelector(`[name="postcode_${propertyId}"]`)?.value || '';
         const locationZone = getLocationZoneFromPostcode(postcode);
+
+        if (selectedServices.length === 0) {
+          breakdownLines.push(`Property ${rowNumber}: select at least one assessment type`);
+          return sum;
+        }
 
         if (!address || !postcode || !locationZone) {
           breakdownLines.push(`Property ${rowNumber}: waiting for full address + postcode`);
           return sum;
         }
 
-        const epcPrice = selectedServices.includes('rdsap') ? epcByPropertyType[propertyType] ?? epcByPropertyType.Other : 0;
-        const legionellaPrice = selectedServices.includes('legionella') ? servicePrices.legionella : 0;
+        const hasEpc = selectedServices.includes('rdsap');
+        const hasLegionella = selectedServices.includes('legionella');
+        const epcPrice = hasEpc ? epcByPropertyType[propertyType] ?? epcByPropertyType.Other : 0;
+        const legionellaPrice = hasLegionella ? servicePrices.legionella : 0;
         const locationPremium = locationZone === 'outside' ? travelPremium : 0;
 
-        const rowTotal = epcPrice + legionellaPrice + locationPremium;
+        const serviceTotal = hasEpc && hasLegionella ? bothDealPrice : epcPrice + legionellaPrice;
+        const rowTotal = serviceTotal + locationPremium;
         const locationLabel = locationZone === 'outside' ? 'Outside main cities' : 'Glasgow/Edinburgh';
         const parts = [];
 
-        if (epcPrice) parts.push(`RdSAP ${propertyType} (£${epcPrice})`);
-        if (legionellaPrice) parts.push(`Legionella (£${legionellaPrice})`);
+        if (hasEpc && hasLegionella) {
+          parts.push(`EPC + Legionella deal (£${bothDealPrice})`);
+        } else {
+          if (epcPrice) parts.push(`RdSAP ${propertyType} (£${epcPrice})`);
+          if (legionellaPrice) parts.push(`Legionella (£${legionellaPrice})`);
+        }
         if (locationPremium) parts.push(`Travel premium (+£${locationPremium})`);
 
         breakdownLines.push(`Property ${rowNumber}: ${locationLabel} — ${parts.join(' + ')}`);
@@ -262,6 +296,9 @@ import Layout from '../layouts/Layout.astro';
     };
 
     createPropertyRow();
+    if (requiredDateInput) {
+      requiredDateInput.min = new Date().toISOString().split('T')[0];
+    }
 
     addPropertyButton?.addEventListener('click', () => {
       createPropertyRow();
@@ -271,37 +308,43 @@ import Layout from '../layouts/Layout.astro';
 
     form?.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const selectedServices = getSelectedServices();
-
-      if (selectedServices.length === 0) {
-        alert('Please select at least one assessment type.');
-        return;
-      }
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
+      const today = new Date().toISOString().split('T')[0];
+      if (typeof data.requiredDate === 'string' && data.requiredDate < today) {
+        alert('Please choose a preferred assessment date from today onward.');
+        return;
+      }
       const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
+      const hasMissingServiceSelection = propertyRows.some((row) => getSelectedServicesForRow(row).length === 0);
+      if (hasMissingServiceSelection) {
+        alert('Please select at least one assessment type for each property.');
+        return;
+      }
+
       const propertyDetails = propertyRows
         .map((row, index) => {
           const rowNumber = index + 1;
-          const address = data[`address_${rowNumber}`] || '';
-          const postcode = data[`postcode_${rowNumber}`] || '';
-          const propertyType = data[`propertyType_${rowNumber}`] || '';
+          const propertyId = row.dataset.propertyId;
+          const selectedServices = getSelectedServicesForRow(row);
+          const serviceNames = selectedServices
+            .map((service) => (service === 'rdsap' ? 'RdSAP / EPC' : 'Legionella risk assessment'))
+            .join(' + ');
+          const address = data[`address_${propertyId}`] || '';
+          const postcode = data[`postcode_${propertyId}`] || '';
+          const propertyType = data[`propertyType_${propertyId}`] || '';
           const locationZone = getLocationZoneFromPostcode(postcode) === 'outside' ? 'Outside Glasgow/Edinburgh' : 'Glasgow/Edinburgh';
-          return `${rowNumber}. ${propertyType} (${locationZone}) - ${address}, ${postcode}`;
+          return `${rowNumber}. ${propertyType} (${locationZone}) - ${address}, ${postcode} [${serviceNames}]`;
         })
         .join('\n');
-
-      const serviceNames = selectedServices
-        .map((service) => (service === 'rdsap' ? 'RdSAP / EPC' : 'Legionella risk assessment'))
-        .join(', ');
 
       const total = quoteTotal.textContent;
       const subject = encodeURIComponent('New assessment quote request');
       const body = [
-        `Services: ${serviceNames}`,
         `Required date: ${data.requiredDate}`,
         `Customer email: ${data.customerEmail}`,
+        `Customer mobile: ${data.customerPhone}`,
         `Estimated quote: ${total}`,
         '',
         'Properties:',
@@ -352,6 +395,7 @@ import Layout from '../layouts/Layout.astro';
       const body = [
         `Name: ${data.contactName}`,
         `Email: ${data.contactEmail}`,
+        `Mobile: ${data.contactPhone}`,
         '',
         'Message:',
         `${data.contactMessage}`,

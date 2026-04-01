@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "https://www.scotlandepc.com/:path*",
+      "destination": "https://scotlandepc.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    }
+  ]
+}

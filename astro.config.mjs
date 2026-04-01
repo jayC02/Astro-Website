@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.scottishenergyservices.co.uk',
+  site: 'https://scotlandepc.com',
   vite: {
     plugins: [tailwindcss()]
   },

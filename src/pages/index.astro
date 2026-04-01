@@ -1,12 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const siteUrl = Astro.site ?? new URL(Astro.url.origin);
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'Scottish Energy Services',
-  url: new URL('/', siteUrl).toString(),
+  url: 'https://scotlandepc.com',
   email: 'jay@scottishenergyservices.co.uk',
   areaServed: ['Glasgow', 'Edinburgh'],
   makesOffer: [

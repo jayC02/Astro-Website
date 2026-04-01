@@ -12,12 +12,11 @@ const {
   ogType = "website",
 } = Astro.props;
 
-const siteUrl = Astro.site;
-const currentUrl = Astro.url;
-const canonicalUrl = canonicalPath
-  ? new URL(canonicalPath, siteUrl ?? currentUrl).toString()
-  : currentUrl.toString();
-const ogImageUrl = ogImage ? new URL(ogImage, siteUrl ?? currentUrl).toString() : undefined;
+const fallbackOrigin = new URL(Astro.url.origin);
+const baseUrl = Astro.site ?? fallbackOrigin;
+const canonicalSourcePath = canonicalPath ?? Astro.url.pathname;
+const canonicalUrl = new URL(canonicalSourcePath, baseUrl).toString();
+const ogImageUrl = ogImage ? new URL(ogImage, baseUrl).toString() : undefined;
 ---
 
 <!doctype html>

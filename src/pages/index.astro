@@ -4,10 +4,30 @@ import Layout from '../layouts/Layout.astro';
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'Scottish Energy Services',
+  name: 'Scotland EPC',
   url: 'https://scotlandepc.com',
-  email: 'jay@scottishenergyservices.co.uk',
-  areaServed: ['Glasgow', 'Edinburgh'],
+  telephone: '+44 7483 881889',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '272 Bath St',
+    addressLocality: 'Glasgow',
+    postalCode: 'G2 4JR',
+    addressCountry: 'GB',
+  },
+  areaServed: [
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Glasgow',
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Edinburgh',
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Scotland',
+    },
+  ],
   makesOffer: [
     {
       '@type': 'Offer',
@@ -25,46 +45,101 @@ const localBusinessSchema = {
     },
   ],
 };
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How long is an EPC valid?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An EPC is valid for 10 years.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do landlords need a Legionella risk assessment?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Landlords are responsible for ensuring the risk of Legionella is assessed and managed in their rental properties.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What areas do you cover?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We cover Glasgow, Edinburgh and surrounding areas across the central belt.',
+      },
+    },
+  ],
+};
 ---
 
 <Layout
-  title="EPC (RdSAP) & Legionella Risk Assessments in Glasgow and Edinburgh | Scottish Energy Services"
-  description="Book EPC (RdSAP) and Legionella risk assessments in Glasgow and Edinburgh. Get a fast online quote for landlords, homeowners, and property managers."
+  title="EPC Glasgow & Edinburgh | Legionella Risk Assessment | Scotland EPC"
+  description="Fast EPC and Legionella risk assessments in Glasgow and Edinburgh. Get an instant quote and book quickly with Scotland EPC."
   canonicalPath="/"
 >
   <section class="hero-section">
     <div class="container-pro py-10 md:py-16">
-      <p class="badge">Simple online booking</p>
-      <h1 class="hero-title">EPC (RdSAP) and Legionella risk assessments in Glasgow and Edinburgh.</h1>
+      <p class="badge">Scotland EPC</p>
+      <h1 class="hero-title">EPC & Legionella Risk Assessments in Glasgow & Edinburgh</h1>
       <p class="hero-copy">
-        Scottish Energy Services provides professional EPC / RdSAP and Legionella risk assessments for rental and residential properties
-        across Glasgow and Edinburgh, with a straightforward online quote and booking process.
+        Fast, reliable EPC (RdSAP) and Legionella risk assessments across Glasgow, Edinburgh and surrounding areas. Get a quote in seconds and book at a time that suits you.
+      </p>
+      <p class="mt-4 text-slate-700 max-w-3xl">
+        We provide straightforward, professional EPC and Legionella assessments for landlords, homeowners and letting agents. Whether you need a certificate for a new tenancy, a property sale, or a landlord compliance check, we make the process quick, simple and hassle-free.
       </p>
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href="/#quote" class="btn-primary">Get your EPC or Legionella quote</a>
-        <a href="/epc-glasgow" class="btn-secondary">View EPC services in Glasgow</a>
+        <a href="/#quote" class="btn-primary">Get Your Quote</a>
+        <a href="/#contact" class="btn-secondary">Request a Call Back</a>
       </div>
+    </div>
+  </section>
+
+  <section class="pb-8">
+    <div class="container-pro quote-card">
+      <h2 class="text-2xl font-bold text-slate-900">Why Choose Scotland EPC</h2>
+      <ul class="mt-4 list-disc pl-5 text-slate-700 space-y-2">
+        <li>Fast turnaround times</li>
+        <li>Flexible appointments across Glasgow & Edinburgh</li>
+        <li>Simple online quote and booking process</li>
+        <li>Experienced and reliable assessor</li>
+        <li>Competitive, transparent pricing</li>
+      </ul>
     </div>
   </section>
 
   <section class="pb-8">
     <div class="container-pro grid gap-4 md:grid-cols-2">
       <article class="quote-card">
-        <h2 class="text-xl font-bold text-slate-900">EPC / RdSAP service areas</h2>
-        <p class="mt-2 text-slate-700">Need an Energy Performance Certificate? Choose the page that matches your property location.</p>
-        <ul class="mt-3 space-y-2 text-slate-700">
-          <li><a class="text-blue-700 hover:text-blue-900" href="/epc-glasgow">EPC assessments in Glasgow</a></li>
-          <li><a class="text-blue-700 hover:text-blue-900" href="/epc-edinburgh">EPC assessments in Edinburgh</a></li>
-        </ul>
+        <h2 class="text-2xl font-bold text-slate-900">Our Services</h2>
+        <h3 class="mt-3 text-xl font-semibold text-slate-900">EPC (RdSAP) Assessments</h3>
+        <p class="mt-2 text-slate-700">Energy Performance Certificates (EPCs) are required when selling or renting a property. We carry out RdSAP assessments and provide clear, compliant certificates quickly and professionally.</p>
+        <p class="mt-3"><a class="text-blue-700 hover:text-blue-900" href="/epc-glasgow">View EPC assessments in Glasgow</a> or <a class="text-blue-700 hover:text-blue-900" href="/epc-edinburgh">EPC assessments in Edinburgh</a>.</p>
       </article>
       <article class="quote-card">
-        <h2 class="text-xl font-bold text-slate-900">Legionella service areas</h2>
-        <p class="mt-2 text-slate-700">Arrange a Legionella risk assessment with practical reporting for landlords and managed properties.</p>
-        <ul class="mt-3 space-y-2 text-slate-700">
-          <li><a class="text-blue-700 hover:text-blue-900" href="/legionella-risk-assessment-glasgow">Legionella risk assessments in Glasgow</a></li>
-          <li><a class="text-blue-700 hover:text-blue-900" href="/legionella-risk-assessment-edinburgh">Legionella risk assessments in Edinburgh</a></li>
-        </ul>
+        <h2 class="text-2xl font-bold text-slate-900">&nbsp;</h2>
+        <h3 class="mt-3 text-xl font-semibold text-slate-900">Legionella Risk Assessments</h3>
+        <p class="mt-2 text-slate-700">We assess your property’s water system to identify and reduce the risk of Legionella bacteria, helping landlords and property managers meet their responsibilities.</p>
+        <p class="mt-3"><a class="text-blue-700 hover:text-blue-900" href="/legionella-risk-assessment-glasgow">Legionella risk assessment in Glasgow</a> and <a class="text-blue-700 hover:text-blue-900" href="/legionella-risk-assessment-edinburgh">Legionella risk assessment in Edinburgh</a>.</p>
       </article>
+    </div>
+  </section>
+
+  <section class="pb-8">
+    <div class="container-pro quote-card">
+      <h2 class="text-2xl font-bold text-slate-900">How It Works</h2>
+      <ol class="mt-4 list-decimal pl-5 text-slate-700 space-y-2">
+        <li>Submit your details using our quick quote form</li>
+        <li>Receive a clear price instantly</li>
+        <li>Choose a suitable appointment time</li>
+        <li>Assessment carried out at your property</li>
+        <li>Receive your certificate or report</li>
+      </ol>
     </div>
   </section>
 
@@ -120,68 +195,33 @@ const localBusinessSchema = {
     </div>
   </section>
 
-  <section class="section-transition section-transition--guide" aria-hidden="true"></section>
-
-  <section id="guide" class="pb-20">
-    <div class="container-pro space-y-6">
-      <article class="quote-card">
-        <h2 class="text-2xl font-bold text-slate-900">What to expect from an EPC (RdSAP) assessment</h2>
-        <p class="mt-3 text-slate-700">
-          An EPC (Energy Performance Certificate) rates a property's energy efficiency from A to G. RdSAP is the method commonly
-          used for existing homes in Scotland and across the UK.
-        </p>
-        <h3 class="mt-4 text-lg font-semibold text-slate-900">Common reasons to arrange an EPC</h3>
-        <ul class="mt-2 list-disc pl-5 text-slate-700 space-y-1">
-          <li>Before marketing a property for sale or rent.</li>
-          <li>When your current EPC has expired (most are valid for 10 years).</li>
-          <li>For grant and funding applications where energy rating evidence is required.</li>
-          <li>To understand recommended improvements that may reduce bills and improve compliance.</li>
-        </ul>
-      </article>
-
-      <article class="quote-card">
-        <h2 class="text-2xl font-bold text-slate-900">When landlords request Legionella risk assessments</h2>
-        <p class="mt-3 text-slate-700">
-          A Legionella risk assessment reviews the property's water system and usage patterns to identify areas where Legionella
-          bacteria could grow.
-        </p>
-        <h3 class="mt-4 text-lg font-semibold text-slate-900">Situations where it can be useful</h3>
-        <ul class="mt-2 list-disc pl-5 text-slate-700 space-y-1">
-          <li>As part of landlord health and safety management.</li>
-          <li>For properties with stored water tanks, infrequently used outlets, or complex plumbing.</li>
-          <li>When tenancy arrangements or property management responsibilities change.</li>
-        </ul>
-      </article>
-
-      <article class="quote-card">
-        <h2 class="text-2xl font-bold text-slate-900">Quick FAQ</h2>
-        <div class="mt-3 space-y-4 text-slate-700">
-          <div>
-            <h3 class="text-lg font-semibold text-slate-900">How long is an EPC valid?</h3>
-            <p class="mt-1">In most cases, an EPC is valid for 10 years from the issue date.</p>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold text-slate-900">Which areas do you cover?</h3>
-            <p class="mt-1">This service is focused on properties in Glasgow and Edinburgh, with quote details based on postcode.</p>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold text-slate-900">Can I book both services together?</h3>
-            <p class="mt-1">Yes. You can request both EPC and Legionella assessments in one booking form.</p>
-          </div>
+  <section class="pb-10" id="faq">
+    <div class="container-pro quote-card">
+      <h2 class="text-2xl font-bold text-slate-900">Common Questions</h2>
+      <div class="mt-4 space-y-4 text-slate-700">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">How long is an EPC valid?</h3>
+          <p>An EPC is valid for 10 years.</p>
         </div>
-      </article>
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">Do landlords need a Legionella risk assessment?</h3>
+          <p>Landlords are responsible for ensuring the risk of Legionella is assessed and managed in their rental properties.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">What areas do you cover?</h3>
+          <p>We cover Glasgow, Edinburgh and surrounding areas across the central belt.</p>
+        </div>
+      </div>
     </div>
   </section>
-
-  <section class="section-transition section-transition--contact" aria-hidden="true"></section>
 
   <section id="contact" class="pb-20">
     <div class="container-pro">
       <div class="quote-card">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Contact Scottish Energy Services</h2>
-        <p class="mt-2 text-slate-600">
-          Send a message directly through the website and it will open a prepared email to Scottish Energy Services.
-        </p>
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Contact</h2>
+        <p class="mt-2 text-slate-600">If you have any questions or need help with your booking, get in touch directly.</p>
+        <p class="mt-2 text-slate-700">Phone: <a class="text-blue-700 hover:text-blue-900" href="tel:+447483881889">+44 7483 881889</a></p>
+        <p class="text-slate-700">Address: 272 Bath St, Glasgow G2 4JR</p>
 
         <form id="contactForm" class="mt-6 space-y-4">
           <div class="grid md:grid-cols-3 gap-4">
@@ -211,6 +251,7 @@ const localBusinessSchema = {
   </section>
 
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
   <script>
     const servicePrices = { legionella: 55 };
     const bothDealPrice = 100;

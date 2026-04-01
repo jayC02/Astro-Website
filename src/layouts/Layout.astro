@@ -1,22 +1,17 @@
 ---
-import "../styles/global.css";
-import Navbar from "../components/Navbar.astro";
-import Footer from "../components/Footer.astro";
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import SeoHead from '../components/SeoHead.astro';
 
 const {
-  title = "Scottish Energy Services | EPC (RdSAP) & Legionella Risk Assessments",
-  description = "Scottish Energy Services provides EPC (RdSAP) and Legionella risk assessments across Glasgow and Edinburgh with simple online quote requests.",
+  title,
+  description,
   canonicalPath,
   ogImage,
-  robots = "index, follow",
-  ogType = "website",
+  robots = 'index, follow',
+  ogType = 'website',
 } = Astro.props;
-
-const fallbackOrigin = new URL(Astro.url.origin);
-const baseUrl = Astro.site ?? fallbackOrigin;
-const canonicalSourcePath = canonicalPath ?? Astro.url.pathname;
-const canonicalUrl = new URL(canonicalSourcePath, baseUrl).toString();
-const ogImageUrl = ogImage ? new URL(ogImage, baseUrl).toString() : undefined;
 ---
 
 <!doctype html>
@@ -24,21 +19,14 @@ const ogImageUrl = ogImage ? new URL(ogImage, baseUrl).toString() : undefined;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="robots" content={robots} />
-    <link rel="canonical" href={canonicalUrl} />
-
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content={ogType} />
-    <meta property="og:url" content={canonicalUrl} />
-    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-
-    <meta name="twitter:card" content={ogImageUrl ? "summary_large_image" : "summary"} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    <SeoHead
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      ogImage={ogImage}
+      robots={robots}
+      ogType={ogType}
+    />
   </head>
 
   <body class="min-h-screen bg-white text-slate-900">

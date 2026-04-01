@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://scotlandepc.com/sitemap-index.xml
+Sitemap: https://scotlandepc.com/sitemap.xml

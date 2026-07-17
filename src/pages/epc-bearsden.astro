@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://scotlandepc.com/' },
+    { '@type': 'ListItem', position: 2, name: 'EPC Bearsden', item: 'https://scotlandepc.com/epc-bearsden' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'EPC assessments in Bearsden',
+  serviceType: 'Domestic EPC / RdSAP assessment',
+  provider: { '@type': 'LocalBusiness', name: 'Scotland EPC', telephone: '+44 7483 881889' },
+  areaServed: ['Bearsden', 'Milngavie', 'Anniesland', 'Westerton', 'Bishopbriggs', 'Glasgow'],
+  offers: { '@type': 'Offer', priceCurrency: 'GBP', price: '70', description: 'Domestic EPCs from £70.' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you provide EPCs for Bearsden rental properties?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. Scotland EPC provides domestic EPC/RdSAP assessments for Bearsden landlords, homeowners, sellers and letting agents.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can nearby areas be included in the same booking?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. Nearby areas such as Milngavie, Westerton, Anniesland, Bishopbriggs and Glasgow can be included where appointment routing allows.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I add a Legionella risk assessment?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. You can request an EPC and Legionella bundle from £100 when both services are booked together.' },
+    },
+  ],
+};
+---
+
+<Layout
+  title="EPC Bearsden | Domestic RdSAP Assessments | Scotland EPC"
+  description="Book an EPC in Bearsden with Scotland EPC. Domestic RdSAP assessments for landlords, sellers, homeowners and agents, with EPCs from £70."
+  canonicalPath="/epc-bearsden"
+>
+  <section class="local-page">
+    <div class="container-pro max-w-4xl space-y-6">
+      <p class="badge">Bearsden EPC appointments</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-900">EPC Assessments in Bearsden</h1>
+      <p class="text-lg text-slate-700">Scotland EPC provides domestic EPC/RdSAP assessments for Bearsden properties, including flats, houses, bungalows and maisonettes. The service is built for landlords preparing a tenancy, homeowners selling a property, and letting agents who need clear paperwork without back-and-forth.</p>
+
+      <div class="quote-card border-sky-200 bg-sky-50">
+        <h2 class="text-2xl font-semibold text-slate-900">Who this is for</h2>
+        <p class="mt-2 text-slate-700">Landlords, homeowners, sellers, property managers and letting agents in Bearsden, Milngavie, Westerton, Anniesland and nearby Glasgow areas.</p>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        <article class="quote-card">
+          <h2 class="text-2xl font-semibold text-slate-900">What is included</h2>
+          <ul class="mt-3 list-disc pl-5 text-slate-700 space-y-2">
+            <li>Domestic RdSAP assessment for an EPC certificate.</li>
+            <li>Pricing from £70 depending on property type.</li>
+            <li>Clear communication around access, dates and property details.</li>
+          </ul>
+        </article>
+        <article class="quote-card">
+          <h2 class="text-2xl font-semibold text-slate-900">Nearby coverage</h2>
+          <p class="mt-3 text-slate-700">Bearsden appointments can often be grouped with nearby areas including Milngavie, Westerton, Anniesland, Bishopbriggs, Maryhill and the west/north side of Glasgow.</p>
+        </article>
+      </div>
+
+      <div class="quote-card">
+        <h2 class="text-2xl font-semibold text-slate-900">Related services</h2>
+        <p class="mt-2 text-slate-700">If you also need landlord water-system paperwork, request the <a class="text-link" href="/#quote">EPC + Legionella bundle</a> from £100. You can also compare <a class="text-link" href="/epc-glasgow">EPC Glasgow</a>, <a class="text-link" href="/epc-bishopbriggs">EPC Bishopbriggs</a> and <a class="text-link" href="/legionella-risk-assessment-glasgow">Legionella Glasgow</a>.</p>
+      </div>
+
+      <div class="quote-card">
+        <h2 class="text-2xl font-semibold text-slate-900">Bearsden EPC FAQs</h2>
+        <div class="mt-4 space-y-4 text-slate-700">
+          <div>
+            <h3 class="font-semibold text-slate-900">Do you provide EPCs for Bearsden rental properties?</h3>
+            <p>Yes. Scotland EPC provides domestic EPC/RdSAP assessments for Bearsden landlords, homeowners, sellers and letting agents.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900">Can nearby areas be included in the same booking?</h3>
+            <p>Yes. Nearby areas such as Milngavie, Westerton, Anniesland, Bishopbriggs and Glasgow can be included where appointment routing allows.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900">Can I add a Legionella risk assessment?</h3>
+            <p>Yes. You can request an EPC and Legionella bundle from £100 when both services are booked together.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card quote-card--primary">
+        <h2 class="text-2xl font-semibold text-slate-900">Get a Bearsden EPC quote</h2>
+        <p class="mt-2 text-slate-700">Use the instant quote form or call if you would rather confirm details first.</p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a class="btn-primary" href="/#quote">Get Instant Quote</a>
+          <a class="btn-secondary" href="tel:+447483881889">Call 07483 881889</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+</Layout>

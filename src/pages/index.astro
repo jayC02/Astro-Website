@@ -14,34 +14,21 @@ const localBusinessSchema = {
     postalCode: 'G2 4JR',
     addressCountry: 'GB',
   },
-  areaServed: [
-    {
-      '@type': 'AdministrativeArea',
-      name: 'Glasgow',
-    },
-    {
-      '@type': 'AdministrativeArea',
-      name: 'Edinburgh',
-    },
-    {
-      '@type': 'AdministrativeArea',
-      name: 'Scotland',
-    },
-  ],
+  areaServed: ['Glasgow', 'Edinburgh', 'Bearsden', 'Bishopbriggs', 'Central Scotland'],
   makesOffer: [
     {
       '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: 'EPC (RdSAP) assessments',
-      },
+      name: 'Domestic EPC assessment',
+      price: '70',
+      priceCurrency: 'GBP',
+      itemOffered: { '@type': 'Service', name: 'EPC (RdSAP) assessments' },
     },
     {
       '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: 'Legionella risk assessments',
-      },
+      name: 'EPC and Legionella bundle',
+      price: '100',
+      priceCurrency: 'GBP',
+      itemOffered: { '@type': 'Service', name: 'EPC and Legionella risk assessment bundle' },
     },
   ],
 };
@@ -52,18 +39,18 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How long is an EPC valid?',
+      name: 'How much does an EPC cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'An EPC is valid for 10 years.',
+        text: 'Domestic EPC prices start from £70 for flats. Houses are £85, bungalows are £80 and maisonettes are £75. A £20 travel premium may apply outside the main Glasgow and Edinburgh postcode zones.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Do landlords need a Legionella risk assessment?',
+      name: 'Can I book an EPC and Legionella assessment together?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Landlords are responsible for ensuring the risk of Legionella is assessed and managed in their rental properties.',
+        text: 'Yes. Scotland EPC offers an EPC and Legionella bundle from £100 when both services are booked together.',
       },
     },
     {
@@ -71,7 +58,15 @@ const faqSchema = {
       name: 'What areas do you cover?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'We cover Glasgow, Edinburgh and surrounding areas across the central belt.',
+        text: 'Scotland EPC covers Glasgow, Edinburgh, Bearsden, Bishopbriggs and nearby Central Belt areas.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Who uses Scotland EPC?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Typical customers include landlords, homeowners, sellers, letting agents and property managers who need EPC or Legionella documentation.',
       },
     },
   ],
@@ -79,173 +74,226 @@ const faqSchema = {
 ---
 
 <Layout
-  title="EPC Glasgow & Edinburgh | Legionella Risk Assessment | Scotland EPC"
-  description="Fast EPC and Legionella risk assessments in Glasgow and Edinburgh. Get an instant quote and book quickly with Scotland EPC."
+  title="EPC & Legionella Assessments Glasgow, Edinburgh | Scotland EPC"
+  description="Get an instant quote for EPC and Legionella risk assessments across Glasgow, Edinburgh and Central Scotland. EPCs from £70 and EPC + Legionella from £100."
   canonicalPath="/"
 >
   <section class="hero-section">
-    <div class="container-pro py-10 md:py-16">
-      <p class="badge">Scotland EPC</p>
-      <h1 class="hero-title">EPC & Legionella Risk Assessments in Glasgow & Edinburgh</h1>
-      <p class="hero-copy">
-        Fast, reliable EPC (RdSAP) and Legionella risk assessments across Glasgow, Edinburgh and surrounding areas. Get a quote in seconds and book at a time that suits you.
-      </p>
-      <p class="mt-4 text-slate-700 max-w-3xl">
-        We provide straightforward, professional EPC and Legionella assessments for landlords, homeowners and letting agents. Whether you need a certificate for a new tenancy, a property sale, or a landlord compliance check, we make the process quick, simple and hassle-free.
-      </p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="/#quote" class="btn-primary">Get Your Quote</a>
-        <a href="/#contact" class="btn-secondary">Request a Call Back</a>
-      </div>
-    </div>
-  </section>
+    <div class="container-pro grid gap-10 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(390px,0.82fr)] lg:items-start lg:py-14">
+      <div class="pt-2 lg:pt-6">
+        <p class="badge">Domestic property compliance</p>
+        <h1 class="hero-title">EPC & Legionella Risk Assessments in Glasgow, Edinburgh and Central Scotland</h1>
+        <p class="hero-copy">Clear prices, practical appointments and straightforward reports for landlords, homeowners, sellers, letting agents and property managers.</p>
+        <p class="mt-4 text-sm font-bold text-slate-950 sm:hidden">EPCs from £70 · EPC + Legionella from £100</p>
 
-  <section class="pb-8">
-    <div class="container-pro quote-card">
-      <h2 class="text-2xl font-bold text-slate-900">Why Choose Scotland EPC</h2>
-      <ul class="mt-4 list-disc pl-5 text-slate-700 space-y-2">
-        <li>Fast turnaround times</li>
-        <li>Flexible appointments across Glasgow & Edinburgh</li>
-        <li>Simple online quote and booking process</li>
-        <li>Experienced and reliable assessor</li>
-        <li>Competitive, transparent pricing</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="pb-8">
-    <div class="container-pro grid gap-4 md:grid-cols-2">
-      <article class="quote-card">
-        <h2 class="text-2xl font-bold text-slate-900">Our Services</h2>
-        <h3 class="mt-3 text-xl font-semibold text-slate-900">EPC (RdSAP) Assessments</h3>
-        <p class="mt-2 text-slate-700">Energy Performance Certificates (EPCs) are required when selling or renting a property. We carry out RdSAP assessments and provide clear, compliant certificates quickly and professionally.</p>
-        <p class="mt-3"><a class="text-blue-700 hover:text-blue-900" href="/epc-glasgow">View EPC assessments in Glasgow</a> or <a class="text-blue-700 hover:text-blue-900" href="/epc-edinburgh">EPC assessments in Edinburgh</a>.</p>
-      </article>
-      <article class="quote-card">
-        <h2 class="text-2xl font-bold text-slate-900">&nbsp;</h2>
-        <h3 class="mt-3 text-xl font-semibold text-slate-900">Legionella Risk Assessments</h3>
-        <p class="mt-2 text-slate-700">We assess your property’s water system to identify and reduce the risk of Legionella bacteria, helping landlords and property managers meet their responsibilities.</p>
-        <p class="mt-3"><a class="text-blue-700 hover:text-blue-900" href="/legionella-risk-assessment-glasgow">Legionella risk assessment in Glasgow</a> and <a class="text-blue-700 hover:text-blue-900" href="/legionella-risk-assessment-edinburgh">Legionella risk assessment in Edinburgh</a>.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="pb-8">
-    <div class="container-pro quote-card">
-      <h2 class="text-2xl font-bold text-slate-900">How It Works</h2>
-      <ol class="mt-4 list-decimal pl-5 text-slate-700 space-y-2">
-        <li>Submit your details using our quick quote form</li>
-        <li>Receive a clear price instantly</li>
-        <li>Choose a suitable appointment time</li>
-        <li>Assessment carried out at your property</li>
-        <li>Receive your certificate or report</li>
-      </ol>
-    </div>
-  </section>
-
-  <section id="quote" class="pb-16">
-    <div class="container-pro">
-      <div class="quote-card quote-card--primary">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Request an instant quote</h2>
-        <p class="mt-2 text-slate-600">Complete the property details below to generate your live quote.</p>
-        <div class="deal-banner mt-4">
-          <p class="text-sm font-semibold text-emerald-800">Special offer</p>
-          <p class="text-slate-800"><strong>EPC + Legionella deal: £100</strong> for both, discounted from £120.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#quote" class="btn-primary">Get Instant Quote</a>
+          <a href="tel:+447483881889" class="btn-secondary">Call 07483 881889</a>
         </div>
 
-        <form id="quoteForm" class="quote-form mt-6 space-y-6">
+        <dl class="mt-8 hidden max-w-2xl grid-cols-2 gap-x-6 gap-y-5 border-t border-slate-300 pt-5 sm:grid">
           <div>
-            <div class="flex items-center justify-between gap-4 mb-3">
-              <h3 class="text-lg font-semibold text-slate-900">Property details</h3>
-              <button type="button" id="addProperty" class="btn-secondary">+ Add property</button>
+            <dt class="text-sm text-slate-500">EPC assessments</dt>
+            <dd class="mt-1 text-2xl font-bold text-slate-950">From £70</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-slate-500">EPC + Legionella</dt>
+            <dd class="mt-1 text-2xl font-bold text-emerald-800">From £100</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-slate-500">Coverage</dt>
+            <dd class="mt-1 font-bold text-slate-900">Glasgow, Edinburgh & Central Belt</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-slate-500">Response</dt>
+            <dd class="mt-1 font-bold text-slate-900">Fast turnaround</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div id="quote" class="quote-card quote-card--primary">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="section-kicker">Quick estimate</p>
+            <h2 class="mt-1 text-2xl font-bold text-slate-950">Get your instant quote</h2>
+          </div>
+          <p class="shrink-0 rounded-md bg-emerald-50 px-2.5 py-1.5 text-xs font-bold text-emerald-800">No obligation</p>
+        </div>
+        <p class="mt-2 text-sm leading-6 text-slate-600">Enter the essentials. We will confirm the final price and appointment before booking.</p>
+
+        <form id="quoteForm" class="mt-5 space-y-4">
+          <fieldset>
+            <legend class="form-label">Service needed</legend>
+            <div class="service-grid">
+              <label class="check-card"><input type="radio" name="service" value="EPC / RdSAP" checked /> EPC</label>
+              <label class="check-card"><input type="radio" name="service" value="Legionella" /> Legionella</label>
+              <label class="check-card"><input type="radio" name="service" value="Both" /> Both</label>
             </div>
+          </fieldset>
 
-            <div id="properties" class="space-y-4"></div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label>
+              <span class="form-label">Property type</span>
+              <select class="input" id="propertyType" name="propertyType" required>
+                <option value="Flat">Flat</option>
+                <option value="House">House</option>
+                <option value="Bungalow">Bungalow</option>
+                <option value="Maisonette">Maisonette</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <label>
+              <span class="form-label">Property postcode</span>
+              <input class="input" type="text" id="postcode" name="postcode" autocomplete="postal-code" placeholder="G1 1AA" required />
+            </label>
           </div>
-
-          <div class="grid md:grid-cols-3 gap-4">
-            <label>
-              <span class="form-label">Preferred assessment date</span>
-              <input class="input" type="date" id="requiredDate" name="requiredDate" required />
-            </label>
-            <label>
-              <span class="form-label">Your email</span>
-              <input class="input" type="email" id="customerEmail" name="customerEmail" required placeholder="you@example.com" />
-            </label>
-            <label>
-              <span class="form-label">Mobile number</span>
-              <input class="input" type="tel" id="customerPhone" name="customerPhone" required placeholder="07..." />
-            </label>
-          </div>
-
-          <label>
-            <span class="form-label">Comments / access information</span>
-            <textarea id="comment" name="comment" class="input min-h-28" placeholder="Tell us anything useful (parking, access times, tenancy details, etc.)."></textarea>
-          </label>
 
           <div class="quote-summary" aria-live="polite">
-            <p class="text-sm text-slate-500">Estimated total</p>
-            <p id="quoteTotal" class="text-3xl font-bold text-slate-900">£0.00</p>
-            <p id="quoteBreakdown" class="text-sm text-slate-600 whitespace-pre-line">Add at least one property with address and postcode to generate a quote.</p>
+            <div class="flex items-baseline justify-between gap-4">
+              <p class="text-sm font-semibold text-sky-950">Estimated price</p>
+              <p id="quoteTotal" class="text-2xl font-bold text-slate-950">£70</p>
+            </div>
+            <p id="quoteBreakdown" class="mt-1 text-xs leading-5 text-slate-600">Flat EPC. Enter a postcode to check the travel zone.</p>
           </div>
 
-          <button type="submit" class="btn-primary w-full md:w-auto">Submit request</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section class="pb-10" id="faq">
-    <div class="container-pro quote-card">
-      <h2 class="text-2xl font-bold text-slate-900">Common Questions</h2>
-      <div class="mt-4 space-y-4 text-slate-700">
-        <div>
-          <h3 class="text-lg font-semibold text-slate-900">How long is an EPC valid?</h3>
-          <p>An EPC is valid for 10 years.</p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-slate-900">Do landlords need a Legionella risk assessment?</h3>
-          <p>Landlords are responsible for ensuring the risk of Legionella is assessed and managed in their rental properties.</p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold text-slate-900">What areas do you cover?</h3>
-          <p>We cover Glasgow, Edinburgh and surrounding areas across the central belt.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="pb-20">
-    <div class="container-pro">
-      <div class="quote-card">
-        <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Contact</h2>
-        <p class="mt-2 text-slate-600">If you have any questions or need help with your booking, get in touch directly.</p>
-        <p class="mt-2 text-slate-700">Phone: <a class="text-blue-700 hover:text-blue-900" href="tel:+447483881889">+44 7483 881889</a></p>
-        <p class="text-slate-700">Address: 272 Bath St, Glasgow G2 4JR</p>
-
-        <form id="contactForm" class="mt-6 space-y-4">
-          <div class="grid md:grid-cols-3 gap-4">
+          <div class="grid gap-4 sm:grid-cols-2">
             <label>
-              <span class="form-label">Your name</span>
-              <input class="input" type="text" id="contactName" name="contactName" required placeholder="Jane Smith" />
+              <span class="form-label">Name</span>
+              <input class="input" type="text" name="customerName" autocomplete="name" required placeholder="Your name" />
             </label>
             <label>
-              <span class="form-label">Your email</span>
-              <input class="input" type="email" id="contactEmail" name="contactEmail" required placeholder="you@example.com" />
-            </label>
-            <label>
-              <span class="form-label">Mobile number</span>
-              <input class="input" type="tel" id="contactPhone" name="contactPhone" required placeholder="07..." />
+              <span class="form-label">Phone</span>
+              <input class="input" type="tel" name="customerPhone" autocomplete="tel" required placeholder="07..." />
             </label>
           </div>
 
           <label>
-            <span class="form-label">Message</span>
-            <textarea class="input min-h-32" id="contactMessage" name="contactMessage" required placeholder="How can we help?"></textarea>
+            <span class="form-label">Email</span>
+            <input class="input" type="email" name="customerEmail" autocomplete="email" required placeholder="you@example.com" />
           </label>
 
-          <button type="submit" id="contactSubmit" class="btn-primary w-full md:w-auto">Send message</button>
+          <label>
+            <span class="form-label">Notes <span class="font-normal text-slate-500">(optional)</span></span>
+            <textarea class="input min-h-20" name="notes" placeholder="Access details, timing or anything we should know"></textarea>
+          </label>
+
+          <button type="submit" class="btn-primary w-full">Send quote request</button>
+          <p id="quoteStatus" class="hidden rounded-md px-3 py-2 text-sm" role="status" aria-live="polite"></p>
         </form>
+
+        <ul class="reassurance-list mt-5 border-t border-slate-200 pt-4 sm:grid-cols-1">
+          <li>Same-day response where possible</li>
+          <li>Clear pricing before booking</li>
+          <li>Glasgow, Edinburgh and Central Scotland</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Key service information" class="border-b border-slate-200 bg-white">
+    <div class="container-pro trust-strip border-y-0">
+      <div class="trust-item"><p class="text-xs font-bold uppercase text-slate-500">Flat EPC</p><p class="mt-1 text-xl font-bold">£70</p></div>
+      <div class="trust-item"><p class="text-xs font-bold uppercase text-slate-500">House EPC</p><p class="mt-1 text-xl font-bold">£85</p></div>
+      <div class="trust-item"><p class="text-xs font-bold uppercase text-slate-500">Legionella</p><p class="mt-1 text-xl font-bold">£55</p></div>
+      <div class="trust-item"><p class="text-xs font-bold uppercase text-emerald-700">Best-value bundle</p><p class="mt-1 text-xl font-bold">Both from £100</p></div>
+    </div>
+  </section>
+
+  <section class="bg-white py-12 md:py-16">
+    <div class="container-pro">
+      <div class="max-w-2xl">
+        <p class="section-kicker">Services</p>
+        <h2 class="section-heading">The property checks you need, without the runaround</h2>
+      </div>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <article class="service-panel">
+          <p class="text-sm font-bold text-sky-800">01 / EPC</p>
+          <h3 class="mt-3 text-xl font-bold">Domestic EPC certificates</h3>
+          <p class="mt-2 leading-7 text-slate-600">RdSAP assessments for selling, renting and landlord compliance, with pricing based on property type.</p>
+          <p class="mt-4"><a class="text-link" href="/epc-glasgow">Glasgow</a> · <a class="text-link" href="/epc-edinburgh">Edinburgh</a></p>
+        </article>
+        <article class="service-panel">
+          <p class="text-sm font-bold text-sky-800">02 / Legionella</p>
+          <h3 class="mt-3 text-xl font-bold">Legionella risk assessments</h3>
+          <p class="mt-2 leading-7 text-slate-600">Practical domestic water-system checks and clear records for landlords, agents and property managers.</p>
+          <p class="mt-4"><a class="text-link" href="/legionella-risk-assessment-glasgow">Glasgow</a> · <a class="text-link" href="/legionella-risk-assessment-edinburgh">Edinburgh</a></p>
+        </article>
+        <article class="service-panel border-emerald-700">
+          <p class="text-sm font-bold text-emerald-700">03 / Bundle</p>
+          <h3 class="mt-3 text-xl font-bold">EPC + Legionella from £100</h3>
+          <p class="mt-2 leading-7 text-slate-600">Arrange both services through one enquiry and save against booking the assessments separately.</p>
+          <p class="mt-4"><a class="text-link" href="#quote">Check your price</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-slate-200 bg-slate-100 py-12 md:py-16">
+    <div class="container-pro grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <p class="section-kicker">Why Scotland EPC</p>
+        <h2 class="section-heading">Clear, local and easy to arrange</h2>
+        <p class="mt-4 leading-7 text-slate-600">You will know the likely cost early, who the service is for and what happens next. No vague packages or unnecessary booking steps.</p>
+      </div>
+      <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div class="border-t border-slate-400 pt-3"><h3 class="font-bold">Pricing before booking</h3><p class="mt-1 text-sm leading-6 text-slate-600">A useful estimate is shown immediately and confirmed before the appointment.</p></div>
+        <div class="border-t border-slate-400 pt-3"><h3 class="font-bold">One enquiry for both</h3><p class="mt-1 text-sm leading-6 text-slate-600">EPC and Legionella work can be arranged together where practical.</p></div>
+        <div class="border-t border-slate-400 pt-3"><h3 class="font-bold">Local coverage</h3><p class="mt-1 text-sm leading-6 text-slate-600">Regular coverage across Glasgow, Edinburgh and surrounding Central Belt areas.</p></div>
+        <div class="border-t border-slate-400 pt-3"><h3 class="font-bold">Direct communication</h3><p class="mt-1 text-sm leading-6 text-slate-600">Straight answers about access, timing, property details and next steps.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-12 md:py-16">
+    <div class="container-pro grid gap-12 lg:grid-cols-2">
+      <div>
+        <p class="section-kicker">How it works</p>
+        <h2 class="section-heading">From quote to report in four steps</h2>
+        <ol class="mt-6 space-y-5">
+          <li class="grid grid-cols-[2rem_1fr] gap-3"><span class="font-bold text-sky-800">01</span><div><h3 class="font-bold">Request a quote</h3><p class="mt-1 text-slate-600">Choose the service, property type and postcode.</p></div></li>
+          <li class="grid grid-cols-[2rem_1fr] gap-3"><span class="font-bold text-sky-800">02</span><div><h3 class="font-bold">Confirm the details</h3><p class="mt-1 text-slate-600">We confirm the price, access and a suitable appointment.</p></div></li>
+          <li class="grid grid-cols-[2rem_1fr] gap-3"><span class="font-bold text-sky-800">03</span><div><h3 class="font-bold">Property visit</h3><p class="mt-1 text-slate-600">The required assessment is completed at the property.</p></div></li>
+          <li class="grid grid-cols-[2rem_1fr] gap-3"><span class="font-bold text-sky-800">04</span><div><h3 class="font-bold">Receive your paperwork</h3><p class="mt-1 text-slate-600">Your certificate or report is issued after the visit.</p></div></li>
+        </ol>
+      </div>
+      <div>
+        <p class="section-kicker">Areas covered</p>
+        <h2 class="section-heading">Glasgow, Edinburgh and nearby areas</h2>
+        <p class="mt-4 leading-7 text-slate-600">Use a local page for service details and nearby-area information, or send a postcode through the quote form.</p>
+        <nav aria-label="Service areas" class="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-slate-300 pt-5">
+          <a class="text-link" href="/epc-glasgow">EPC Glasgow</a>
+          <a class="text-link" href="/epc-edinburgh">EPC Edinburgh</a>
+          <a class="text-link" href="/epc-bearsden">EPC Bearsden</a>
+          <a class="text-link" href="/epc-bishopbriggs">EPC Bishopbriggs</a>
+          <a class="text-link" href="/legionella-risk-assessment-glasgow">Legionella Glasgow</a>
+          <a class="text-link" href="/legionella-risk-assessment-edinburgh">Legionella Edinburgh</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="border-y border-slate-200 bg-slate-100 py-12 md:py-16">
+    <div class="container-pro grid gap-8 lg:grid-cols-[0.65fr_1.35fr]">
+      <div><p class="section-kicker">FAQs</p><h2 class="section-heading">Useful answers before you book</h2></div>
+      <div class="divide-y divide-slate-300 border-y border-slate-300">
+        <details class="group py-5" open><summary class="cursor-pointer list-none font-bold">How much does an EPC cost?</summary><p class="mt-3 leading-7 text-slate-600">Domestic EPC prices start from £70 for flats. Houses are £85, bungalows are £80 and maisonettes are £75. A £20 travel premium may apply outside the main Glasgow and Edinburgh postcode zones.</p></details>
+        <details class="group py-5"><summary class="cursor-pointer list-none font-bold">Can I book an EPC and Legionella assessment together?</summary><p class="mt-3 leading-7 text-slate-600">Yes. The EPC + Legionella bundle starts from £100 when both services are booked together.</p></details>
+        <details class="group py-5"><summary class="cursor-pointer list-none font-bold">What areas do you cover?</summary><p class="mt-3 leading-7 text-slate-600">We cover Glasgow, Edinburgh, Bearsden, Bishopbriggs and nearby Central Belt areas.</p></details>
+        <details class="group py-5"><summary class="cursor-pointer list-none font-bold">Who uses Scotland EPC?</summary><p class="mt-3 leading-7 text-slate-600">Landlords, homeowners, sellers, letting agents and property managers use the service for property compliance paperwork.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="bg-sky-950 py-12 text-white md:py-16">
+    <div class="container-pro grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+      <div>
+        <p class="text-sm font-bold uppercase text-sky-200">Ready to arrange an assessment?</p>
+        <h2 class="mt-2 text-3xl font-bold">Get a clear quote for your property</h2>
+        <p class="mt-3 max-w-2xl text-sky-100">Use the instant form for the quickest estimate, or call to discuss access, multiple properties or timing.</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a class="btn-primary bg-white text-sky-950 hover:bg-sky-100" href="#quote">Get Instant Quote</a>
+        <a class="btn-secondary border-white/40 bg-transparent text-white hover:bg-white/10" href="tel:+447483881889">Call 07483 881889</a>
       </div>
     </div>
   </section>
@@ -253,289 +301,91 @@ const faqSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)}></script>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
   <script>
-    const servicePrices = { legionella: 55 };
-    const bothDealPrice = 100;
-    const epcByPropertyType = {
-      Flat: 70,
-      House: 85,
-      Bungalow: 80,
-      Maisonette: 75,
-      Other: 85,
-    };
-    const travelPremium = 20;
-    const propertiesContainer = document.getElementById('properties');
-    const addPropertyButton = document.getElementById('addProperty');
-    const form = document.getElementById('quoteForm');
+    const quoteForm = document.getElementById('quoteForm');
     const quoteTotal = document.getElementById('quoteTotal');
     const quoteBreakdown = document.getElementById('quoteBreakdown');
-    const requiredDateInput = document.getElementById('requiredDate');
-    const contactForm = document.getElementById('contactForm');
-    const contactSubmit = document.getElementById('contactSubmit');
-    const quoteSubmit = form?.querySelector('button[type="submit"]');
+    const quoteStatus = document.getElementById('quoteStatus');
+    const quoteSubmit = quoteForm?.querySelector('button[type="submit"]');
     const submitEndpoint = 'https://formsubmit.co/ajax/jay@scottishenergyservices.co.uk';
+    const epcPrices = { Flat: 70, House: 85, Bungalow: 80, Maisonette: 75, Other: 85 };
 
-    let propertyCount = 0;
-
-    const createPropertyRow = () => {
-      propertyCount += 1;
-      const propertyId = propertyCount;
-      const row = document.createElement('div');
-      row.className = 'property-row';
-      row.dataset.propertyId = String(propertyId);
-      row.innerHTML = `
-        <button type="button" class="remove-property" aria-label="Remove property">×</button>
-        <fieldset class="md:col-span-2">
-          <legend class="form-label">Assessment type</legend>
-          <div class="service-grid">
-            <label class="check-card">
-              <input type="checkbox" name="services_${propertyId}" value="rdsap" checked />
-              <span>
-                <strong>RdSAP / EPC</strong>
-              </span>
-            </label>
-            <label class="check-card">
-              <input type="checkbox" name="services_${propertyId}" value="legionella" />
-              <span>
-                <strong>Legionella risk assessment</strong>
-              </span>
-            </label>
-          </div>
-        </fieldset>
-        <div class="md:col-span-2">
-          <label>
-            <span class="form-label">Address ${propertyId}</span>
-            <input class="input" type="text" name="address_${propertyId}" placeholder="${propertyId} Example Street, Town" required />
-          </label>
-        </div>
-        <label>
-          <span class="form-label">Postcode</span>
-          <input class="input" type="text" name="postcode_${propertyId}" placeholder="G1 1AA" required />
-        </label>
-        <label>
-          <span class="form-label">Property type</span>
-          <select class="input" name="propertyType_${propertyId}" required>
-            <option value="Flat">Flat</option>
-            <option value="House">House</option>
-            <option value="Maisonette">Maisonette</option>
-            <option value="Bungalow">Bungalow</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
-      `;
-
-      const removeButton = row.querySelector('.remove-property');
-      removeButton?.addEventListener('click', () => {
-        const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
-        if (propertyRows.length <= 1) return;
-        row.remove();
-        updateQuote();
-      });
-
-      propertiesContainer.appendChild(row);
-      updateQuote();
+    const getEstimate = () => {
+      if (!(quoteForm instanceof HTMLFormElement)) return { total: 0, detail: '' };
+      const data = new FormData(quoteForm);
+      const service = String(data.get('service') || 'EPC / RdSAP');
+      const propertyType = String(data.get('propertyType') || 'Flat');
+      const postcode = String(data.get('postcode') || '').trim().toUpperCase();
+      const base = service === 'Both' ? 100 : service === 'Legionella' ? 55 : epcPrices[propertyType] || 85;
+      const outsideMainZone = postcode && !postcode.startsWith('G') && !postcode.startsWith('EH');
+      const total = base + (outsideMainZone ? 20 : 0);
+      const serviceLabel = service === 'Both' ? 'EPC + Legionella bundle' : service === 'Legionella' ? 'Legionella assessment' : `${propertyType} EPC`;
+      const zoneLabel = !postcode ? 'Enter a postcode to check the travel zone.' : outsideMainZone ? 'Includes £20 travel premium outside main G/EH zones.' : 'Main Glasgow/Edinburgh postcode zone.';
+      return { total, detail: `${serviceLabel}. ${zoneLabel}` };
     };
 
-    const getSelectedServicesForRow = (row) => {
-      const propertyId = row.dataset.propertyId;
-      if (!propertyId) return [];
-      return [...row.querySelectorAll(`input[name="services_${propertyId}"]:checked`)].map((el) => el.value);
+    const updateEstimate = () => {
+      const estimate = getEstimate();
+      if (quoteTotal) quoteTotal.textContent = `£${estimate.total}`;
+      if (quoteBreakdown) quoteBreakdown.textContent = estimate.detail;
     };
 
-    const getLocationZoneFromPostcode = (postcode = '') => {
-      const normalized = postcode.trim().toUpperCase();
-      if (!normalized) return null;
-      if (normalized.startsWith('G') || normalized.startsWith('EH')) return 'city';
-      return 'outside';
-    };
+    quoteForm?.addEventListener('input', updateEstimate);
+    quoteForm?.addEventListener('change', updateEstimate);
+    updateEstimate();
 
-    const updateQuote = () => {
-      const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
-
-      if (propertyRows.length === 0) {
-        quoteTotal.textContent = '£0.00';
-        quoteBreakdown.textContent = 'Add at least one property with address and postcode to generate a quote.';
-        return;
-      }
-
-      const breakdownLines = [];
-      const total = propertyRows.reduce((sum, row, index) => {
-        const rowNumber = index + 1;
-        const propertyId = row.dataset.propertyId;
-        const selectedServices = getSelectedServicesForRow(row);
-        const propertyType = row.querySelector(`[name="propertyType_${propertyId}"]`)?.value || 'Other';
-        const address = row.querySelector(`[name="address_${propertyId}"]`)?.value?.trim() || '';
-        const postcode = row.querySelector(`[name="postcode_${propertyId}"]`)?.value || '';
-        const locationZone = getLocationZoneFromPostcode(postcode);
-
-        if (selectedServices.length === 0) {
-          breakdownLines.push(`Property ${rowNumber}: select at least one assessment type`);
-          return sum;
-        }
-
-        if (!address || !postcode || !locationZone) {
-          breakdownLines.push(`Property ${rowNumber}: waiting for full address + postcode`);
-          return sum;
-        }
-
-        const hasEpc = selectedServices.includes('rdsap');
-        const hasLegionella = selectedServices.includes('legionella');
-        const epcPrice = hasEpc ? epcByPropertyType[propertyType] ?? epcByPropertyType.Other : 0;
-        const legionellaPrice = hasLegionella ? servicePrices.legionella : 0;
-        const locationPremium = locationZone === 'outside' ? travelPremium : 0;
-
-        const serviceTotal = hasEpc && hasLegionella ? bothDealPrice : epcPrice + legionellaPrice;
-        const rowTotal = serviceTotal + locationPremium;
-        const locationLabel = locationZone === 'outside' ? 'Outside main cities' : 'Glasgow/Edinburgh';
-        const parts = [];
-
-        if (hasEpc && hasLegionella) {
-          parts.push(`EPC + Legionella deal (£${bothDealPrice})`);
-        } else {
-          if (epcPrice) parts.push(`RdSAP ${propertyType} (£${epcPrice})`);
-          if (legionellaPrice) parts.push(`Legionella (£${legionellaPrice})`);
-        }
-        if (locationPremium) parts.push(`Travel premium (+£${locationPremium})`);
-
-        breakdownLines.push(`Property ${rowNumber}: ${locationLabel} — ${parts.join(' + ')}`);
-        return sum + rowTotal;
-      }, 0);
-
-      quoteTotal.textContent = `£${total.toFixed(2)}`;
-      quoteBreakdown.textContent = breakdownLines.join('\n');
-    };
-
-    createPropertyRow();
-    if (requiredDateInput) {
-      requiredDateInput.min = new Date().toISOString().split('T')[0];
-    }
-
-    addPropertyButton?.addEventListener('click', () => {
-      createPropertyRow();
-    });
-
-    form?.addEventListener('change', updateQuote);
-
-    form?.addEventListener('submit', async (event) => {
+    quoteForm?.addEventListener('submit', async (event) => {
       event.preventDefault();
+      if (!(quoteForm instanceof HTMLFormElement)) return;
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      const today = new Date().toISOString().split('T')[0];
-      if (typeof data.requiredDate === 'string' && data.requiredDate < today) {
-        alert('Please choose a preferred assessment date from today onward.');
-        return;
-      }
-      const propertyRows = [...propertiesContainer.querySelectorAll('.property-row')];
-      const hasMissingServiceSelection = propertyRows.some((row) => getSelectedServicesForRow(row).length === 0);
-      if (hasMissingServiceSelection) {
-        alert('Please select at least one assessment type for each property.');
-        return;
-      }
-
-      const propertyDetails = propertyRows
-        .map((row, index) => {
-          const rowNumber = index + 1;
-          const propertyId = row.dataset.propertyId;
-          const selectedServices = getSelectedServicesForRow(row);
-          const serviceNames = selectedServices
-            .map((service) => (service === 'rdsap' ? 'RdSAP / EPC' : 'Legionella risk assessment'))
-            .join(' + ');
-          const address = data[`address_${propertyId}`] || '';
-          const postcode = data[`postcode_${propertyId}`] || '';
-          const propertyType = data[`propertyType_${propertyId}`] || '';
-          const locationZone = getLocationZoneFromPostcode(postcode) === 'outside' ? 'Outside Glasgow/Edinburgh' : 'Glasgow/Edinburgh';
-          return `${rowNumber}. ${propertyType} (${locationZone}) - ${address}, ${postcode} [${serviceNames}]`;
-        })
-        .join('\n');
-
-      const total = quoteTotal.textContent;
-      const subject = encodeURIComponent('New assessment quote request');
+      const data = Object.fromEntries(new FormData(quoteForm).entries());
+      const estimate = getEstimate();
       const body = [
-        `Required date: ${data.requiredDate}`,
-        `Customer email: ${data.customerEmail}`,
-        `Customer mobile: ${data.customerPhone}`,
-        `Estimated quote: ${total}`,
+        `Name: ${data.customerName}`,
+        `Phone: ${data.customerPhone}`,
+        `Email: ${data.customerEmail}`,
+        `Service: ${data.service}`,
+        `Property type: ${data.propertyType}`,
+        `Postcode: ${data.postcode}`,
+        `Estimated quote: £${estimate.total}`,
         '',
-        'Properties:',
-        propertyDetails,
-        '',
-        `Comments: ${data.comment || 'None supplied'}`,
+        `Notes: ${data.notes || 'None supplied'}`,
       ].join('\n');
-      const submitButtonLabel = quoteSubmit?.textContent;
-      if (quoteSubmit) {
+      const originalLabel = quoteSubmit?.textContent || 'Send quote request';
+
+      if (quoteSubmit instanceof HTMLButtonElement) {
         quoteSubmit.disabled = true;
-        quoteSubmit.textContent = 'Sending...';
+        quoteSubmit.textContent = 'Sending request...';
       }
+      if (quoteStatus) quoteStatus.classList.add('hidden');
 
       try {
         const response = await fetch(submitEndpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
-            _subject: 'New assessment quote request',
+            _subject: 'New Scotland EPC quote request',
             email: data.customerEmail,
             message: body,
           }),
         });
-
         if (!response.ok) throw new Error('Quote request failed');
-        alert('Thanks — your quote request has been sent successfully.');
-        form.reset();
-        propertiesContainer.innerHTML = '';
-        propertyCount = 0;
-        createPropertyRow();
-      } catch (error) {
-        const fallbackMailto = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
-        window.location.href = fallbackMailto;
-      } finally {
-        if (quoteSubmit) {
-          quoteSubmit.disabled = false;
-          quoteSubmit.textContent = submitButtonLabel || 'Submit request';
+
+        if (quoteStatus) {
+          quoteStatus.textContent = 'Thanks. Your quote request has been sent and we will respond as soon as possible.';
+          quoteStatus.className = 'rounded-md bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-900';
         }
-      }
-    });
-
-    contactForm?.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      const contactData = new FormData(contactForm);
-      const data = Object.fromEntries(contactData.entries());
-      const subject = encodeURIComponent(`Website contact message from ${data.contactName}`);
-      const body = [
-        `Name: ${data.contactName}`,
-        `Email: ${data.contactEmail}`,
-        `Mobile: ${data.contactPhone}`,
-        '',
-        'Message:',
-        `${data.contactMessage}`,
-      ].join('\n');
-      const contactLabel = contactSubmit?.textContent;
-      if (contactSubmit) {
-        contactSubmit.disabled = true;
-        contactSubmit.textContent = 'Sending...';
-      }
-
-      try {
-        const response = await fetch(submitEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            _subject: `Website contact message from ${data.contactName}`,
-            email: data.contactEmail,
-            message: body,
-          }),
-        });
-
-        if (!response.ok) throw new Error('Contact message failed');
-        alert('Thanks — your message has been sent.');
-        contactForm.reset();
+        quoteForm.reset();
+        updateEstimate();
       } catch (error) {
-        const fallbackMailto = `mailto:jay@scottishenergyservices.co.uk?subject=${subject}&body=${encodeURIComponent(body)}`;
-        window.location.href = fallbackMailto;
+        if (quoteStatus) {
+          quoteStatus.textContent = 'We could not send the form directly. Your email app is opening with the request ready to send.';
+          quoteStatus.className = 'rounded-md bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-900';
+        }
+        window.location.href = `mailto:jay@scottishenergyservices.co.uk?subject=${encodeURIComponent('New Scotland EPC quote request')}&body=${encodeURIComponent(body)}`;
       } finally {
-        if (contactSubmit) {
-          contactSubmit.disabled = false;
-          contactSubmit.textContent = contactLabel || 'Send message';
+        if (quoteSubmit instanceof HTMLButtonElement) {
+          quoteSubmit.disabled = false;
+          quoteSubmit.textContent = originalLabel;
         }
       }
     });

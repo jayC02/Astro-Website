@@ -6,6 +6,8 @@ const localBusinessSchema = {
   '@type': 'LocalBusiness',
   name: 'Scotland EPC',
   url: 'https://scotlandepc.com',
+  logo: 'https://scotlandepc.com/icon-512.png',
+  image: 'https://scotlandepc.com/google-business-logo-720.png',
   telephone: '+44 7483 881889',
   address: {
     '@type': 'PostalAddress',
@@ -121,7 +123,7 @@ const faqSchema = {
         </div>
         <p class="mt-2 text-sm leading-6 text-slate-600">Enter the essentials. We will confirm the final price and appointment before booking.</p>
 
-        <form id="quoteForm" class="mt-5 space-y-4">
+        <form id="quoteForm" class="mt-5 space-y-4" novalidate>
           <fieldset>
             <legend class="form-label">Service needed</legend>
             <div class="service-grid">
@@ -144,7 +146,8 @@ const faqSchema = {
             </label>
             <label>
               <span class="form-label">Property postcode</span>
-              <input class="input" type="text" id="postcode" name="postcode" autocomplete="postal-code" placeholder="G1 1AA" required />
+              <input class="input" type="text" id="postcode" name="postcode" autocomplete="postal-code" inputmode="text" autocapitalize="characters" spellcheck="false" maxlength="8" aria-describedby="postcodeError" placeholder="G1 1AA" required />
+              <span id="postcodeError" class="field-error" aria-live="polite"></span>
             </label>
           </div>
 
@@ -159,22 +162,26 @@ const faqSchema = {
           <div class="grid gap-4 sm:grid-cols-2">
             <label>
               <span class="form-label">Name</span>
-              <input class="input" type="text" name="customerName" autocomplete="name" required placeholder="Your name" />
+              <input class="input" type="text" id="customerName" name="customerName" autocomplete="name" minlength="2" maxlength="80" aria-describedby="customerNameError" required placeholder="Your name" />
+              <span id="customerNameError" class="field-error" aria-live="polite"></span>
             </label>
             <label>
-              <span class="form-label">Phone</span>
-              <input class="input" type="tel" name="customerPhone" autocomplete="tel" required placeholder="07..." />
+              <span class="form-label">UK mobile number</span>
+              <input class="input" type="tel" id="customerPhone" name="customerPhone" autocomplete="tel" inputmode="tel" minlength="11" maxlength="20" aria-describedby="customerPhoneError" required placeholder="07123 456789" />
+              <span id="customerPhoneError" class="field-error" aria-live="polite"></span>
             </label>
           </div>
 
           <label>
             <span class="form-label">Email</span>
-            <input class="input" type="email" name="customerEmail" autocomplete="email" required placeholder="you@example.com" />
+            <input class="input" type="email" id="customerEmail" name="customerEmail" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254" aria-describedby="customerEmailError" required placeholder="you@example.com" />
+            <span id="customerEmailError" class="field-error" aria-live="polite"></span>
           </label>
 
           <label>
             <span class="form-label">Notes <span class="font-normal text-slate-500">(optional)</span></span>
-            <textarea class="input min-h-20" name="notes" placeholder="Access details, timing or anything we should know"></textarea>
+            <textarea class="input min-h-20" id="notes" name="notes" maxlength="1000" aria-describedby="notesHelp" placeholder="Access details, timing or anything we should know"></textarea>
+            <span id="notesHelp" class="mt-1 block text-xs text-slate-500">Maximum 1,000 characters.</span>
           </label>
 
           <button type="submit" class="btn-primary w-full">Send quote request</button>
@@ -309,6 +316,97 @@ const faqSchema = {
     const submitEndpoint = 'https://formsubmit.co/ajax/jay@scottishenergyservices.co.uk';
     const epcPrices = { Flat: 70, House: 85, Bungalow: 80, Maisonette: 75, Other: 85 };
 
+    const normalizePostcode = (value) => {
+      const compact = value.toUpperCase().replace(/\s+/g, '');
+      return compact.length > 4 ? `${compact.slice(0, -3)} ${compact.slice(-3)}` : compact;
+    };
+
+    const normalizeMobile = (value) => {
+      const compact = value.replace(/[\s()-]/g, '');
+      if (compact.startsWith('+44')) return `0${compact.slice(3)}`;
+      if (compact.startsWith('0044')) return `0${compact.slice(4)}`;
+      return compact;
+    };
+
+    const isValidUkPostcode = (value) => {
+      const postcodePattern = /^(GIR 0AA|(?:[A-Z][0-9]{1,2}|[A-Z][A-HJ-Y][0-9]{1,2}|[A-Z][0-9][A-Z]|[A-Z][A-HJ-Y][0-9][A-Z]) [0-9][ABD-HJLNP-UW-Z]{2})$/;
+      return postcodePattern.test(value);
+    };
+
+    const isValidUkMobile = (value) => {
+      if (!/^07(?:[1-5]|[7-9])\d{8}$/.test(value)) return false;
+      const subscriber = value.slice(2);
+      return !/^(\d)\1{8}$/.test(subscriber) && !['123456789', '987654321'].includes(subscriber);
+    };
+
+    const isValidEmail = (value) => {
+      if (value.length > 254 || /\s/.test(value)) return false;
+      const parts = value.split('@');
+      if (parts.length !== 2) return false;
+      const [local, domain] = parts;
+      if (!local || local.length > 64 || local.startsWith('.') || local.endsWith('.') || local.includes('..')) return false;
+      if (!/^[A-Za-z0-9.!#$%&'*+/=?^_{|}~-]+$/.test(local)) return false;
+      const labels = domain.split('.');
+      if (labels.length < 2 || labels.some((label) => !label || label.length > 63 || !/^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$/.test(label))) return false;
+      const normalizedDomain = domain.toLowerCase();
+      const reservedDomains = ['example.com', 'example.org', 'example.net'];
+      return /^[A-Za-z]{2,63}$/.test(labels.at(-1) || '') && !reservedDomains.includes(normalizedDomain) && !normalizedDomain.endsWith('.invalid');
+    };
+
+    const fieldRules = {
+      postcode: {
+        normalize: normalizePostcode,
+        validate: (value) => isValidUkPostcode(value) ? '' : 'Enter a valid UK postcode, for example G1 1AA.',
+      },
+      customerName: {
+        normalize: (value) => value.trim().replace(/\s+/g, ' '),
+        validate: (value) => {
+          const letters = value.match(/\p{L}/gu) || [];
+          if (value.length < 2 || letters.length < 2) return 'Enter your full name using at least two letters.';
+          return /^[\p{L}\p{M} .'-]+$/u.test(value) ? '' : 'Name can only contain letters, spaces, apostrophes, hyphens and full stops.';
+        },
+      },
+      customerPhone: {
+        normalize: normalizeMobile,
+        validate: (value) => isValidUkMobile(value) ? '' : 'Enter a valid UK mobile number beginning 07 or +44 7.',
+      },
+      customerEmail: {
+        normalize: (value) => value.trim(),
+        validate: (value) => isValidEmail(value) ? '' : 'Enter a complete non-placeholder email address, for example name@yourdomain.co.uk.',
+      },
+    };
+
+    const quoteFields = Object.keys(fieldRules)
+      .map((id) => document.getElementById(id))
+      .filter((field) => field instanceof HTMLInputElement);
+
+    const validateField = (field, normalize = false) => {
+      if (!(field instanceof HTMLInputElement)) return true;
+      const rule = fieldRules[field.id];
+      if (!rule) return true;
+      if (normalize) field.value = rule.normalize(field.value);
+      const value = field.value.trim();
+      const message = value ? rule.validate(value) : 'This field is required.';
+      const error = document.getElementById(`${field.id}Error`);
+      field.setCustomValidity(message);
+      field.setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (error) error.textContent = message;
+      return !message;
+    };
+
+    const validateAllFields = () => {
+      const invalidFields = quoteFields.filter((field) => !validateField(field, true));
+      invalidFields[0]?.focus();
+      return invalidFields.length === 0;
+    };
+
+    quoteFields.forEach((field) => {
+      field.addEventListener('blur', () => validateField(field, true));
+      field.addEventListener('input', () => {
+        if (field.getAttribute('aria-invalid') === 'true') validateField(field);
+      });
+    });
+
     const getEstimate = () => {
       if (!(quoteForm instanceof HTMLFormElement)) return { total: 0, detail: '' };
       const data = new FormData(quoteForm);
@@ -336,6 +434,14 @@ const faqSchema = {
     quoteForm?.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!(quoteForm instanceof HTMLFormElement)) return;
+
+      if (!validateAllFields()) {
+        if (quoteStatus) {
+          quoteStatus.textContent = 'Please correct the highlighted fields before sending your request.';
+          quoteStatus.className = 'rounded-md bg-red-50 px-3 py-2 text-sm font-semibold text-red-900';
+        }
+        return;
+      }
 
       const data = Object.fromEntries(new FormData(quoteForm).entries());
       const estimate = getEstimate();
@@ -375,6 +481,12 @@ const faqSchema = {
           quoteStatus.className = 'rounded-md bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-900';
         }
         quoteForm.reset();
+        quoteFields.forEach((field) => {
+          field.setCustomValidity('');
+          field.removeAttribute('aria-invalid');
+          const error = document.getElementById(`${field.id}Error`);
+          if (error) error.textContent = '';
+        });
         updateEstimate();
       } catch (error) {
         if (quoteStatus) {

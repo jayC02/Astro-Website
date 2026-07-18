@@ -8,7 +8,7 @@ const {
   title,
   description,
   canonicalPath,
-  ogImage,
+  ogImage = '/google-business-logo-720.png',
   robots = 'index, follow',
   ogType = 'website',
 } = Astro.props;
@@ -20,6 +20,8 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <SeoHead
       title={title}
       description={description}

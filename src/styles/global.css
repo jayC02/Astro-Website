@@ -109,6 +109,18 @@
     @apply min-h-11 w-full rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-950 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-sky-700 focus:ring-2 focus:ring-sky-200;
   }
 
+  .input[aria-invalid="true"] {
+    @apply border-red-600 focus:border-red-600 focus:ring-red-200;
+  }
+
+  .field-error {
+    @apply mt-1 hidden text-xs font-semibold leading-5 text-red-700;
+  }
+
+  .field-error:not(:empty) {
+    @apply block;
+  }
+
   textarea.input {
     @apply resize-y;
   }

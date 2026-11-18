@@ -1061,3 +1061,5 @@ html, body { overflow-x: clip; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .cert .rp-title { font-size: 1.12rem; }
 @media (max-width: 720px) { .mobile-bar .btn { padding: .8rem .4rem; font-size: .95rem; white-space: nowrap; } }
+.chips .type-note { font-weight: 400; color: var(--ink-3); }
+.blueprint .chips .type-note { color: #9db3b3; }

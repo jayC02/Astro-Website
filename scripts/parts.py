@@ -11,7 +11,7 @@ PHONE = '07483 881889'
 TEL = 'tel:+447483881889'
 UPDATED = '18 November 2026'
 UPDATED_ISO = '2026-11-18'
-V = '4'  # bump to refresh cached CSS and JS
+V = '5'  # bump to refresh cached CSS and JS
 
 PRICES = [('Flat EPC', 'from £70'), ('Maisonette EPC', 'from £75'), ('Bungalow EPC', 'from £80'),
           ('House EPC', 'from £85'), ('Legionella risk assessment', 'from £65'), ('EPC and legionella together', '£120')]
@@ -364,7 +364,8 @@ def calc_fields(restore=False):
     typ = ''.join(f'<label class="chip"><input type="radio" name="property_type" value="{v}"{" checked" if i == 0 else ""}><span>{v}</span></label>'
                   for i, v in enumerate(['Flat', 'Maisonette', 'Bungalow', 'House']))
     return (f'<fieldset class="chips calc-svc"><legend>What do you need?</legend><div>{svc}</div></fieldset>'
-            f'<fieldset class="chips calc-type"><legend>Property type</legend><div>{typ}</div></fieldset>')
+            f'<fieldset class="chips calc-type"><legend>Property type <span class="type-note" hidden>(legionella is the same price for every type)</span></legend>'
+            f'<div>{typ}</div></fieldset>')
 
 
 def calc_total():

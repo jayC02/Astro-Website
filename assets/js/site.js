@@ -207,7 +207,8 @@
     var shown = null;
     var render = function () {
       var svc = get('service'), type = get('property_type') || 'Flat', p = calcPrice(svc, type);
-      if (typeSet) typeSet.style.opacity = svc === 'Legionella' ? '.55' : '';
+      var note = typeSet && typeSet.querySelector('.type-note');
+      if (note) note.hidden = svc !== 'Legionella';
       var txt = (p.from ? 'from ' : '') + '£' + p.amount;
       if (shown !== null && shown !== p.amount && !reduce && !document.hidden) {
         var from = shown, to = p.amount, t0 = null;

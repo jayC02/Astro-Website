@@ -4,7 +4,7 @@
 //
 // Environment variables (Vercel -> Project -> Settings -> Environment Variables):
 //   RESEND_API_KEY     required
-//   QUOTE_TO_EMAIL     optional, default info@scottishenergyservices.co.uk
+//   QUOTE_TO_EMAIL     optional, inbox for quote requests, default jay@scottishenergyservices.co.uk
 //   QUOTE_FROM_EMAIL   optional, sender of the customer confirmation,
 //                      default "Scotland EPC <info@scottishenergyservices.co.uk>".
 //                      Once scotlandepc.com is verified in Resend you can set it to
@@ -14,7 +14,7 @@
 //   All senders must be on domains verified in Resend.
 
 const RESEND_URL = 'https://api.resend.com/emails';
-const TO_EMAIL = process.env.QUOTE_TO_EMAIL || 'info@scottishenergyservices.co.uk';
+const TO_EMAIL = process.env.QUOTE_TO_EMAIL || 'jay@scottishenergyservices.co.uk';
 const FROM_EMAIL = process.env.QUOTE_FROM_EMAIL || 'Scotland EPC <info@scottishenergyservices.co.uk>';
 const NOTIFY_FROM = process.env.QUOTE_NOTIFY_FROM || 'Scotland EPC Website <info@scottishenergyservices.co.uk>';
 const PHONE = '07483 881889';

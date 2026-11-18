@@ -11,7 +11,7 @@ PHONE = '07483 881889'
 TEL = 'tel:+447483881889'
 UPDATED = '18 November 2026'
 UPDATED_ISO = '2026-11-18'
-V = '5'  # bump to refresh cached CSS and JS
+V = '6'  # bump to refresh cached CSS and JS
 
 PRICES = [('Flat EPC', 'from £70'), ('Maisonette EPC', 'from £75'), ('Bungalow EPC', 'from £80'),
           ('House EPC', 'from £85'), ('Legionella risk assessment', 'from £65'), ('EPC and legionella together', '£120')]

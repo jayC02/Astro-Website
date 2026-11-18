@@ -342,7 +342,7 @@
           success.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
         })
         .catch(function (err) {
-          setStatus('err', (err && err.message) || 'Your request could not be sent. Please call ' + PHONE + ' or email info@scottishenergyservices.co.uk.');
+          setStatus('err', (err && err.message) || 'Your request could not be sent. Please call ' + PHONE + ' or email jay@scottishenergyservices.co.uk.');
         })
         .then(function () { submitting = false; button.disabled = false; button.classList.remove('is-loading'); button.textContent = 'Send my request'; });
     });

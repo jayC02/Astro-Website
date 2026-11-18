@@ -43,4 +43,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://scotlandepc.com/sitemap.xml
+Sitemap: https://www.scotlandepc.com/sitemap.xml

@@ -45,14 +45,13 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.scotlandepc.com"
-        }
-      ],
-      "destination": "https://scotlandepc.com/:path*",
+      "source": "/epc-rating-estimator",
+      "destination": "/domestic-epc/",
+      "permanent": true
+    },
+    {
+      "source": "/epc-rating-estimator/",
+      "destination": "/domestic-epc/",
       "permanent": true
     }
   ],

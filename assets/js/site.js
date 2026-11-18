@@ -1,278 +1,356 @@
+/* Scotland EPC: progressive enhancement. Every page and all content works without this file. */
 (function () {
-  "use strict";
-  document.documentElement.classList.remove("no-js");
-  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var doc = document.documentElement;
+  doc.classList.remove('no-js');
+  doc.classList.add('js');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var PHONE = '07483 881889';
 
-  /* ---------- navigation ---------- */
-  var toggle = $(".nav-toggle"), nav = $("#site-nav");
+  /* Header shadow on scroll */
+  var header = document.querySelector('.site-header');
+  var onScroll = function () { if (header) header.classList.toggle('scrolled', window.scrollY > 10); };
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* Mobile navigation */
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('site-nav');
   if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.textContent = open ? 'Close' : 'Menu';
     });
   }
-  document.addEventListener("click", function (e) {
-    $$(".nav details[open]").forEach(function (d) { if (!d.contains(e.target)) d.removeAttribute("open"); });
-  });
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") $$(".nav details[open]").forEach(function (d) { d.removeAttribute("open"); });
-  });
+  var dd = $$('.nav details');
+  document.addEventListener('click', function (e) { dd.forEach(function (d) { if (!d.contains(e.target)) d.removeAttribute('open'); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') dd.forEach(function (d) { d.removeAttribute('open'); }); });
 
-  /* ---------- EPC estimator ---------- */
-  var BANDS = [["A", 92, "#008054"], ["B", 81, "#19b459"], ["C", 69, "#8dce46"], ["D", 55, "#ffd500"], ["E", 39, "#fcaa65"], ["F", 21, "#ef8023"], ["G", 1, "#e9153b"]];
-  function band(score) { for (var i = 0; i < BANDS.length; i++) if (score >= BANDS[i][1]) return i; return 6; }
-  var BASE = { pre1919: 50, "1919": 53, "1965": 58, "1991": 67, "2009": 79 };
-  var TYPE = { flat: 5, maisonette: 2, terrace: 2, semi: 0, detached: -4, bungalow: -3 };
-  var HEAT = { gas: 4, oldgas: -4, storage: -10, direct: -16, oil: -2, hp: 6 };
-  var WALL = { unknown: 0, solid: -3, cavity: -3, filled: 2, insulated: 4 };
-  var LOFT = { na: 0, none: -5, some: -1, thick: 2 };
-  var GLAZE = { single: -5, double: 0, modern: 2 };
-  var HOUSES = ["terrace", "semi", "detached", "bungalow"];
-
-  function readEst(root, mode) {
-    var f = $(".est-form", root);
-    function v(n, d) { var el = f.querySelector('input[name$="-' + n + '"]:checked'); return el ? el.value : d; }
-    var s = { type: v("type", "flat"), age: v("age", "pre1919"), heat: v("heat", "gas") };
-    var house = HOUSES.indexOf(s.type) > -1;
-    if (mode === "full") {
-      s.walls = v("walls", "unknown"); s.loft = v("loft", "na"); s.glaze = v("glaze", "double"); s.pv = v("pv", "no");
-    } else {
-      s.walls = "unknown"; s.loft = house && s.age !== "2009" ? "some" : "na"; s.glaze = "double"; s.pv = "no";
-    }
-    if (s.age === "2009" && (s.walls === "solid" || s.walls === "cavity")) s.walls = "unknown";
-    return s;
-  }
-  function scoreOf(s) {
-    var n = BASE[s.age] + TYPE[s.type] + HEAT[s.heat] + WALL[s.walls] + LOFT[s.loft] + GLAZE[s.glaze] + (s.pv === "yes" ? 6 : 0);
-    return Math.max(1, Math.min(100, Math.round(n)));
-  }
-  function measuresFor(s) {
-    var m = [], house = HOUSES.indexOf(s.type) > -1;
-    if (house && (s.loft === "none" || s.loft === "some")) m.push({ id: "loft", t: "Top up loft insulation to 270mm", g: LOFT.thick - LOFT[s.loft] });
-    if (s.walls === "cavity") m.push({ id: "cav", t: "Fill the cavity walls", g: 5 });
-    if (s.walls === "solid") m.push({ id: "iwi", t: "Internal or external wall insulation", g: 7 });
-    if (s.heat === "oldgas") m.push({ id: "boiler", t: "Replace the boiler with a modern condensing boiler", g: 8 });
-    if (s.heat === "storage") m.push({ id: "hhr", t: "Swap to high heat retention storage heaters", g: 6 });
-    if (s.heat === "direct") m.push({ id: "hhr2", t: "Swap panel heaters for high heat retention storage heaters", g: 12 });
-    if (s.glaze === "single") m.push({ id: "glaze", t: "Replace single glazing with double glazing", g: 5 });
-    if (house && s.pv !== "yes") m.push({ id: "pv", t: "Fit solar PV panels", g: 6 });
-    if (s.age !== "2009") m.push({ id: "led", t: "Low-energy lighting throughout", g: 1 });
-    return m;
-  }
-  function setArrow(el, score) {
-    var i = band(score);
-    el.style.setProperty("--row", i);
-    el.style.setProperty("--ac", BANDS[i][2]);
-    el.classList.toggle("lightc", el.closest(".est-now") && (i < 2 || i > 4));
-    el.querySelector("b").textContent = BANDS[i][0] + " " + score;
-  }
-  $$("[data-est]").forEach(function (root) {
-    var mode = root.getAttribute("data-mode");
-    var list = $(".est-measures", root);
-    var off = {};
-    function update(rebuild) {
-      var s = readEst(root, mode), now = scoreOf(s), ms = measuresFor(s);
-      var gain = 0;
-      if (list && rebuild) {
-        list.innerHTML = ms.length ? ms.map(function (m) {
-          return '<li><label><input type="checkbox" data-m="' + m.id + '"' + (off[m.id] ? "" : " checked") + '><span><b>' + m.t + '</b></span><span class="gain">+' + m.g + '</span></label></li>';
-        }).join("") : '<li class="none">No obvious improvements for these answers. An assessor may still find smaller ones, such as low-energy lighting or heating controls.</li>';
-      }
-      ms.forEach(function (m) { if (!off[m.id]) gain += m.g; });
-      var pot = Math.min(100, now + gain);
-      setArrow($('[data-arrow="now"]', root), now);
-      setArrow($('[data-arrow="pot"]', root), pot);
-      var bn = BANDS[band(now)][0], bp = BANDS[band(pot)][0];
-      var txt = "Estimated now: <strong>band " + bn + " (" + now + ")</strong>. ";
-      txt += pot > now ? "With " + (mode === "full" ? "the ticked improvements" : "typical improvements") + ": <strong>band " + bp + " (" + pot + ")</strong>." : "Close to its potential for a home like this.";
-      $(".est-read", root).innerHTML = txt;
-    }
-    root.addEventListener("change", function (e) {
-      if (e.target.matches("[data-m]")) { off[e.target.getAttribute("data-m")] = !e.target.checked; update(false); }
-      else update(true);
+  /* Spotlight that follows the pointer on blueprint surfaces */
+  if (!reduce) {
+    $$('.blueprint').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        el.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
     });
-    update(true);
-    if (root.closest(".hero")) {
-      requestAnimationFrame(function () { setTimeout(function () { root.classList.add("ready"); }, reduce ? 0 : 150); });
-    } else root.classList.add("ready");
-  });
+  }
 
-  /* ---------- house explorer ---------- */
-  $$("[data-hx]").forEach(function (hx) {
-    var cur = 0;
-    function lens() { return hx.getAttribute("data-lens"); }
-    function items() { return $$('.hx-list[data-lens="' + lens() + '"] li', hx); }
-    function show(i, focusSpot) {
-      var li = items(); if (!li.length) return;
-      cur = (i + li.length) % li.length;
-      li.forEach(function (x, k) { x.classList.toggle("on", k === cur); });
-      $$(".hx-spot", hx).forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-lens") === lens() && +b.getAttribute("data-i") === cur); });
-      $(".hx-count", hx).textContent = (lens() === "epc" ? "EPC survey" : "Legionella assessment") + ", point " + (cur + 1) + " of " + li.length;
-      $(".hx-detail h3", hx).textContent = li[cur].querySelector("b").textContent;
-      $(".hx-text", hx).textContent = li[cur].querySelector("p").textContent;
-      if (focusSpot) { var sp = $('.hx-spot.on', hx); if (sp) sp.focus(); }
-    }
-    function setLens(l) {
-      hx.setAttribute("data-lens", l);
-      $$("[data-set-lens]", hx).forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-set-lens") === l ? "true" : "false"); });
-      $$(".hx-spot", hx).forEach(function (b) { b.hidden = b.getAttribute("data-lens") !== l; });
-      $$(".hx-list", hx).forEach(function (o) { o.hidden = o.getAttribute("data-lens") !== l; });
-      show(0);
-    }
-    hx.addEventListener("click", function (e) {
-      var t = e.target.closest("button"); if (!t) return;
-      if (t.hasAttribute("data-set-lens")) setLens(t.getAttribute("data-set-lens"));
-      else if (t.classList.contains("hx-next")) show(cur + 1);
-      else if (t.classList.contains("hx-prev")) show(cur - 1);
-      else if (t.hasAttribute("data-i")) show(+t.getAttribute("data-i"));
-    });
-    show(0);
-  });
+  /* Reveal on scroll, count-ups and other in-view triggers */
+  var inView = function (el, cb, opts) {
+    if (!('IntersectionObserver' in window)) { cb(el); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { cb(en.target); io.unobserve(en.target); } });
+    }, opts || { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+    io.observe(el);
+  };
+  $$('[data-reveal], [data-inview]').forEach(function (el) { inView(el, function (t) { t.classList.add('in'); }); });
 
-  /* ---------- thermometer ---------- */
-  $$("[data-thermo]").forEach(function (th) {
-    var r = $(".th-range", th), val = $(".th-val", th), zone = $(".th-zone", th), text = $(".th-text", th);
-    var Z = [
-      [0, "Dormant", "#2a7fc0", "Below 20°C legionella bacteria are dormant. Cold water should stay below 20°C all the way to the tap, which is why loft tanks and cold pipes are insulated."],
-      [20, "Can multiply", "#c8102e", "Between 20°C and 45°C legionella can multiply, especially in still water with scale or sediment to feed on. Finding water in this range is the main thing a risk assessment looks for."],
-      [45, "Growth slows", "#a86a00", "Above 45°C growth slows but bacteria can survive. Hot water should reach at least 50°C at the tap."],
-      [50, "Hot tap target", "#7a6a00", "Hot water at the tap should be at least 50°C, reached within a minute of running. Stored hot water still needs to reach 60°C."],
-      [60, "Do not survive", "#0b7a4b", "At 60°C and above legionella do not survive, so cylinders should store water at 60°C. Water this hot can scald, so take care at the tap."]
-    ];
-    function upd() {
-      var t = +r.value, z = Z[0];
-      Z.forEach(function (x) { if (t >= x[0]) z = x; });
-      val.textContent = t + "°C"; zone.textContent = z[1]; text.textContent = z[3];
-      th.style.setProperty("--tc", z[2]);
-      r.setAttribute("aria-valuetext", t + " degrees, " + z[1]);
-      $$(".th-presets button", th).forEach(function (b) { b.setAttribute("aria-pressed", +b.getAttribute("data-t") === t ? "true" : "false"); });
-    }
-    r.addEventListener("input", upd);
-    th.addEventListener("click", function (e) {
-      var b = e.target.closest("[data-t]"); if (!b) return;
-      var target = +b.getAttribute("data-t"), start = +r.value;
-      if (reduce) { r.value = target; upd(); return; }
-      var t0 = null;
-      function step(ts) {
-        if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 450); var e2 = 1 - Math.pow(1 - p, 3);
-        r.value = Math.round(start + (target - start) * e2); upd(); if (p < 1) requestAnimationFrame(step);
-      }
+  var fmt = function (n, dec) { return n.toLocaleString('en-GB', { minimumFractionDigits: dec, maximumFractionDigits: dec }); };
+  $$('[data-count]').forEach(function (el) {
+    var target = parseFloat(el.getAttribute('data-count'));
+    var prefix = el.getAttribute('data-prefix') || '', suffix = el.getAttribute('data-suffix') || '';
+    var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+    if (reduce) { el.textContent = prefix + fmt(target, dec) + suffix; return; }
+    el.textContent = prefix + fmt(0, dec) + suffix;
+    inView(el, function () {
+      var t0 = null, dur = 1400;
+      var step = function (ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + fmt(target * e, dec) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
       requestAnimationFrame(step);
     });
-    upd();
   });
 
-  /* ---------- price calculator + quote form ---------- */
-  var PRICE = { Flat: 70, Maisonette: 75, Bungalow: 80, House: 85 };
-  var LEG = 65, BOTH = 120, TRAVEL = 20;
-  var PC_RE = /^(GIR ?0AA|[A-PR-UWYZ][0-9]{1,2} ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][0-9][A-HJKPSTUW] ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][A-HK-Y][0-9]{1,2} ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][A-HK-Y][0-9][ABEHMNPRVWXY] ?[0-9][ABD-HJLNP-UW-Z]{2})$/;
-  function normPc(v) { var c = v.toUpperCase().replace(/\s+/g, ""); return c.length > 4 ? c.slice(0, -3) + " " + c.slice(-3) : c; }
-  function mainZone(pc) { return /^(G|EH)[0-9]/.test(pc.replace(/\s/g, "")); }
-
-  $$("[data-calc]").forEach(function (box) {
-    var form = $("form", box), out = $(".ct-val", box), det = $(".ct-detail", box);
-    var pc = form.querySelector('[name="postcode"]'), pcMsg = pc.parentNode.querySelector(".field-msg");
-    var params = new URLSearchParams(location.search);
-    ["service", "property_type"].forEach(function (n) {
-      var v = params.get(n); if (!v) return;
-      var el = form.querySelector('input[name="' + n + '"][value="' + v.replace(/"/g, "") + '"]'); if (el) el.checked = true;
+  /* House explorer: two survey modes (EPC and legionella), hotspots, auto-tour until the visitor takes over */
+  $$('[data-explorer]').forEach(function (bx) {
+    var allSpots = $$('.hs', bx), allItems = $$('.bx-items li', bx), hint = bx.querySelector('.bx-hint');
+    var bar = bx.querySelector('.bx-progress span'), barWrap = bx.querySelector('.bx-progress');
+    var modeBtns = $$('.bx-modes button', bx), count = bx.querySelector('.bx-count');
+    var prev = bx.querySelector('[data-bx="prev"]'), next = bx.querySelector('[data-bx="next"]');
+    var mode = bx.getAttribute('data-mode') || 'epc';
+    var spots = [], items = [], cur = -1, timer = null, manual = false;
+    var collect = function () {
+      spots = allSpots.filter(function (s) { return s.getAttribute('data-set') === mode; });
+      items = allItems.filter(function (li) { return li.getAttribute('data-set') === mode; });
+    };
+    var show = function (i) {
+      cur = i;
+      allSpots.forEach(function (s) { s.setAttribute('aria-pressed', 'false'); });
+      allItems.forEach(function (li) { li.classList.remove('on'); });
+      if (spots[i]) spots[i].setAttribute('aria-pressed', 'true');
+      if (items[i]) items[i].classList.add('on');
+      if (hint) hint.style.display = 'none';
+      if (count) count.textContent = (i + 1) + ' of ' + spots.length;
+      if (bar && !manual && !reduce) { bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run'); }
+    };
+    var stop = function () { manual = true; clearInterval(timer); if (barWrap) barWrap.classList.add('stopped'); };
+    var setMode = function (m, user) {
+      mode = m; bx.setAttribute('data-mode', m);
+      modeBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-mode') === m ? 'true' : 'false'); });
+      collect();
+      show(0);
+      if (user) stop();
+    };
+    allSpots.forEach(function (s) {
+      s.addEventListener('click', function () { stop(); show(spots.indexOf(s)); });
     });
-    if (params.get("postcode")) pc.value = normPc(params.get("postcode")).slice(0, 9);
-    var last = "";
-    function calc() {
-      var svc = form.querySelector('[name="service"]:checked').value;
-      var type = form.querySelector('[name="property_type"]:checked').value;
-      var code = normPc(pc.value.trim()), valid = PC_RE.test(code.replace(" ", "")) || PC_RE.test(code);
-      var base = svc === "Both" ? BOTH : svc === "Legionella" ? LEG : PRICE[type];
-      var extra = valid && !mainZone(code) ? TRAVEL : 0;
-      var label = svc === "Both" ? "EPC and legionella risk assessment, one visit" : svc === "Legionella" ? "Legionella risk assessment" : type + " EPC";
-      var zone = !code ? "Add a postcode to check travel." : !valid ? "Check the postcode." : extra ? "Includes £" + TRAVEL + " travel outside G and EH postcodes." : "Glasgow or Edinburgh postcode, no travel supplement.";
-      var total = (svc === "Both" ? "" : "from ") + "£" + (base + extra);
-      if (total !== last && last) { out.classList.remove("bump"); void out.offsetWidth; out.classList.add("bump"); }
-      last = total; out.textContent = total; det.textContent = label + ", plus VAT. " + zone;
-      var est = form.querySelector('[name="estimate"]'); if (est) est.value = total + " + VAT (" + label + (extra ? ", incl. travel" : "") + ")";
-      return { valid: valid, code: code };
-    }
-    form.addEventListener("change", calc);
-    form.addEventListener("input", function (e) { if (e.target === pc) calc(); });
-    pc.addEventListener("blur", function () {
-      if (!pc.value.trim()) { pcMsg.textContent = ""; pcMsg.className = "field-msg"; pc.removeAttribute("aria-invalid"); return; }
-      var r = calc(); pc.value = r.code;
-      if (r.valid) { pcMsg.textContent = mainZone(r.code) ? "Inside our main area." : "We cover this area with a £" + TRAVEL + " travel supplement."; pcMsg.className = "field-msg ok"; pc.removeAttribute("aria-invalid"); }
-      else { pcMsg.textContent = "Enter a full UK postcode, for example G12 8QQ."; pcMsg.className = "field-msg bad"; pc.setAttribute("aria-invalid", "true"); }
+    modeBtns.forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-mode'), true); }); });
+    if (prev) prev.addEventListener('click', function () { stop(); show((cur + spots.length - 1) % spots.length); });
+    if (next) next.addEventListener('click', function () { stop(); show((cur + 1) % spots.length); });
+    bx.addEventListener('keydown', function (e) {
+      if (cur < 0 || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') || !e.target.classList.contains('hs')) return;
+      stop(); var n = (cur + (e.key === 'ArrowRight' ? 1 : spots.length - 1)) % spots.length; show(n); spots[n].focus();
     });
-    calc();
+    collect();
+    if (reduce) { show(0); if (barWrap) barWrap.classList.add('stopped'); return; }
+    if (count) count.textContent = '1 of ' + spots.length;
+    setTimeout(function () {
+      if (manual) return;
+      show(0);
+      timer = setInterval(function () { if (!manual) show((cur + 1) % spots.length); }, 6000);
+    }, 2400);
+  });
 
-    if (form.id !== "quote-form") return;
-    var started = form.querySelector('[name="form_started"]');
-    started.value = String(Date.now());
-    var status = $(".form-status", form), btn = form.querySelector('button[type="submit"]');
-    function fieldErr(name, msg) {
-      var el = form.querySelector('[name="' + name + '"]'), m = el.parentNode.querySelector(".field-msg");
-      if (msg) { el.setAttribute("aria-invalid", "true"); if (m) { m.textContent = msg; m.className = "field-msg bad"; } }
-      else { el.removeAttribute("aria-invalid"); if (m && name !== "postcode") { m.textContent = ""; m.className = "field-msg"; } }
-      return !msg;
-    }
-    function validate() {
-      var ok = true, first = null;
-      function fv(n) { return form.querySelector('[name="' + n + '"]').value; }
-      var name = fv("name").trim(), phone = fv("phone").replace(/[\s()-]/g, ""), email = fv("email").trim();
-      var checks = [
-        ["name", name.length < 2 ? "Enter your name." : ""],
-        ["phone", !/^(\+44|0044|0)\d{9,10}$/.test(phone) ? "Enter a UK phone number, for example 07483 881889." : ""],
-        ["email", !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? "Enter an email address so we can send you a copy." : ""],
-        ["postcode", !calc().valid ? "Enter the property postcode, for example G12 8QQ." : ""]
-      ];
-      checks.forEach(function (c) { if (!fieldErr(c[0], c[1])) { ok = false; if (!first) first = form.querySelector('[name="' + c[0] + '"]'); } });
-      if (first) first.focus();
-      return ok;
-    }
-    form.addEventListener("submit", function (e) {
+  /* Customer tabs */
+  $$('[data-tabs]').forEach(function (wrap) {
+    var tabs = $$('[role="tab"]', wrap), panels = $$('[role="tabpanel"]', wrap);
+    var select = function (i, focus) {
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); t.tabIndex = k === i ? 0 : -1; });
+      panels.forEach(function (p, k) { p.hidden = k !== i; p.classList.toggle('show', k === i); });
+      if (focus) tabs[i].focus();
+    };
+    tabs.forEach(function (t, k) {
+      t.addEventListener('click', function () { select(k); });
+      t.addEventListener('keydown', function (e) {
+        var n = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (k + 1) % tabs.length;
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (k + tabs.length - 1) % tabs.length;
+        if (e.key === 'Home') n = 0; if (e.key === 'End') n = tabs.length - 1;
+        if (n !== null) { e.preventDefault(); select(n, true); }
+      });
+    });
+    select(0);
+  });
+
+  /* EPC band chart */
+  $$('[data-bands]').forEach(function (card) {
+    var list = card.querySelector('.bands'), bands = $$('.band', card), out = card.querySelector('.bands-readout');
+    var show = function (b) {
+      list.classList.add('picked');
+      bands.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      var L = b.getAttribute('data-band');
+      out.innerHTML = '<span class="big b' + L.toLowerCase() + '">' + L + '</span><div><h3>Band ' + L + ', ' + b.getAttribute('data-range') +
+        ' points</h3><p>' + b.getAttribute('data-text') + '</p></div>';
+    };
+    bands.forEach(function (b) { b.addEventListener('click', function () { show(b); }); b.addEventListener('mouseenter', function () { show(b); }); });
+    var start = card.querySelector('.band[data-start]'); if (start) show(start);
+  });
+
+  /* Water temperature dial */
+  var ZONES = [
+    [20, '#1f7fb8', 'Dormant', 'Cold enough that legionella cannot multiply. Cold water should be below 20°C within two minutes of running the tap.'],
+    [45, '#c62828', 'Legionella can multiply', 'The danger zone. Water sitting between 20°C and 45°C, such as a warm loft tank or a lukewarm shower, lets the bacteria grow.'],
+    [50, '#c4561a', 'Survives, slow growth', 'Too hot for legionella to grow quickly, but not hot enough to kill it. Hot water at the tap should reach at least 50°C within a minute.'],
+    [60, '#a8620a', 'Dies within hours', 'Legionella dies off slowly at these temperatures. Stored hot water should be kept higher than this.'],
+    [101, '#00704a', 'Killed in minutes', 'Stored hot water at 60°C or above kills legionella. This is why the cylinder thermostat should stay at 60°C.']
+  ];
+  $$('[data-thermo]').forEach(function (t) {
+    var input = t.querySelector('input[type="range"]'), val = t.querySelector('.thermo-val span'), state = t.querySelector('.thermo-state b'), text = t.querySelector('.thermo-state p');
+    var presets = $$('.thermo-presets button', t);
+    var render = function () {
+      var v = parseInt(input.value, 10), z = ZONES[0];
+      for (var i = 0; i < ZONES.length; i++) { if (v < ZONES[i][0]) { z = ZONES[i]; break; } }
+      t.style.setProperty('--t-col', z[1]);
+      val.textContent = v; state.textContent = z[2]; text.textContent = z[3];
+      input.setAttribute('aria-valuetext', v + '°C, ' + z[2].toLowerCase());
+      presets.forEach(function (p) { p.setAttribute('aria-pressed', p.getAttribute('data-t') === String(v) ? 'true' : 'false'); });
+    };
+    input.addEventListener('input', render);
+    presets.forEach(function (p) {
+      p.addEventListener('click', function () {
+        var from = parseInt(input.value, 10), to = parseInt(p.getAttribute('data-t'), 10);
+        if (reduce || document.hidden) { input.value = to; render(); return; }
+        var t0 = null;
+        var step = function (ts) {
+          if (!t0) t0 = ts;
+          var k = Math.min(1, (ts - t0) / 500), e = 1 - Math.pow(1 - k, 3);
+          input.value = Math.round(from + (to - from) * e); render();
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    });
+    render();
+  });
+
+  /* Price calculator. Prices exclude VAT and match /api/quote.js */
+  var PRICES = { Flat: 70, Maisonette: 75, Bungalow: 80, House: 85 }, LEG = 65, BOTH = 120;
+  var calcPrice = function (svc, type) {
+    if (svc === 'Both') return { amount: BOTH, label: 'EPC and legionella, one visit', from: false, save: PRICES[type] + LEG - BOTH };
+    if (svc === 'Legionella') return { amount: LEG, label: 'Legionella risk assessment, per property', from: true };
+    return { amount: PRICES[type], label: type + ' EPC', from: true };
+  };
+  var STORE = 'scotlandepc-calc';
+  var saved = null;
+  try { saved = JSON.parse(sessionStorage.getItem(STORE) || 'null'); } catch (e) { saved = null; }
+  $$('[data-calc]').forEach(function (c) {
+    var out = c.querySelector('.ct-val'), detail = c.querySelector('.ct-detail'), estimate = c.querySelector('input[name="estimate"]');
+    var typeSet = c.querySelector('.calc-type');
+    var get = function (n) { var el = c.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; };
+    var setRadio = function (n, v) { var el = c.querySelector('input[name="' + n + '"][value="' + v + '"]'); if (el) el.checked = true; };
+    if (saved && c.hasAttribute('data-restore')) { setRadio('service', saved.service); setRadio('property_type', saved.type); }
+    var shown = null;
+    var render = function () {
+      var svc = get('service'), type = get('property_type') || 'Flat', p = calcPrice(svc, type);
+      if (typeSet) typeSet.style.opacity = svc === 'Legionella' ? '.55' : '';
+      var txt = (p.from ? 'from ' : '') + '£' + p.amount;
+      if (shown !== null && shown !== p.amount && !reduce && !document.hidden) {
+        var from = shown, to = p.amount, t0 = null;
+        var step = function (ts) {
+          if (!t0) t0 = ts;
+          var k = Math.min(1, (ts - t0) / 380), e = 1 - Math.pow(1 - k, 3);
+          out.textContent = (p.from ? 'from ' : '') + '£' + Math.round(from + (to - from) * e);
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      } else { out.textContent = txt; }
+      shown = p.amount;
+      detail.innerHTML = p.label + ', plus VAT' + (p.save > 0 ? ' <span class="ct-save">Save £' + p.save + '</span>' : '');
+      if (estimate) estimate.value = txt + ' + VAT';
+      try { sessionStorage.setItem(STORE, JSON.stringify({ service: svc, type: type })); } catch (e) { /* storage blocked */ }
+    };
+    $$('input[type="radio"]', c).forEach(function (r) { r.addEventListener('change', render); });
+    render();
+  });
+
+  /* Landlord checklist (kept on the page only, never stored or sent) */
+  $$('[data-checklist]').forEach(function (cl) {
+    var boxes = $$('input[type="checkbox"]', cl), label = cl.querySelector('.cl-progress b'), bar = cl.querySelector('.cl-bar');
+    var render = function () {
+      var n = boxes.filter(function (b) { return b.checked; }).length;
+      boxes.forEach(function (b) { b.closest('li').classList.toggle('done', b.checked); });
+      label.textContent = n + ' of ' + boxes.length + ' done';
+      bar.style.setProperty('--p', (n / boxes.length * 100) + '%');
+    };
+    boxes.forEach(function (b) { b.addEventListener('change', render); });
+    render();
+  });
+
+  /* Report mock-up tilt */
+  if (!reduce) {
+    $$('.report').forEach(function (rep) {
+      var inner = rep.querySelector('.report-inner');
+      rep.addEventListener('pointermove', function (e) {
+        var r = rep.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        inner.style.setProperty('--ry', (-14 + x * 18) + 'deg'); inner.style.setProperty('--rx', (8 - y * 12) + 'deg');
+      });
+      rep.addEventListener('pointerleave', function () { inner.style.removeProperty('--ry'); inner.style.removeProperty('--rx'); });
+    });
+  }
+
+  /* Smooth FAQ accordions */
+  if (!reduce && 'animate' in document.body) {
+    $$('details.faq').forEach(function (d) {
+      var sum = d.querySelector('summary'), ans = d.querySelector('.answer');
+      sum.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (d.open) {
+          var h = ans.offsetHeight;
+          ans.animate([{ height: h + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 220, easing: 'ease-in' }).onfinish = function () { d.open = false; };
+        } else {
+          d.open = true;
+          var h2 = ans.offsetHeight;
+          ans.animate([{ height: '0px', opacity: 0 }, { height: h2 + 'px', opacity: 1 }], { duration: 280, easing: 'cubic-bezier(.2,.7,.1,1)' });
+        }
+      });
+    });
+  }
+
+  /* Contents list: highlight the section in view */
+  var tocLinks = $$('.toc a');
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    var map = {};
+    tocLinks.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting && map[en.target.id]) { tocLinks.forEach(function (a) { a.classList.remove('active'); }); map[en.target.id].classList.add('active'); }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+  }
+
+  /* Quote form: sends to /api/quote/ and shows a confirmation on the page */
+  var form = document.getElementById('quote-form');
+  if (form) {
+    var status = form.querySelector('.form-status');
+    var button = form.querySelector('button[type="submit"]');
+    var success = document.getElementById('quote-success');
+    var started = form.querySelector('input[name="form_started"]');
+    var submitting = false;
+    if (started) started.value = String(Date.now());
+    var setStatus = function (cls, msg) { status.className = 'form-status' + (cls ? ' ' + cls : ''); status.textContent = msg; };
+    var PC_RE = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/;
+    var pc = form.querySelector('input[name="postcode"]');
+    var fieldMsg = function (input, msg) {
+      var m = input.parentNode.querySelector('.field-msg');
+      input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (m) m.textContent = msg || '';
+    };
+    var checkPostcode = function () {
+      var v = pc.value.toUpperCase().replace(/\s+/g, ' ').trim();
+      pc.value = v;
+      if (!v) { fieldMsg(pc, 'Please enter the property postcode.'); return false; }
+      if (!PC_RE.test(v)) { fieldMsg(pc, 'Please enter a full UK postcode, for example G12 8QQ.'); return false; }
+      fieldMsg(pc, ''); return true;
+    };
+    if (pc) pc.addEventListener('blur', function () { if (pc.value) checkPostcode(); });
+    $$('input[required], select[required]', form).forEach(function (el) {
+      el.addEventListener('blur', function () { if (el !== pc) fieldMsg(el, el.value && el.checkValidity() ? '' : (el.value ? 'Please check this.' : '')); });
+    });
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      status.textContent = ""; status.className = "form-status";
-      if (!validate()) { status.textContent = "Check the highlighted fields."; status.className = "form-status bad"; return; }
-      btn.disabled = true; btn.textContent = "Sending";
-      var body = new URLSearchParams(new FormData(form));
-      fetch(form.getAttribute("data-endpoint"), { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json" }, body: body.toString() })
-        .then(function (r) { return r.json().catch(function () { return { ok: false }; }).then(function (j) { return { status: r.status, j: j }; }); })
-        .then(function (res) {
-          if (res.j && res.j.ok) {
-            form.hidden = true; var done = $("#quote-success", box); done.hidden = false; done.focus();
-            done.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
-          } else {
-            status.textContent = (res.j && res.j.error) || "Your request didn't send. Try again, or call 07483 881889.";
-            status.className = "form-status bad"; btn.disabled = false; btn.textContent = "Send my request";
-          }
+      if (submitting) return;
+      var okPc = checkPostcode();
+      var bad = $$('input[required], select[required]', form).filter(function (el) { return !el.checkValidity(); });
+      bad.forEach(function (el) { if (el !== pc) fieldMsg(el, el.type === 'email' ? 'Please enter a valid email address.' : 'Please fill this in.'); });
+      if (!okPc || bad.length) { setStatus('err', 'Please check the highlighted fields.'); (bad[0] || pc).focus(); return; }
+      var data = new FormData(form);
+      var body = new URLSearchParams();
+      data.forEach(function (v, k) { body.append(k, v); });
+      submitting = true;
+      button.disabled = true; button.classList.add('is-loading'); button.textContent = 'Sending…';
+      setStatus('', '');
+      fetch(form.getAttribute('data-endpoint') || form.action, {
+        method: 'POST', body: body.toString(),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (j) {
+          if (!j.ok) throw new Error(j.error || '');
+          var name = (data.get('name') || '').toString().trim().split(/\s+/)[0];
+          success.querySelector('[data-fs="name"]').textContent = name ? ', ' + name : '';
+          success.querySelector('[data-fs="email"]').textContent = (data.get('email') || '').toString();
+          success.querySelector('[data-fs="confirm"]').hidden = j.confirmationSent === false;
+          form.hidden = true; success.hidden = false; success.classList.add('show');
+          success.focus({ preventScroll: true });
+          success.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
         })
-        .catch(function () {
-          status.textContent = "Your request didn't send. Check your connection and try again, or call 07483 881889.";
-          status.className = "form-status bad"; btn.disabled = false; btn.textContent = "Send my request";
-        });
+        .catch(function (err) {
+          setStatus('err', (err && err.message) || 'Your request could not be sent. Please call ' + PHONE + ' or email info@scottishenergyservices.co.uk.');
+        })
+        .then(function () { submitting = false; button.disabled = false; button.classList.remove('is-loading'); button.textContent = 'Send my request'; });
     });
-  });
-
-  /* ---------- landlord checklist ---------- */
-  $$("[data-checklist]").forEach(function (cl) {
-    var boxes = $$('input[type="checkbox"]', cl), count = $(".cl-count", cl), bar = $(".cl-bar i", cl);
-    function upd() {
-      var n = 0;
-      boxes.forEach(function (b) { b.closest("li").classList.toggle("done", b.checked); if (b.checked) n++; });
-      count.textContent = n + " of " + boxes.length + " done";
-      var pct = boxes.length ? n / boxes.length : 0;
-      bar.style.width = (pct * 100) + "%";
-      bar.style.setProperty("--bs", pct ? (100 / pct) + "%" : "1000%");
-    }
-    cl.addEventListener("change", upd); upd();
-  });
-
-  /* ---------- coverage map ---------- */
-  var cms = $$(".cm");
-  if (cms.length) {
-    if ("IntersectionObserver" in window && !reduce) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }); }, { threshold: .3 });
-      cms.forEach(function (c) { io.observe(c); });
-    } else cms.forEach(function (c) { c.classList.add("in"); });
+    var again = success && success.querySelector('[data-fs="again"]');
+    if (again) again.addEventListener('click', function () {
+      form.reset(); if (started) started.value = String(Date.now());
+      success.hidden = true; success.classList.remove('show'); form.hidden = false; setStatus('', '');
+      $$('input[type="radio"]:checked', form).forEach(function (r) { r.dispatchEvent(new Event('change')); });
+      form.querySelector('input[name="name"]').focus();
+    });
   }
 })();

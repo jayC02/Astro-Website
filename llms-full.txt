@@ -1,12 +1,11 @@
 # Scotland EPC
 
-> Scotland EPC (scotlandepc.com) provides domestic Energy Performance Certificates (EPCs) and legionella risk assessments for landlords, letting agents, sellers and homeowners across Glasgow, Edinburgh and the Central Belt of Scotland. It is part of Scottish Energy Services (https://www.scottishenergyservices.co.uk/), 272 Bath Street, Glasgow G2 4JR. EPCs are produced by accredited domestic energy assessors and lodged on the Scottish EPC Register, normally within 24 hours of the visit.
+> Scotland EPC (scotlandepc.com) provides domestic Energy Performance Certificates (EPCs) and legionella risk assessments for landlords, letting agents, sellers and homeowners across the whole of Scotland. It is part of Scottish Energy Services (https://www.scottishenergyservices.co.uk/), 272 Bath Street, Glasgow G2 4JR. EPCs are produced by accredited domestic energy assessors and lodged on the Scottish EPC Register, normally within 24 hours of the visit.
 
 Key facts:
 - Business: Scotland EPC, 272 Bath Street, Glasgow G2 4JR, Scotland. Phone 07483 881889 (+44 7483 881889)
 - Prices, all excluding VAT (Glasgow G and Edinburgh EH postcodes): EPCs from £70 for a flat, £75 maisonette, £80 bungalow and £85 for a house; legionella risk assessment from £65; EPC and legionella together £120
-- Travel supplement: £20 outside G and EH postcodes (for example Paisley, Hamilton, Falkirk, Stirling)
-- Area served: Glasgow, Edinburgh, Bearsden, Milngavie, Bishopbriggs, Kirkintilloch, East Kilbride, Cumbernauld, Livingston, Bathgate, Linlithgow, Musselburgh, Dalkeith, Paisley, Renfrew, Hamilton, Motherwell, Falkirk, Stirling
+- Area served: all of Scotland, including Glasgow, Edinburgh, Aberdeen, Dundee, Inverness, Stirling, Perth, Paisley, Renfrew, East Kilbride, Hamilton, Motherwell, Coatbridge, Airdrie, Livingston, Falkirk, Dunfermline, Kirkcaldy, Ayr, Kilmarnock, Dumfries, the Borders, the Highlands and the islands
 - Turnaround: EPC normally lodged and emailed within 24 hours of the visit
 - Scottish EPC rules: current EPCs valid 10 years; rating must appear in adverts; EPC must be fixed in the property (often meter cupboard or by the boiler); £500 penalty charge for homes
 - EPC reform: from 30 April 2028 new-style Scottish EPCs with Heat Retention, Heating System and Energy Cost ratings, valid five years; transition to 30 April 2029
@@ -14,43 +13,42 @@ Key facts:
 - Group companies: Scottish Energy Services (SAP, SBEM, commercial EPCs); Fire Risk Scotland (https://fireriskscotland.com/, fire risk assessments)
 
 ## Services
-- [Domestic EPC Scotland](https://scotlandepc.com/domestic-epc/): Domestic Energy Performance Certificates for flats and houses in Glasgow, Edinburgh and the Central Belt. What an EPC shows, when you need one in Scotland, what happens on the survey, and prices from £70 + VAT.
-- [Legionella Risk Assessment for Landlords in Scotland](https://scotlandepc.com/legionella-risk-assessment/): Legionella risk assessments for private landlords, letting agents and short-term let hosts in Glasgow, Edinburgh and the Central Belt. What Scottish law requires, what we check, and what you get. From £65, or £120 with an EPC, plus VAT.
-- [EPC Prices Glasgow & Edinburgh](https://scotlandepc.com/prices/): Clear prices for domestic EPCs and legionella risk assessments: EPCs from £70 for a flat and £85 for a house, legionella from £65, both together £120, all plus VAT. Check your price by postcode.
-- [EPC Rating Estimator for Scottish Homes](https://scotlandepc.com/epc-rating-estimator/): Get a rough EPC band for your Scottish home in under a minute, and see which improvements would raise it most: loft insulation, cavity walls, a new boiler, double glazing or solar panels.
+- [Domestic EPC Scotland](https://www.scotlandepc.com/domestic-epc/): Domestic Energy Performance Certificates for flats and houses anywhere in Scotland. What an EPC shows, when you need one in Scotland, what happens on the survey, and prices from £70 + VAT.
+- [Legionella Risk Assessment for Landlords in Scotland](https://www.scotlandepc.com/legionella-risk-assessment/): Legionella risk assessments for private landlords, letting agents and short-term let hosts across Scotland. What Scottish law requires, what we check, and what you get. From £65, or £120 with an EPC, plus VAT.
+- [EPC Prices Glasgow & Edinburgh](https://www.scotlandepc.com/prices/): Clear prices for domestic EPCs and legionella risk assessments: EPCs from £70 for a flat and £85 for a house, legionella from £65, both together £120, all plus VAT. Check your price by postcode.
 
 ## Guides
-- [EPC Changes in Scotland 2028: New Ratings & 5-Year Validity](https://scotlandepc.com/epc-changes-2028/): Scotland's new-style EPCs start on 30 April 2028: three headline ratings (Heat Retention, Heating System, Energy Cost), five-year validity and a one-year transition. What changes and what landlords and sellers should do now.
-- [Landlord Compliance Checklist Scotland: EPC, Legionella, EICR, Gas](https://scotlandepc.com/landlords/): A checklist of the safety and paperwork every private let in Scotland needs: landlord registration, EPC, legionella risk assessment, gas safety, EICR and PAT, smoke, heat and CO alarms, deposits and tenancy terms.
-- [EPC & Legionella Questions Answered](https://scotlandepc.com/faq/): Answers about domestic EPCs and legionella risk assessments in Scotland: prices, how long an EPC lasts, the 2028 changes, landlord rules, access, timings and what happens on the visit.
+- [EPC Changes in Scotland 2028: New Ratings & 5-Year Validity](https://www.scotlandepc.com/epc-changes-2028/): Scotland's new-style EPCs start on 30 April 2028: three headline ratings (Heat Retention, Heating System, Energy Cost), five-year validity and a one-year transition. What changes and what landlords and sellers should do now.
+- [Landlord Compliance Checklist Scotland: EPC, Legionella, EICR, Gas](https://www.scotlandepc.com/landlords/): A checklist of the safety and paperwork every private let in Scotland needs: landlord registration, EPC, legionella risk assessment, gas safety, EICR and PAT, smoke, heat and CO alarms, deposits and tenancy terms.
+- [EPC & Legionella Questions Answered](https://www.scotlandepc.com/faq/): Answers about domestic EPCs and legionella risk assessments in Scotland: prices, how long an EPC lasts, the 2028 changes, landlord rules, access, timings and what happens on the visit.
 
 ## Areas
-- [Areas We Cover: EPCs Across Glasgow, Edinburgh & the Central Belt](https://scotlandepc.com/areas/): Scotland EPC covers Glasgow, Edinburgh and the Central Belt, including Bearsden, Bishopbriggs, East Kilbride, Paisley, Livingston, Hamilton, Falkirk and Stirling. No travel charge in G and EH postcodes.
-- [EPC Glasgow](https://scotlandepc.com/epc-glasgow/): Domestic EPCs in Glasgow from £70 + VAT for flats and £85 for houses, with no travel charge anywhere in G postcodes. Tenements, West End and Southside flats, houses and new builds. Lodged within 24 hours.
-- [EPC Edinburgh](https://scotlandepc.com/epc-edinburgh/): Domestic EPCs in Edinburgh from £70 + VAT for flats and £85 for houses, with no travel charge in EH postcodes. New Town, Marchmont, Leith and suburban homes. Legionella risk assessments for landlords and short-term lets.
-- [EPC Bearsden](https://scotlandepc.com/epc-bearsden/): Domestic EPCs in Bearsden and Milngavie from £85 + VAT for houses and £70 for flats, with no travel charge in G61 and G62. Villas, interwar bungalows and family homes. Lodged within 24 hours.
-- [EPC Bishopbriggs](https://scotlandepc.com/epc-bishopbriggs/): Domestic EPCs in Bishopbriggs and Kirkintilloch: EPCs from £70, no travel charge in G64 and G66. Legionella risk assessments for landlords, or both for £120.
-- [EPC East Kilbride](https://scotlandepc.com/epc-east-kilbride/): Domestic EPCs in East Kilbride from £70, with no travel charge in G74 and G75. New town houses, flats and newer estates. EPC and legionella together for £120.
-- [EPC Paisley](https://scotlandepc.com/epc-paisley/): Domestic EPCs in Paisley and Renfrew from £90 for flats and £105 for houses, including the £20 travel supplement, plus VAT. Tenements, villas and newer homes. Legionella risk assessments for landlords.
-- [EPC Livingston](https://scotlandepc.com/epc-livingston/): Domestic EPCs in Livingston and West Lothian from £70, with no travel charge in EH postcodes including Bathgate and Linlithgow. New town houses, flats and newer estates.
-- [Legionella Risk Assessment Glasgow](https://scotlandepc.com/legionella-risk-assessment-glasgow/): Legionella risk assessments for Glasgow landlords, letting agents and short-term let hosts. from £65 per property in G postcodes, or £120 with an EPC. Written assessment with temperatures and actions.
-- [Legionella Risk Assessment Edinburgh](https://scotlandepc.com/legionella-risk-assessment-edinburgh/): Legionella risk assessments for Edinburgh landlords, HMOs and short-term let hosts. from £65 per property in EH postcodes, or £120 with an EPC. Written assessment with temperatures and actions.
+- [Areas We Cover: EPCs & Legionella Assessments Across Scotland](https://www.scotlandepc.com/areas/): Scotland EPC covers the whole of Scotland: Glasgow, Edinburgh, Aberdeen, Dundee, Inverness, Stirling, Perth, Paisley, Hamilton, Motherwell, Falkirk, Dunfermline, Ayrshire, the Borders, the Highlands and the islands.
+- [EPC Glasgow](https://www.scotlandepc.com/epc-glasgow/): Domestic EPCs in Glasgow from £70 + VAT for flats and £85 for houses. Tenements, West End and Southside flats, houses and new builds. Lodged within 24 hours.
+- [EPC Edinburgh](https://www.scotlandepc.com/epc-edinburgh/): Domestic EPCs in Edinburgh from £70 + VAT for flats and £85 for houses. New Town, Marchmont, Leith and suburban homes. Legionella risk assessments for landlords and short-term lets.
+- [EPC Bearsden](https://www.scotlandepc.com/epc-bearsden/): Domestic EPCs in Bearsden and Milngavie from £85 + VAT for houses and £70 for flats. Villas, interwar bungalows and family homes. Lodged within 24 hours.
+- [EPC Bishopbriggs](https://www.scotlandepc.com/epc-bishopbriggs/): Domestic EPCs in Bishopbriggs and Kirkintilloch: EPCs from £70 + VAT. Legionella risk assessments for landlords, or both for £120.
+- [EPC East Kilbride](https://www.scotlandepc.com/epc-east-kilbride/): Domestic EPCs in East Kilbride from £70 + VAT. New town houses, flats and newer estates. EPC and legionella together for £120.
+- [EPC Paisley](https://www.scotlandepc.com/epc-paisley/): Domestic EPCs in Paisley, Renfrew and Johnstone from £70 for flats and £85 for houses, plus VAT. Tenements, villas and newer homes. Legionella risk assessments for landlords.
+- [EPC Livingston](https://www.scotlandepc.com/epc-livingston/): Domestic EPCs in Livingston and West Lothian from £70 + VAT, including Bathgate and Linlithgow. New town houses, flats and newer estates.
+- [Legionella Risk Assessment Glasgow](https://www.scotlandepc.com/legionella-risk-assessment-glasgow/): Legionella risk assessments for Glasgow landlords, letting agents and short-term let hosts. From £65 per property, or £120 with an EPC, plus VAT. Written assessment with temperatures and actions.
+- [Legionella Risk Assessment Edinburgh](https://www.scotlandepc.com/legionella-risk-assessment-edinburgh/): Legionella risk assessments for Edinburgh landlords, HMOs and short-term let hosts. From £65 per property, or £120 with an EPC, plus VAT. Written assessment with temperatures and actions.
 
 ## Company
-- [About Scotland EPC](https://scotlandepc.com/about/): Scotland EPC provides domestic EPCs and legionella risk assessments across Glasgow, Edinburgh and the Central Belt. Run by the team at Scottish Energy Services, 272 Bath Street, Glasgow.
-- [Get a Price for an EPC or Legionella Risk Assessment](https://scotlandepc.com/contact/): Get an instant price and book a domestic EPC or legionella risk assessment in Glasgow, Edinburgh or the Central Belt. We reply the same working day where we can. Call 07483 881889.
+- [About Scotland EPC](https://www.scotlandepc.com/about/): Scotland EPC provides domestic EPCs and legionella risk assessments across Scotland. Run by the team at Scottish Energy Services, 272 Bath Street, Glasgow.
+- [Get a Price for an EPC or Legionella Risk Assessment](https://www.scotlandepc.com/contact/): Get an instant price and book a domestic EPC or legionella risk assessment anywhere in Scotland. We reply the same working day where we can. Call 07483 881889.
 
 
 
 
 ---
 
-# EPC & Legionella Risk Assessments Glasgow & Edinburgh | Scotland EPC
-URL: https://scotlandepc.com/
+# EPC & Legionella Risk Assessments Across Scotland | Scotland EPC
+URL: https://www.scotlandepc.com/
 
-## EPCs and legionella risk assessments for Scottish homes
+## EPCs and legionella risk assessments, anywhere in Scotland
 
-For landlords, letting agents, sellers and homeowners across Glasgow, Edinburgh and the Central Belt. One visit can cover both, and your EPC is normally lodged within 24 hours.
+For landlords, letting agents, sellers and homeowners. One visit can cover both, and your EPC is normally lodged within 24 hours.
 
 Flat EPC from: £70 | 
  
@@ -71,15 +69,65 @@ All prices plus VAT.
  
 - Part of Scottish Energy Services
 
-A rough guide based on typical Scottish homes, not an EPC. A real rating needs a survey by an accredited assessor.
+ Your EPC visitSurveying
 
-- Normally within 24 hours from the visit to your EPC being lodged
- 
-- One visit for both EPC and legionella at the same appointment
- 
-- No travel charge in G and EH across Glasgow and Edinburgh postcodes
- 
-- Same-day reply to quote requests on working days, where we can
+- Loft and roof insulation
+- Walls and construction
+- Windows and glazing
+- Boiler and heating controls
+- Hot water cylinder
+- Lighting and renewables
+
+ Energy Performance CertificateScotland
+ A B C D E F G 
+ Lodged on the Scottish EPC Registernormally within 24 hours of the visit
+
+ GlasgowEdinburghAberdeenDundeeInvernessStirlingPerthPaisleyEast KilbrideHamiltonMotherwellLivingstonFalkirkDunfermlineKirkcaldyAyrKilmarnockDumfriesFort WilliamObanElginSt AndrewsBearsdenCoatbridgeAirdrieRenfrewGreenockGalashielsGlasgowEdinburghAberdeenDundeeInvernessStirlingPerthPaisleyEast KilbrideHamiltonMotherwellLivingstonFalkirkDunfermlineKirkcaldyAyrKilmarnockDumfriesFort WilliamObanElginSt AndrewsBearsdenCoatbridgeAirdrieRenfrewGreenockGalashiels
+
+ 24 hrs to lodge your EPC on the register, normally, after the visit10 yrs a current Scottish EPC stays valid2 yrs maximum between legionella risk assessment reviews1 visit for both checks, so your tenant only lets us in once
+
+Every home in Scotland that is sold or let needs an EPC. It rates the home from A to G, shows what it costs to run, and lists the changes that would make it warmer and cheaper to heat.
+
+### What each band means
+
+Select a band to see the kind of home that usually sits there. Your own rating comes from the survey: the assessor records the construction, insulation, heating and hot water, then the rating is calculated and lodged on the Scottish EPC Register.
+ About domestic EPCs
+
+A
+
+#### Band A, 92–100 points
+
+Very efficient. Usually new homes with heat pumps, solar panels and high levels of insulation.
+B
+
+#### Band B, 81–91 points
+
+Typical of homes built since about 2010, with insulated walls, good glazing and efficient heating.
+C
+
+#### Band C, 69–80 points
+
+Good. Often an older home that has been well insulated and has a modern boiler and controls.
+D
+
+#### Band D, 55–68 points
+
+The most common band for homes in Scotland, including many tenement flats and post-war houses.
+E
+
+#### Band E, 39–54 points
+
+Usually some missing insulation, an older boiler or electric storage heating.
+F
+
+#### Band F, 21–38 points
+
+Often electric heating with little insulation, or solid walls with single glazing.
+G
+
+#### Band G, 1–20 points
+
+Very inefficient and expensive to heat. Usually several major improvements are possible.
 
 ### Two checks every Scottish let needs
 
@@ -120,7 +168,7 @@ An EPC and a legionella risk assessment at the same appointment, so your tenant 
 
 ### See what we check in your home
 
-The same visit seen two ways. Switch between the EPC survey and the legionella assessment, then tap a number to see what the assessor looks at and why it matters.
+The same visit seen two ways. Switch between the EPC survey and the legionella assessment, or let it walk you through each point.
 
 - 
 We measure the depth of loft insulation, or note a room in the roof. Topping a loft up to 270mm is one of the cheapest ways to move up a band.
@@ -157,11 +205,42 @@ Pipework that leads to an outlet that was taken out holds still water. Redundant
 - 
 Outside taps and hoses can hold warm stagnant water in summer. We note them and give simple flushing advice.
 
+### What you get
+
+Clear paperwork you can send straight to your agent, your tenant or a buyer.
+
+- Your EPC , lodged on the Scottish EPC Register and emailed as a PDF, normally within 24 hours of the visit.
+ 
+- The recommendations report , listing the improvements that would raise the rating and roughly what each costs.
+ 
+- Your legionella risk assessment , if booked, with the temperatures we recorded and a short list of actions.
+ 
+ Get a price
+
+Legionella risk assessment
+
+Cold14°C 
+Hot at tap53°C 
+Cylinder61°C 
+
+Recommendations report
+Increase loft insulation+3 
+Heating controls+2 
+Low-energy lighting+1 
+
+ Energy Performance CertificateExample
+ 
+Example flat, Glasgow
+ A B C D E F G 6273
+ 
+WallsSandstone, as built 
+Main heatingGas boiler, radiators 
+WindowsDouble glazing 
+ Lodged on the Scottish EPC RegisterValid 10 years
+
 ### Why water temperature matters
 
 Legionella bacteria live naturally in water. They become a risk when water sits at the wrong temperature and is then breathed in as fine spray, usually from a shower. Keeping hot water hot and cold water cold is the main control in a home.
- 
-Drag the slider or pick a typical reading to see what each temperature means. These are the same readings we take on a visit.
 
 - Hot water stored at 60°C or above
  
@@ -193,25 +272,15 @@ Find out your rating before you improve, apply for funding or plan for the chang
 
 ### Check your price
 
-Prices are the same across Glasgow (G) and Edinburgh (EH) postcodes. Elsewhere in the Central Belt we add £20 for travel. All prices exclude VAT.
+Choose the service and property type. All prices exclude VAT, and we confirm yours before booking.
 
-### Where we cover
+### All of Scotland
 
-We are based in Glasgow city centre and work across the Central Belt every week.
+We are based in Glasgow city centre and cover the whole country, from the Central Belt to the Highlands, the north east, the Borders and the islands.
 
- Glasgow (G) and Edinburgh (EH) postcodes, no supplement Other postcodes, £20 travel supplement
+Mainland Scotland, the islands and Orkney, plotted by latitude and longitude. Lines show travel from our Glasgow office.
 
-- EPC Glasgow
- 
-- EPC Edinburgh
- 
-- EPC Bearsden
- 
-- EPC Bishopbriggs
- 
-- EPC East Kilbride
- 
-- All areas
+See the areas we cover
 
 ### EPCs are changing in 2028
 
@@ -286,7 +355,10 @@ Your EPC is lodged on the register and emailed to you, normally within 24 hours.
 ### Questions we get asked
 
 How much does an EPC cost?
-Our domestic EPCs start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, and both together are £120. All prices are plus VAT, and a £20 travel supplement applies outside Glasgow (G) and Edinburgh (EH) postcodes.
+Our domestic EPCs start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, and both together are £120. All prices are plus VAT, and we confirm yours before booking.
+ 
+Do you cover my area?
+We cover the whole of Scotland, from Glasgow and Edinburgh to Aberdeen, Dundee, Inverness, the Borders and the islands. Tell us the postcode and we will confirm the price and a date.
  
 How long does an EPC last in Scotland?
 A current Scottish EPC is valid for 10 years. From 30 April 2028 new-style EPCs will be valid for five years. Existing EPCs can still be used during a one-year transition to 30 April 2029, with some limits.
@@ -299,9 +371,6 @@ Yes. The Scottish Government's Repairing Standard guidance says landlords must h
  
 Is there such a thing as a legionella certificate?
 No. The law asks for a risk assessment, not a certificate or a water test. You get a written assessment that records what was checked, the temperatures found and any actions needed. Water sampling is not normally needed in a home.
- 
-Do I need to be at the property?
-No, but someone needs to let us in. Many landlords arrange access through their tenant or letting agent. We need to see every room, the boiler, the loft hatch if there is one and the hot water cylinder.
 
 More questions and answers
 
@@ -312,14 +381,14 @@ Scotland EPC is run by the team at Scottish Energy Services in Glasgow, who also
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # Domestic EPC Scotland | From £70 | Lodged Within 24 Hours | Scotland EPC
-URL: https://scotlandepc.com/domestic-epc/
+URL: https://www.scotlandepc.com/domestic-epc/
 
 - Home
 - Domestic EPC
@@ -421,7 +490,7 @@ We produce the EPC and lodge it on the Scottish EPC Register, normally within 24
 
 ### Improving your rating
 
-The quickest wins in a Scottish home are usually loft insulation, filling empty cavity walls, upgrading an old boiler, adding heating controls and low-energy lighting. Older sandstone tenements are harder to improve because the walls are solid and many sit in conservation areas. Try our EPC rating estimator to see which changes would make the biggest difference to a home like yours.
+The quickest wins in a Scottish home are usually loft insulation, filling empty cavity walls, upgrading an old boiler, adding heating controls and low-energy lighting. Older sandstone tenements are harder to improve because the walls are solid and many sit in conservation areas. Your recommendations report lists the changes that apply to your home.
 
 ### EPC prices
 
@@ -436,7 +505,7 @@ Bungalow | £80 | £120 |
 
 House | £85 | £120 | 
 
-All prices are plus VAT and cover Glasgow (G) and Edinburgh (EH) postcodes. Elsewhere in the Central Belt we add £20 for travel. See all prices.
+All prices are plus VAT. We cover the whole of Scotland and confirm your price before booking. See all prices.
 
 ### Domestic EPC questions
 
@@ -470,7 +539,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -487,14 +556,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # Legionella Risk Assessment for Landlords in Scotland | From £65 | Scotland EPC
-URL: https://scotlandepc.com/legionella-risk-assessment/
+URL: https://www.scotlandepc.com/legionella-risk-assessment/
 
 - Home
 - Legionella risk assessment
@@ -609,7 +678,7 @@ Most homes with a combi boiler and no stored water come out as low risk with few
 
 ### Price
 
-A legionella risk assessment starts from £65 + VAT per property in Glasgow (G) and Edinburgh (EH) postcodes, or £120 + VAT with an EPC at the same visit. Larger shared systems, such as in HMOs or blocks with communal tanks, are quoted individually. Get a price.
+A legionella risk assessment starts from £65 + VAT per property, or £120 + VAT with an EPC at the same visit. Larger shared systems, such as in HMOs or blocks with communal tanks, are quoted individually. Get a price.
 
 ### Legionella questions
 
@@ -643,7 +712,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -660,40 +729,40 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # EPC Prices Glasgow & Edinburgh | Flats £70, Houses £85 | Scotland EPC
-URL: https://scotlandepc.com/prices/
+URL: https://www.scotlandepc.com/prices/
 
 - Home
 - Prices
 
 ## Prices
 
-Clear starting prices by property type, the same across Glasgow and Edinburgh postcodes. All prices exclude VAT. Check yours below and book at that price.
+Clear starting prices by property type, wherever you are in Scotland. All prices exclude VAT, and we confirm yours before booking.
 
 ### Price list
 
  Starting prices, excluding VAT
-Service | G and EH postcodes | Other postcodes | 
+Service | Price | 
  
-Flat EPC | from £70 | from £90 | 
+Flat EPC | from £70 | 
  
-Maisonette EPC | from £75 | from £95 | 
+Maisonette EPC | from £75 | 
  
-Bungalow EPC | from £80 | from £100 | 
+Bungalow EPC | from £80 | 
  
-House EPC | from £85 | from £105 | 
+House EPC | from £85 | 
  
-Legionella risk assessment | from £65 | from £85 | 
+Legionella risk assessment | from £65 | 
  
-EPC and legionella, one visit | £120 | £140 | 
+EPC and legionella, one visit | £120 | 
 
-Other postcodes include the £20 travel supplement for areas outside Glasgow (G) and Edinburgh (EH), such as Paisley, Hamilton, Falkirk and Stirling. VAT is added to all prices. We confirm the final price before booking, so there are no surprises on the day.
+VAT is added to all prices. We cover the whole of Scotland. Tell us the postcode and we confirm the final price before booking, so there are no surprises on the day.
 
 ### What every price includes
 
@@ -725,82 +794,18 @@ Is a large house more expensive?
 The house price covers typical family homes. If a home is unusually large or complicated, we confirm the price with you before booking.
 
 Why is the bundle cheaper?
-Both checks happen at the same visit, so we only travel once and your tenant only gives access once. We pass that saving on.
+Both checks happen at the same visit, so your tenant only gives access once and we pass the saving on.
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
- Get a priceCall 07483 881889
-
-
----
-
-# EPC Rating Estimator for Scottish Homes | Free | Scotland EPC
-URL: https://scotlandepc.com/epc-rating-estimator/
-
-- Home
-- EPC rating estimator
-
-## EPC rating estimator
-
-Answer a few questions about your home to get a rough EPC band, then tick improvements to see how far each could move it. Free, instant, and nothing is stored.
-
-#### Try an improvement
-
-A rough guide based on typical Scottish homes, not an EPC. A real rating needs a survey by an accredited assessor.
-
-### How the estimate works
-
-The estimator starts from a typical rating for a Scottish home of that age, then adjusts it for the type of home, the heating, insulation, windows and solar panels. The figures are based on how these features usually affect a domestic EPC. They are deliberately simple.
-
-This is a rough guide, not an EPC. A real rating is calculated by an accredited assessor from measurements of the home, its exact heating system and evidence of insulation, and is the only rating you can use to sell or let. Results can differ by a band or more.
-
-### What moves a rating most
-
-#### Heating
-
-The main heating system has the biggest single effect. Replacing an old non-condensing gas boiler or direct electric heating usually moves a home up at least one band.
-
-#### Walls
-
-Filling empty cavity walls is cheap and effective. Solid sandstone and brick walls can be insulated internally or externally, but the work is more involved, especially in tenements and conservation areas.
-
-#### Loft
-
-Topping loft insulation up to 270mm is one of the cheapest improvements for houses and top-floor flats with their own loft.
-
-#### Renewables
-
-Solar PV panels and heat pumps lift both the current and potential ratings. They are recorded on the EPC with their size.
-
-### EPC bands explained
-
-EPC energy efficiency bands and SAP points
-Band | SAP points | What it usually means | 
-A | 92–100 | Very efficient. Usually new homes with heat pumps or solar. | 
-B | 81–91 | Typical of homes built since about 2010. | 
-C | 69–80 | Good. A well-insulated older home with an efficient boiler. | 
-D | 55–68 | The most common band for Scottish homes. | 
-E | 39–54 | Poor insulation or older heating. | 
-F | 21–38 | Often electric heating with little insulation. | 
-G | 1–20 | Very inefficient and expensive to heat. | 
-
-The Scottish Government has proposed that private rented homes should reach Heat Retention Rating band C under the new-style EPC, which measures insulation rather than running costs. It is not the same scale as today's rating. Our 2028 guide explains the difference.
-
-### Get your real rating
-
-A domestic EPC costs from £70 for a flat and from £85 for a house, plus VAT, and the recommendations report tells you exactly which improvements apply to your home. Get a price or call 07483 881889.
-
-### Get a price for your property
-
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # EPC Changes in Scotland 2028: New Ratings & 5-Year Validity | Scotland EPC
-URL: https://scotlandepc.com/epc-changes-2028/
+URL: https://www.scotlandepc.com/epc-changes-2028/
 
 - Home
 - EPC changes 2028
@@ -913,7 +918,7 @@ Your Home Report will include an EPC as now. Buyers will increasingly look at in
 
 #### If you own an older home
 
-Fabric improvements such as loft insulation, cavity wall insulation, draught-proofing and better glazing will matter most under the Heat Retention Rating. Our estimator gives a feel for what changes make a difference.
+Fabric improvements such as loft insulation, cavity wall insulation, draught-proofing and better glazing will matter most under the Heat Retention Rating. Your current EPC recommendations report is a good starting list.
 
 ### Sources
 
@@ -941,7 +946,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -959,14 +964,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # Landlord Compliance Checklist Scotland: EPC, Legionella, EICR, Gas | Scotland EPC
-URL: https://scotlandepc.com/landlords/
+URL: https://www.scotlandepc.com/landlords/
 
 - Home
 - Landlord checklist
@@ -980,7 +985,7 @@ Updated 18 November 2026
 ---
 
 # EPC & Legionella Questions Answered | Scotland EPC
-URL: https://scotlandepc.com/faq/
+URL: https://www.scotlandepc.com/faq/
 
 - Home
 - Questions and answers
@@ -992,13 +997,16 @@ Straight answers to the questions landlords, agents, sellers and homeowners ask 
 ### Prices and booking
 
 How much does an EPC cost?
-From £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house in Glasgow (G) and Edinburgh (EH) postcodes, plus VAT. Elsewhere in the Central Belt we add £20 for travel.
+From £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house, plus VAT. We confirm your price before booking.
 
 How much is a legionella risk assessment?
 From £65 per property, or £120 together with an EPC at the same visit, plus VAT. HMOs and properties with shared tanks are quoted individually.
 
 Do your prices include VAT?
 No. All our prices are shown excluding VAT, which is added at the current rate.
+
+Which areas do you cover?
+The whole of Scotland, from Glasgow and Edinburgh to Aberdeen, Dundee, Inverness, the Borders and the islands. See areas we cover.
 
 How soon can you come out?
 Tell us your deadline when you get in touch. We reply to quote requests the same working day where we can and will offer the earliest time that suits you or your tenant.
@@ -1073,7 +1081,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1086,66 +1094,94 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
-# Areas We Cover: EPCs Across Glasgow, Edinburgh & the Central Belt | Scotland EPC
-URL: https://scotlandepc.com/areas/
+# Areas We Cover: EPCs & Legionella Assessments Across Scotland | Scotland EPC
+URL: https://www.scotlandepc.com/areas/
 
 - Home
 - Areas
 
 ## Areas we cover
 
-We are based in Glasgow city centre and work across the Central Belt every week. Glasgow (G) and Edinburgh (EH) postcodes have no travel charge.
+We are based in Glasgow city centre and cover the whole of Scotland. Tell us the postcode and we will confirm the price and a date.
 
- Glasgow (G) and Edinburgh (EH) postcodes, no supplement Other postcodes, £20 travel supplement
+Mainland Scotland, the islands and Orkney, plotted by latitude and longitude. Lines show travel from our Glasgow office.
 
 ### Local pages
 
-- EPC Glasgow G
+- EPC Glasgow
  
-- EPC Edinburgh EH
+- EPC Edinburgh
  
-- EPC Bearsden G61
+- EPC Bearsden
  
-- EPC Bishopbriggs G64
+- EPC Bishopbriggs
  
-- EPC East Kilbride G74, G75
+- EPC East Kilbride
  
-- EPC Livingston EH53, EH54
+- EPC Livingston
  
-- EPC Paisley PA1 to PA3
+- EPC Paisley
  
-- Legionella Glasgow G
+- Legionella Glasgow
  
-- Legionella Edinburgh EH
+- Legionella Edinburgh
 
-### No travel charge
+### Towns and cities we cover
 
-Every Glasgow (G) and Edinburgh (EH) postcode, which includes Bearsden, Milngavie, Bishopbriggs, Kirkintilloch, Clydebank, Rutherglen, Cambuslang, East Kilbride, Cumbernauld, Livingston, Bathgate, Linlithgow, South Queensferry, Musselburgh, Dalkeith and Penicuik.
+This is not a complete list. If your town is not here, we almost certainly still cover it.
 
-### £20 travel supplement
+#### Glasgow and the west
 
-Other postcodes in the Central Belt, including Paisley and Renfrew (PA), Hamilton, Motherwell, Coatbridge and Airdrie (ML), Falkirk and Stirling (FK), and Dunfermline (KY). Further afield? Call 07483 881889 and we will tell you if we can help.
+Glasgow, Bearsden, Milngavie, Bishopbriggs, Kirkintilloch, Clydebank, Paisley, Renfrew, Johnstone, Greenock, Dumbarton, Helensburgh, Rutherglen, Cambuslang, East Kilbride, Newton Mearns
 
-### Check your price by postcode
+#### Lanarkshire
 
-Enter the property postcode to see the price, including any travel supplement.
+Hamilton, Motherwell, Wishaw, Coatbridge, Airdrie, Bellshill, Cumbernauld, Lanark, Carluke, Strathaven
+
+#### Edinburgh and the Lothians
+
+Edinburgh, Leith, Musselburgh, Dalkeith, Penicuik, South Queensferry, Livingston, Bathgate, Linlithgow, Haddington, North Berwick, Dunbar
+
+#### Forth Valley and Fife
+
+Stirling, Falkirk, Grangemouth, Alloa, Dunfermline, Kirkcaldy, Glenrothes, St Andrews, Cupar
+
+#### Tayside
+
+Dundee, Perth, Arbroath, Montrose, Forfar, Crieff, Pitlochry, Blairgowrie
+
+#### Aberdeen and the north east
+
+Aberdeen, Inverurie, Stonehaven, Peterhead, Fraserburgh, Huntly, Elgin, Banff
+
+#### Highlands and islands
+
+Inverness, Nairn, Dingwall, Aviemore, Fort William, Oban, Portree, Ullapool, Wick, Thurso, Stornoway, Kirkwall
+
+#### Ayrshire, Dumfries and the Borders
+
+Ayr, Kilmarnock, Irvine, Troon, Largs, Dumfries, Stranraer, Kirkcudbright, Galashiels, Hawick, Kelso, Peebles
+
+### Check your price
+
+Choose the service and property type, add the postcode, and book. All prices exclude VAT, and we confirm yours before booking.
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # EPC Glasgow | Domestic EPCs from £70 | Scotland EPC
-URL: https://scotlandepc.com/epc-glasgow/
+URL: https://www.scotlandepc.com/epc-glasgow/
 
 - Home
 - Areas
@@ -1153,7 +1189,7 @@ URL: https://scotlandepc.com/epc-glasgow/
 
 ## EPC Glasgow
 
-Domestic EPCs across every Glasgow postcode, from city-centre flats to Southside tenements and suburban houses. No travel charge in G postcodes, and your EPC normally lodged within 24 hours.
+Domestic EPCs across every Glasgow postcode, from city-centre flats to Southside tenements and suburban houses, with your EPC normally lodged within 24 hours.
 
 ### Homes in Glasgow
 
@@ -1171,7 +1207,7 @@ We are based at 272 Bath Street in the city centre, so most Glasgow appointments
 
 ### Glasgow EPC prices
 
-Standard prices apply in all Glasgow G postcodes: from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT.
+EPCs in Glasgow start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT, and we confirm yours before booking.
 Get a price
 
 ### What happens on the visit
@@ -1180,8 +1216,8 @@ An accredited assessor surveys every room, the boiler, the hot water and the lof
 
 ### Questions
 
-Do you charge extra for a Glasgow EPC?
-No. Every G postcode is in our main area, so flats start from £70 and houses from £85, plus VAT, with no travel supplement.
+How much is an EPC in Glasgow?
+Flats start from £70 and houses from £85, plus VAT. We confirm your price before booking.
 Can you get into a tenement close?
 Yes, as long as someone can let us in at the door entry or the tenant buzzes us up. We only need to see inside the flat being assessed, plus the loft if it belongs to that flat.
 
@@ -1209,7 +1245,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1223,14 +1259,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # EPC Edinburgh | Domestic EPCs from £70 | Scotland EPC
-URL: https://scotlandepc.com/epc-edinburgh/
+URL: https://www.scotlandepc.com/epc-edinburgh/
 
 - Home
 - Areas
@@ -1238,7 +1274,7 @@ URL: https://scotlandepc.com/epc-edinburgh/
 
 ## EPC Edinburgh
 
-Domestic EPCs across Edinburgh, from New Town and Marchmont flats to Leith, Portobello and the suburbs. No travel charge in EH postcodes.
+Domestic EPCs across Edinburgh, from New Town and Marchmont flats to Leith, Portobello and the suburbs.
 
 ### Homes in Edinburgh
 
@@ -1256,7 +1292,7 @@ Edinburgh has a large private rented sector, student lets and HMOs. Short-term l
 
 ### Edinburgh EPC prices
 
-Standard prices apply in all Edinburgh EH postcodes: from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT.
+EPCs in Edinburgh start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT, and we confirm yours before booking.
 Get a price
 
 ### What happens on the visit
@@ -1266,7 +1302,7 @@ An accredited assessor surveys every room, the boiler, the hot water and the lof
 ### Questions
 
 Do you cover Edinburgh as well as Glasgow?
-Yes. Edinburgh is part of our main area, with no travel charge anywhere in EH postcodes.
+Yes. We cover every Edinburgh postcode, and the whole of Scotland.
 Does a listed flat in the New Town need an EPC?
 Yes. Listed and historic buildings in Scotland have no general exemption, so you need an EPC to sell or let.
 
@@ -1292,7 +1328,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1306,14 +1342,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # EPC Bearsden | Houses from £85, Flats from £70 | Scotland EPC
-URL: https://scotlandepc.com/epc-bearsden/
+URL: https://www.scotlandepc.com/epc-bearsden/
 
 - Home
 - Areas
@@ -1321,7 +1357,7 @@ URL: https://scotlandepc.com/epc-bearsden/
 
 ## EPC Bearsden
 
-Domestic EPCs for Bearsden homes, from sandstone villas to interwar bungalows and family houses. No travel charge in G61 or neighbouring Milngavie (G62).
+Domestic EPCs for Bearsden and Milngavie homes, from sandstone villas to interwar bungalows and family houses.
 
 ### Homes in Bearsden
 
@@ -1337,7 +1373,7 @@ Larger homes with several extensions take a little longer to survey. Having the 
 
 ### Bearsden EPC prices
 
-Standard prices apply in G61 postcodes: from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT.
+EPCs in Bearsden and Milngavie start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT, and we confirm yours before booking.
 Get a price
 
 ### What happens on the visit
@@ -1346,8 +1382,8 @@ An accredited assessor surveys every room, the boiler, the hot water and the lof
 
 ### Questions
 
-Is Bearsden in your main area?
-Yes. G61 and G62 are Glasgow postcodes, so there is no travel supplement.
+Do you cover Milngavie too?
+Yes, along with the rest of East Dunbartonshire and the whole of Scotland.
 My house has a loft conversion. Does that matter?
 Yes. A room in the roof is assessed differently from a loft, so tell us when you book and have any building warrant or insulation details to hand.
 
@@ -1373,7 +1409,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1387,14 +1423,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # EPC Bishopbriggs | Domestic EPCs from £70 | Scotland EPC
-URL: https://scotlandepc.com/epc-bishopbriggs/
+URL: https://www.scotlandepc.com/epc-bishopbriggs/
 
 - Home
 - Areas
@@ -1402,7 +1438,7 @@ URL: https://scotlandepc.com/epc-bishopbriggs/
 
 ## EPC Bishopbriggs
 
-Domestic EPCs for Bishopbriggs, Torrance and Kirkintilloch, with no travel charge in G64 and G66 postcodes.
+Domestic EPCs for Bishopbriggs, Torrance and Kirkintilloch, from flats to family houses.
 
 ### Homes in Bishopbriggs
 
@@ -1418,7 +1454,7 @@ If you have had cavity wall insulation installed, a guarantee from the installer
 
 ### Bishopbriggs EPC prices
 
-Standard prices apply in G64 postcodes: from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT.
+EPCs in Bishopbriggs and Kirkintilloch start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT, and we confirm yours before booking.
 Get a price
 
 ### What happens on the visit
@@ -1427,8 +1463,8 @@ An accredited assessor surveys every room, the boiler, the hot water and the lof
 
 ### Questions
 
-Is there a travel charge for Bishopbriggs?
-No. G64 and G66 are Glasgow postcodes, so standard prices apply.
+How much is an EPC in Bishopbriggs?
+Flats start from £70 and houses from £85, plus VAT.
 How do I show my cavity walls are filled?
 A guarantee or invoice from the installer is best. The assessor may also be able to see drill marks in the outside walls.
 
@@ -1454,7 +1490,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1468,14 +1504,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # EPC East Kilbride | Domestic EPCs from £70 | Scotland EPC
-URL: https://scotlandepc.com/epc-east-kilbride/
+URL: https://www.scotlandepc.com/epc-east-kilbride/
 
 - Home
 - Areas
@@ -1483,7 +1519,7 @@ URL: https://scotlandepc.com/epc-east-kilbride/
 
 ## EPC East Kilbride
 
-Domestic EPCs across East Kilbride, Scotland's first new town. G74 and G75 are Glasgow postcodes, so there is no travel charge.
+Domestic EPCs across East Kilbride, Scotland's first new town, from 1950s terraces to newer estates.
 
 ### Homes in East Kilbride
 
@@ -1499,7 +1535,7 @@ If you let several properties in the town, we can book them back to back on the 
 
 ### East Kilbride EPC prices
 
-Standard prices apply in G74 and G75 postcodes: from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT.
+EPCs in East Kilbride start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT, and we confirm yours before booking.
 Get a price
 
 ### What happens on the visit
@@ -1508,8 +1544,8 @@ An accredited assessor surveys every room, the boiler, the hot water and the lof
 
 ### Questions
 
-Is East Kilbride in your main area?
-Yes. G74 and G75 are Glasgow postcodes, so standard prices apply.
+How much is an EPC in East Kilbride?
+Flats start from £70 and houses from £85, plus VAT.
 My house has external wall insulation. Will that be picked up?
 The assessor will see it on the walls. Any guarantee or details of the scheme that installed it help record the right thickness.
 
@@ -1535,7 +1571,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1549,14 +1585,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
-# EPC Paisley | Domestic EPCs from £90 incl. Travel | Scotland EPC
-URL: https://scotlandepc.com/epc-paisley/
+# EPC Paisley | Domestic EPCs from £70 | Scotland EPC
+URL: https://www.scotlandepc.com/epc-paisley/
 
 - Home
 - Areas
@@ -1564,7 +1600,7 @@ URL: https://scotlandepc.com/epc-paisley/
 
 ## EPC Paisley
 
-Domestic EPCs in Paisley, Renfrew and Johnstone. PA postcodes are outside our no-charge area, so prices include a £20 travel supplement.
+Domestic EPCs in Paisley, Renfrew and Johnstone, from town-centre tenements to newer estates.
 
 ### Homes in Paisley
 
@@ -1578,11 +1614,11 @@ Paisley has a broad mix of older and newer homes:
 
 - Newer estates in Renfrew and around the edges of Paisley, typically rating B or C.
 
-With the travel supplement, a flat EPC in Paisley starts from £90, a house from £105, a legionella risk assessment from £85, and both together are £140, all plus VAT. We always confirm the price before booking.
+Paisley is a short drive from our Glasgow office, so we can often fit appointments in at short notice.
 
 ### Paisley EPC prices
 
-We cover PA1, PA2 and PA3 postcodes with a £20 travel supplement. That makes a flat from £90, a maisonette from £95, a bungalow from £100 and a house from £105, a legionella risk assessment from £85 and both together £140, all plus VAT.
+EPCs in Paisley, Renfrew and Johnstone start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT, and we confirm yours before booking.
 Get a price
 
 ### What happens on the visit
@@ -1591,8 +1627,8 @@ An accredited assessor surveys every room, the boiler, the hot water and the lof
 
 ### Questions
 
-Why is there a travel supplement in Paisley?
-Our standard prices cover Glasgow (G) and Edinburgh (EH) postcodes. Paisley uses PA postcodes, so we add £20 for travel.
+How much is an EPC in Paisley?
+Flats start from £70 and houses from £85, plus VAT.
 Do you cover Johnstone and Renfrew too?
 Yes, on the same basis as Paisley.
 
@@ -1618,7 +1654,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1632,14 +1668,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # EPC Livingston | Domestic EPCs from £70 | Scotland EPC
-URL: https://scotlandepc.com/epc-livingston/
+URL: https://www.scotlandepc.com/epc-livingston/
 
 - Home
 - Areas
@@ -1647,7 +1683,7 @@ URL: https://scotlandepc.com/epc-livingston/
 
 ## EPC Livingston
 
-Domestic EPCs across Livingston, Bathgate, Linlithgow and the rest of West Lothian's EH postcodes, with no travel charge.
+Domestic EPCs across Livingston, Bathgate, Linlithgow and the rest of West Lothian.
 
 ### Homes in Livingston
 
@@ -1661,11 +1697,11 @@ Livingston was designated a new town in 1962, so most of its housing dates from 
 
 - Older stone homes in Linlithgow and the villages, with solid walls and more limited options.
 
-Because Livingston, Bathgate and Linlithgow are EH postcodes, our standard prices apply: from £70 for a flat, from £85 for a house, and £120 for an EPC and legionella risk assessment together, all plus VAT.
+EPCs start from £70 for a flat and £85 for a house, with £120 for an EPC and legionella risk assessment together, all plus VAT.
 
 ### Livingston EPC prices
 
-Standard prices apply in EH53 and EH54 postcodes: from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT.
+EPCs in Livingston and West Lothian start from £70 for a flat, £75 for a maisonette, £80 for a bungalow and £85 for a house. A legionella risk assessment starts from £65, or £120 with an EPC. All prices plus VAT, and we confirm yours before booking.
 Get a price
 
 ### What happens on the visit
@@ -1674,8 +1710,8 @@ An accredited assessor surveys every room, the boiler, the hot water and the lof
 
 ### Questions
 
-Is there a travel charge for Livingston?
-No. Livingston, Bathgate and Linlithgow all have EH postcodes, so standard prices apply.
+Do you cover the rest of West Lothian?
+Yes, including Bathgate, Linlithgow, Broxburn and the villages, and the whole of Scotland.
 Can you tell if my house is timber frame?
 Usually, from the wall thickness, the construction date and what we can see. Building warrant drawings or a Home Report help if you have them.
 
@@ -1700,7 +1736,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1714,14 +1750,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # Legionella Risk Assessment Glasgow | From £65 | Scotland EPC
-URL: https://scotlandepc.com/legionella-risk-assessment-glasgow/
+URL: https://www.scotlandepc.com/legionella-risk-assessment-glasgow/
 
 - Home
 - Areas
@@ -1758,7 +1794,7 @@ The Repairing Standard guidance says a private landlord must have the water syst
 ### Questions
 
 How much is a legionella risk assessment in Glasgow?
-From £65 per property in any G postcode, or £120 with an EPC at the same visit, plus VAT.
+From £65 per property in Glasgow, or £120 with an EPC at the same visit, plus VAT.
 How long does it take?
 Usually well under an hour for a flat, a little longer for a house with a loft tank.
 
@@ -1778,7 +1814,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1792,14 +1828,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # Legionella Risk Assessment Edinburgh | From £65 | Scotland EPC
-URL: https://scotlandepc.com/legionella-risk-assessment-edinburgh/
+URL: https://www.scotlandepc.com/legionella-risk-assessment-edinburgh/
 
 - Home
 - Areas
@@ -1807,7 +1843,7 @@ URL: https://scotlandepc.com/legionella-risk-assessment-edinburgh/
 
 ## Legionella risk assessment Edinburgh
 
-Legionella risk assessments for rented homes and short-term lets across Edinburgh. From £65 per property in EH postcodes, or £120 with an EPC, plus VAT.
+Legionella risk assessments for rented homes and short-term lets across Edinburgh. From £65 per property, or £120 with an EPC, plus VAT.
 
 ### Short-term lets and HMOs
 
@@ -1834,7 +1870,7 @@ The Repairing Standard guidance says a private landlord must have the water syst
 Do short-term lets in Edinburgh need a legionella risk assessment?
 Yes. Short-term lets must meet the Repairing Standard, which includes assessing legionella risk before letting and reviewing it at least every two years.
 Can you do the EPC at the same time?
-Yes. Both together cost £120 + VAT in EH postcodes.
+Yes. Both together cost £120 + VAT.
 
 ### Prices
 
@@ -1852,7 +1888,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1866,14 +1902,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # About Scotland EPC | Part of Scottish Energy Services, Glasgow
-URL: https://scotlandepc.com/about/
+URL: https://www.scotlandepc.com/about/
 
 - Home
 - About
@@ -1890,11 +1926,13 @@ Scotland EPC is the domestic service of Scottish Energy Services, an energy and 
 
 - Accredited assessors. Every EPC is produced by an accredited domestic energy assessor and lodged on the Scottish EPC Register.
  
-- Clear prices. Starting prices by property type, plus VAT, confirmed before you book, with a single travel supplement outside G and EH postcodes.
+- Clear prices. Starting prices by property type, plus VAT, confirmed before you book.
  
 - One visit for both. EPC and legionella risk assessment together, so your tenant or agent only gives access once.
  
 - Quick paperwork. EPCs are normally lodged within 24 hours of the visit.
+ 
+- All of Scotland. Based in Glasgow, covering the whole country.
  
 - Straight answers. If you have a question about your rating or the actions in a legionella assessment, call us.
 
@@ -1928,7 +1966,7 @@ Legionella risk assessment: from £65 |
  
 EPC and legionella together: £120 | 
 
-All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel supplement elsewhere.
+All prices plus VAT. We cover the whole of Scotland and confirm your price before booking.
  Get a price
  or call 07483 881889
 
@@ -1941,14 +1979,14 @@ All prices plus VAT. Glasgow (G) and Edinburgh (EH) postcodes; £20 travel suppl
 
 ### Get a price for your property
 
-EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Tell us the postcode and we will confirm the price and a time that suits.
+EPCs from £70 for a flat and £85 for a house, legionella from £65, or both together for £120, all plus VAT. Anywhere in Scotland: tell us the postcode and we will confirm the price and a time that suits.
  Get a priceCall 07483 881889
 
 
 ---
 
 # Get a Price for an EPC or Legionella Risk Assessment | Scotland EPC
-URL: https://scotlandepc.com/contact/
+URL: https://www.scotlandepc.com/contact/
 
 - Home
 - Get a price

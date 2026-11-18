@@ -24,15 +24,17 @@ const SERVICES = { EPC: 'EPC', Legionella: 'Legionella risk assessment', Both: '
 const TYPES = ['Flat', 'Maisonette', 'Bungalow', 'House'];
 const WHO = ['Landlord', 'Letting agent', 'Homeowner', 'Selling a property', 'Property manager', 'Other'];
 const PRICE = { Flat: 70, Maisonette: 75, Bungalow: 80, House: 85 };
-const LEG = 65, BOTH = 120, TRAVEL = 20;
+const LEG = 65, BOTH = 120;
 const LIMITS = { name: 100, email: 200, phone: 40, service: 20, property_type: 20, postcode: 10, customer_type: 40, address: 200, notes: 1000 };
 const EMAIL_RE = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[^\s@<>()",;:]{2,}$/;
 const PC_RE = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/;
 
-function priceFor(service, type, postcode) {
-  const base = service === 'Both' ? BOTH : service === 'Legionella' ? LEG : PRICE[type];
-  const travel = /^(G|EH)[0-9]/.test(postcode.replace(/\s/g, '')) ? 0 : TRAVEL;
-  return { total: base + travel, travel };
+function priceFor(service, type) {
+  return service === 'Both' ? BOTH : service === 'Legionella' ? LEG : PRICE[type];
+}
+// Internal only: flags postcodes outside Glasgow and Edinburgh so travel can be priced.
+function areaNote(postcode) {
+  return /^(G|EH)[0-9]/.test(postcode.replace(/\s/g, '')) ? 'Glasgow / Edinburgh postcode' : 'Outside G and EH postcodes: check travel before confirming the price';
 }
 
 function esc(s) {
@@ -120,8 +122,8 @@ module.exports = async function handler(req, res) {
   if (!PC_RE.test(d.postcode)) return respond(req, res, 400, { ok: false, error: 'Please enter the property postcode, for example G12 8QQ.' });
   if (d.customer_type && !WHO.includes(d.customer_type)) d.customer_type = 'Other';
 
-  const p = priceFor(d.service, d.property_type, d.postcode);
-  const priceText = `${d.service === 'Both' ? '' : 'from '}£${p.total} + VAT${p.travel ? ' (includes £' + p.travel + ' travel)' : ''}`;
+  const p = priceFor(d.service, d.property_type);
+  const priceText = `${d.service === 'Both' ? '' : 'from '}£${p} + VAT`;
   const serviceText = d.service === 'Legionella' ? SERVICES.Legionella : `${SERVICES[d.service]}, ${d.property_type.toLowerCase()}`;
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -131,7 +133,7 @@ module.exports = async function handler(req, res) {
   }
 
   const fields = [
-    ['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Service', serviceText], ['Price shown', priceText],
+    ['Name', d.name], ['Email', d.email], ['Phone', d.phone], ['Service', serviceText], ['Price shown', priceText], ['Area', areaNote(d.postcode)],
     ['Postcode', d.postcode], ['Address', d.address], ['Customer', d.customer_type], ['Notes', d.notes]
   ];
   const submitted = new Date().toLocaleString('en-GB', { timeZone: 'Europe/London', dateStyle: 'full', timeStyle: 'short' });
@@ -166,9 +168,9 @@ module.exports = async function handler(req, res) {
 <p style="margin:0 0 14px;color:#44535f;font-size:15px;line-height:1.6">We have received your request for a <strong>${esc(serviceText.toLowerCase())}</strong> at <strong>${esc(d.postcode)}</strong>. The price shown was <strong>${esc(priceText)}</strong>. We will be in touch shortly to confirm the price and arrange a time.</p>
 <p style="margin:0 0 20px;color:#44535f;font-size:15px;line-height:1.6">If anything is urgent, call us on <a href="tel:+447483881889" style="color:#13252b;font-weight:bold">${PHONE}</a>, or reply to this email.</p>
 <p style="margin:0 0 8px;color:#13252b;font-size:14px;font-weight:bold">What you sent us</p>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px;margin-bottom:20px">${rows(fields.filter(([k]) => k !== 'Email'))}</table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:14px;margin-bottom:20px">${rows(fields.filter(([k]) => k !== 'Email' && k !== 'Area'))}</table>
 <p style="margin:0;color:#44535f;font-size:15px;line-height:1.6">Scotland EPC<br>Part of Scottish Energy Services</p>`),
-      text: `Thanks, ${first}. We have received your request for a ${serviceText.toLowerCase()} at ${d.postcode}. The price shown was ${priceText}. We will be in touch shortly to confirm the price and arrange a time.\n\nIf anything is urgent, call ${PHONE} or reply to this email.\n\nWhat you sent us:\n${textRows(fields.filter(([k]) => k !== 'Email'))}\n\nScotland EPC\nPart of Scottish Energy Services\n${SITE}`
+      text: `Thanks, ${first}. We have received your request for a ${serviceText.toLowerCase()} at ${d.postcode}. The price shown was ${priceText}. We will be in touch shortly to confirm the price and arrange a time.\n\nIf anything is urgent, call ${PHONE} or reply to this email.\n\nWhat you sent us:\n${textRows(fields.filter(([k]) => k !== 'Email' && k !== 'Area'))}\n\nScotland EPC\nPart of Scottish Energy Services\n${SITE}`
     });
   } catch (err) {
     confirmationSent = false;

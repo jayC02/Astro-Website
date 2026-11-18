@@ -1,6 +1,6 @@
 (function () {
   "use strict";
-  document.documentElement.classList.remove("no-js");
+  document.documentElement.classList.remove("no-js"); document.documentElement.classList.add("js");
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -20,100 +20,171 @@
     if (e.key === "Escape") $$(".nav details[open]").forEach(function (d) { d.removeAttribute("open"); });
   });
 
-  /* ---------- EPC estimator ---------- */
-  var BANDS = [["A", 92, "#008054"], ["B", 81, "#19b459"], ["C", 69, "#8dce46"], ["D", 55, "#ffd500"], ["E", 39, "#fcaa65"], ["F", 21, "#ef8023"], ["G", 1, "#e9153b"]];
-  function band(score) { for (var i = 0; i < BANDS.length; i++) if (score >= BANDS[i][1]) return i; return 6; }
-  var BASE = { pre1919: 50, "1919": 53, "1965": 58, "1991": 67, "2009": 79 };
-  var TYPE = { flat: 5, maisonette: 2, terrace: 2, semi: 0, detached: -4, bungalow: -3 };
-  var HEAT = { gas: 4, oldgas: -4, storage: -10, direct: -16, oil: -2, hp: 6 };
-  var WALL = { unknown: 0, solid: -3, cavity: -3, filled: 2, insulated: 4 };
-  var LOFT = { na: 0, none: -5, some: -1, thick: 2 };
-  var GLAZE = { single: -5, double: 0, modern: 2 };
-  var HOUSES = ["terrace", "semi", "detached", "bungalow"];
+  /* ---------- in-view helper ---------- */
+  function inView(el, cb, opts) {
+    if (!("IntersectionObserver" in window)) { cb(el); return; }
+    var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { cb(en.target); io.unobserve(en.target); } }); }, opts || { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+    io.observe(el);
+  }
 
-  function readEst(root, mode) {
-    var f = $(".est-form", root);
-    function v(n, d) { var el = f.querySelector('input[name$="-' + n + '"]:checked'); return el ? el.value : d; }
-    var s = { type: v("type", "flat"), age: v("age", "pre1919"), heat: v("heat", "gas") };
-    var house = HOUSES.indexOf(s.type) > -1;
-    if (mode === "full") {
-      s.walls = v("walls", "unknown"); s.loft = v("loft", "na"); s.glaze = v("glaze", "double"); s.pv = v("pv", "no");
-    } else {
-      s.walls = "unknown"; s.loft = house && s.age !== "2009" ? "some" : "na"; s.glaze = "double"; s.pv = "no";
-    }
-    if (s.age === "2009" && (s.walls === "solid" || s.walls === "cavity")) s.walls = "unknown";
-    return s;
+  /* ---------- header shadow + scroll progress ---------- */
+  var header = $(".site-header"), sp = $(".scroll-progress");
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
+    var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
+    if (header) header.classList.toggle("scrolled", y > 8);
+    if (sp) sp.style.setProperty("--sp", h > 0 ? (y / h).toFixed(4) : 0);
+    scrubUpdate(); timelineUpdate();
   }
-  function scoreOf(s) {
-    var n = BASE[s.age] + TYPE[s.type] + HEAT[s.heat] + WALL[s.walls] + LOFT[s.loft] + GLAZE[s.glaze] + (s.pv === "yes" ? 6 : 0);
-    return Math.max(1, Math.min(100, Math.round(n)));
-  }
-  function measuresFor(s) {
-    var m = [], house = HOUSES.indexOf(s.type) > -1;
-    if (house && (s.loft === "none" || s.loft === "some")) m.push({ id: "loft", t: "Top up loft insulation to 270mm", g: LOFT.thick - LOFT[s.loft] });
-    if (s.walls === "cavity") m.push({ id: "cav", t: "Fill the cavity walls", g: 5 });
-    if (s.walls === "solid") m.push({ id: "iwi", t: "Internal or external wall insulation", g: 7 });
-    if (s.heat === "oldgas") m.push({ id: "boiler", t: "Replace the boiler with a modern condensing boiler", g: 8 });
-    if (s.heat === "storage") m.push({ id: "hhr", t: "Swap to high heat retention storage heaters", g: 6 });
-    if (s.heat === "direct") m.push({ id: "hhr2", t: "Swap panel heaters for high heat retention storage heaters", g: 12 });
-    if (s.glaze === "single") m.push({ id: "glaze", t: "Replace single glazing with double glazing", g: 5 });
-    if (house && s.pv !== "yes") m.push({ id: "pv", t: "Fit solar PV panels", g: 6 });
-    if (s.age !== "2009") m.push({ id: "led", t: "Low-energy lighting throughout", g: 1 });
-    return m;
-  }
-  function setArrow(el, score) {
-    var i = band(score);
-    el.style.setProperty("--row", i);
-    el.style.setProperty("--ac", BANDS[i][2]);
-    el.classList.toggle("lightc", el.closest(".est-now") && (i < 2 || i > 4));
-    el.querySelector("b").textContent = BANDS[i][0] + " " + score;
-  }
-  $$("[data-est]").forEach(function (root) {
-    var mode = root.getAttribute("data-mode");
-    var list = $(".est-measures", root);
-    var off = {};
-    function update(rebuild) {
-      var s = readEst(root, mode), now = scoreOf(s), ms = measuresFor(s);
-      var gain = 0;
-      if (list && rebuild) {
-        list.innerHTML = ms.length ? ms.map(function (m) {
-          return '<li><label><input type="checkbox" data-m="' + m.id + '"' + (off[m.id] ? "" : " checked") + '><span><b>' + m.t + '</b></span><span class="gain">+' + m.g + '</span></label></li>';
-        }).join("") : '<li class="none">No obvious improvements for these answers. An assessor may still find smaller ones, such as low-energy lighting or heating controls.</li>';
-      }
-      ms.forEach(function (m) { if (!off[m.id]) gain += m.g; });
-      var pot = Math.min(100, now + gain);
-      setArrow($('[data-arrow="now"]', root), now);
-      setArrow($('[data-arrow="pot"]', root), pot);
-      var bn = BANDS[band(now)][0], bp = BANDS[band(pot)][0];
-      var txt = "Estimated now: <strong>band " + bn + " (" + now + ")</strong>. ";
-      txt += pot > now ? "With " + (mode === "full" ? "the ticked improvements" : "typical improvements") + ": <strong>band " + bp + " (" + pot + ")</strong>." : "Close to its potential for a home like this.";
-      $(".est-read", root).innerHTML = txt;
-    }
-    root.addEventListener("change", function (e) {
-      if (e.target.matches("[data-m]")) { off[e.target.getAttribute("data-m")] = !e.target.checked; update(false); }
-      else update(true);
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  window.addEventListener("resize", function () { requestAnimationFrame(onScroll); });
+
+  /* ---------- spotlight that follows the pointer ---------- */
+  if (!reduce) $$("[data-spot], .page-head.aurora").forEach(function (el) {
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100) + "%");
+      el.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100) + "%");
     });
-    update(true);
-    if (root.closest(".hero")) {
-      requestAnimationFrame(function () { setTimeout(function () { root.classList.add("ready"); }, reduce ? 0 : 150); });
-    } else root.classList.add("ready");
   });
 
-  /* ---------- house explorer ---------- */
+  /* ---------- reveal on scroll + count-ups ---------- */
+  $$(".prose > h2, .prose > .table-wrap, .prose > .callout, .prose > .faqs, .prose > .grid-2, .prose > .grid-3, .prose > .checklist, .aside > *, .area-list, .sister").forEach(function (el) { if (!el.hasAttribute("data-reveal")) el.setAttribute("data-reveal", ""); });
+  $$("[data-reveal], .cm, .cert-wrap").forEach(function (el) { inView(el, function (t) { t.classList.add("in"); }); });
+  $$("[data-count]").forEach(function (el) {
+    var target = parseFloat(el.getAttribute("data-count")), pre = el.getAttribute("data-prefix") || "";
+    if (reduce) return;
+    el.textContent = pre + "0";
+    inView(el, function () {
+      var t0 = null;
+      function step(ts) { if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1400), e = 1 - Math.pow(1 - p, 3); el.textContent = pre + Math.round(target * e); if (p < 1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  });
+
+  /* ---------- scroll-scrubbed statement ---------- */
+  var scrubs = $$("[data-scrub]");
+  scrubs.forEach(function (el) {
+    var words = el.textContent.trim().split(/\s+/);
+    el.setAttribute("aria-label", el.textContent.trim());
+    el.innerHTML = words.map(function (w) { var hl = /^(EPC|EPC\.|A|G,)$/.test(w) ? " hl" : ""; return '<span class="w' + hl + '" aria-hidden="true">' + w + "</span>"; }).join(" ");
+    if (reduce) $$(".w", el).forEach(function (w) { w.classList.add("on"); });
+  });
+  function scrubUpdate() {
+    if (reduce) return;
+    scrubs.forEach(function (el) {
+      var r = el.getBoundingClientRect(), vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.45)));
+      var ws = el.querySelectorAll(".w"), n = Math.round(p * ws.length);
+      for (var i = 0; i < ws.length; i++) ws[i].classList.toggle("on", i < n);
+    });
+  }
+
+  /* ---------- timeline fills as you scroll ---------- */
+  var tls = $$(".timeline");
+  function timelineUpdate() {
+    tls.forEach(function (tl) {
+      var r = tl.getBoundingClientRect(), vh = window.innerHeight;
+      var p = reduce ? 1 : Math.min(1, Math.max(0, (vh * 0.7 - r.top) / r.height));
+      tl.style.setProperty("--tp", p.toFixed(3));
+    });
+  }
+
+  /* ---------- 3D tilt ---------- */
+  if (!reduce && window.matchMedia("(hover: hover)").matches) {
+    $$("[data-tilt-wrap], .cert-wrap").forEach(function (wrap) {
+      var card = wrap.querySelector(".sv, .cert"); if (!card) return;
+      wrap.addEventListener("pointermove", function (e) {
+        var r = wrap.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty("--ry", (x * 14 - (card.classList.contains("cert") ? 8 : 2)) + "deg");
+        card.style.setProperty("--rx", (-y * 10 + 3) + "deg");
+      });
+      wrap.addEventListener("pointerleave", function () { card.style.removeProperty("--ry"); card.style.removeProperty("--rx"); });
+    });
+  }
+
+  /* ---------- band chart ---------- */
+  $$("[data-bc]").forEach(function (bc) {
+    var rows = $$(".bc-row", bc), infos = $$(".bc-info", bc);
+    function pick(b) {
+      rows.forEach(function (r) { r.setAttribute("aria-pressed", r.getAttribute("data-band") === b ? "true" : "false"); });
+      infos.forEach(function (i) { i.hidden = i.getAttribute("data-band") !== b; });
+    }
+    rows.forEach(function (r) {
+      r.addEventListener("click", function () { pick(r.getAttribute("data-band")); });
+      r.addEventListener("mouseenter", function () { pick(r.getAttribute("data-band")); });
+    });
+  });
+
+  /* ---------- hero survey animation ---------- */
+  $$("[data-sv]").forEach(function (sv) {
+    var lis = $$(".sv-steps li", sv), spots = $$(".sv-spot", sv), status = $(".sv-status-t", sv);
+    function finalState() { lis.forEach(function (l) { l.classList.add("done"); }); spots.forEach(function (s) { s.classList.add("done"); }); sv.classList.add("cert-on", "stamped"); status.textContent = "EPC lodged"; }
+    if (reduce) { finalState(); return; }
+    var visible = true;
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(sv);
+    function wait(ms) { return new Promise(function (res) { setTimeout(res, ms); }); }
+    function whenVisible() { return new Promise(function (res) { (function chk() { if (visible && !document.hidden) res(); else setTimeout(chk, 400); })(); }); }
+    async function loop() {
+      await wait(1900);
+      for (;;) {
+        await whenVisible();
+        for (var i = 0; i < lis.length; i++) {
+          lis[i].classList.add("on"); spots[i].classList.add("on");
+          status.textContent = "Checking: " + lis[i].textContent.toLowerCase();
+          await wait(950);
+          lis[i].classList.remove("on"); lis[i].classList.add("done");
+          spots[i].classList.remove("on"); spots[i].classList.add("done");
+        }
+        status.textContent = "Calculating the rating"; sv.classList.add("cert-on");
+        await wait(1300);
+        sv.classList.add("stamped"); status.textContent = "EPC lodged";
+        await wait(4200);
+        sv.classList.add("fade"); await wait(450);
+        lis.forEach(function (l) { l.classList.remove("done", "on"); }); spots.forEach(function (s) { s.classList.remove("done", "on"); });
+        sv.classList.remove("cert-on", "stamped"); status.textContent = "Surveying";
+        sv.classList.remove("fade"); await wait(600);
+      }
+    }
+    loop();
+  });
+
+  /* ---------- smooth FAQ accordions ---------- */
+  if (!reduce && "animate" in document.body) $$("details.faq").forEach(function (d) {
+    var sum = d.querySelector("summary"), ans = d.querySelector(".answer");
+    sum.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (d.open) { var h = ans.offsetHeight; ans.animate([{ height: h + "px", opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 220, easing: "ease-in" }).onfinish = function () { d.open = false; }; }
+      else { d.open = true; var h2 = ans.offsetHeight; ans.animate([{ height: "0px", opacity: 0 }, { height: h2 + "px", opacity: 1 }], { duration: 300, easing: "cubic-bezier(.2,.7,.1,1)" }); }
+    });
+  });
+
+  /* ---------- contents list highlights the section in view ---------- */
+  var tocLinks = $$(".toc a");
+  if (tocLinks.length && "IntersectionObserver" in window) {
+    var tmap = {}; tocLinks.forEach(function (a) { tmap[a.getAttribute("href").slice(1)] = a; });
+    var tio = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting && tmap[en.target.id]) { tocLinks.forEach(function (a) { a.classList.remove("active"); }); tmap[en.target.id].classList.add("active"); } }); }, { rootMargin: "-20% 0px -70% 0px" });
+    Object.keys(tmap).forEach(function (id) { var el = document.getElementById(id); if (el) tio.observe(el); });
+  }
+
+  /* ---------- house explorer (auto tour until the visitor takes over) ---------- */
   $$("[data-hx]").forEach(function (hx) {
-    var cur = 0;
+    var cur = 0, timer = null, manual = false, prog = $(".hx-prog", hx);
     function lens() { return hx.getAttribute("data-lens"); }
     function items() { return $$('.hx-list[data-lens="' + lens() + '"] li', hx); }
-    function show(i, focusSpot) {
+    function show(i) {
       var li = items(); if (!li.length) return;
       cur = (i + li.length) % li.length;
       li.forEach(function (x, k) { x.classList.toggle("on", k === cur); });
       $$(".hx-spot", hx).forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-lens") === lens() && +b.getAttribute("data-i") === cur); });
       $(".hx-count", hx).textContent = (lens() === "epc" ? "EPC survey" : "Legionella assessment") + ", point " + (cur + 1) + " of " + li.length;
-      $(".hx-detail h3", hx).textContent = li[cur].querySelector("b").textContent;
-      $(".hx-text", hx).textContent = li[cur].querySelector("p").textContent;
-      if (focusSpot) { var sp = $('.hx-spot.on', hx); if (sp) sp.focus(); }
+      var h = $(".hx-detail h3", hx), t = $(".hx-text", hx);
+      h.textContent = li[cur].querySelector("b").textContent; t.textContent = li[cur].querySelector("p").textContent;
+      [h, t].forEach(function (el) { el.style.animation = "none"; void el.offsetWidth; el.style.animation = ""; });
+      if (prog && !manual && !reduce) { prog.classList.remove("run"); void prog.offsetWidth; prog.classList.add("run"); }
     }
+    function stop() { manual = true; clearInterval(timer); if (prog) prog.classList.add("stopped"); }
     function setLens(l) {
       hx.setAttribute("data-lens", l);
       $$("[data-set-lens]", hx).forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-set-lens") === l ? "true" : "false"); });
@@ -123,12 +194,23 @@
     }
     hx.addEventListener("click", function (e) {
       var t = e.target.closest("button"); if (!t) return;
+      stop();
       if (t.hasAttribute("data-set-lens")) setLens(t.getAttribute("data-set-lens"));
       else if (t.classList.contains("hx-next")) show(cur + 1);
       else if (t.classList.contains("hx-prev")) show(cur - 1);
       else if (t.hasAttribute("data-i")) show(+t.getAttribute("data-i"));
     });
     show(0);
+    if (reduce || hx.closest(".prose")) { stop(); return; }
+    inView(hx, function () {
+      if (manual) return;
+      show(0);
+      timer = setInterval(function () {
+        if (manual) return;
+        var n = items().length;
+        if (cur + 1 >= n) setLens(lens() === "epc" ? "water" : "epc"); else show(cur + 1);
+      }, 5500);
+    });
   });
 
   /* ---------- thermometer ---------- */
@@ -162,14 +244,21 @@
       requestAnimationFrame(step);
     });
     upd();
+    if (!reduce) {
+      r.value = 8; upd();
+      inView(th, function () {
+        var t0 = null;
+        function sweep(ts) { if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1600), e2 = 1 - Math.pow(1 - p, 3); r.value = Math.round(8 + 30 * e2); upd(); if (p < 1) requestAnimationFrame(sweep); }
+        requestAnimationFrame(sweep);
+      });
+    }
   });
 
   /* ---------- price calculator + quote form ---------- */
   var PRICE = { Flat: 70, Maisonette: 75, Bungalow: 80, House: 85 };
-  var LEG = 65, BOTH = 120, TRAVEL = 20;
+  var LEG = 65, BOTH = 120;
   var PC_RE = /^(GIR ?0AA|[A-PR-UWYZ][0-9]{1,2} ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][0-9][A-HJKPSTUW] ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][A-HK-Y][0-9]{1,2} ?[0-9][ABD-HJLNP-UW-Z]{2}|[A-PR-UWYZ][A-HK-Y][0-9][ABEHMNPRVWXY] ?[0-9][ABD-HJLNP-UW-Z]{2})$/;
   function normPc(v) { var c = v.toUpperCase().replace(/\s+/g, ""); return c.length > 4 ? c.slice(0, -3) + " " + c.slice(-3) : c; }
-  function mainZone(pc) { return /^(G|EH)[0-9]/.test(pc.replace(/\s/g, "")); }
 
   $$("[data-calc]").forEach(function (box) {
     var form = $("form", box), out = $(".ct-val", box), det = $(".ct-detail", box);
@@ -186,13 +275,13 @@
       var type = form.querySelector('[name="property_type"]:checked').value;
       var code = normPc(pc.value.trim()), valid = PC_RE.test(code.replace(" ", "")) || PC_RE.test(code);
       var base = svc === "Both" ? BOTH : svc === "Legionella" ? LEG : PRICE[type];
-      var extra = valid && !mainZone(code) ? TRAVEL : 0;
+      var extra = 0;
       var label = svc === "Both" ? "EPC and legionella risk assessment, one visit" : svc === "Legionella" ? "Legionella risk assessment" : type + " EPC";
-      var zone = !code ? "Add a postcode to check travel." : !valid ? "Check the postcode." : extra ? "Includes £" + TRAVEL + " travel outside G and EH postcodes." : "Glasgow or Edinburgh postcode, no travel supplement.";
+      var zone = !code || valid ? "We confirm your price before booking." : "Check the postcode.";
       var total = (svc === "Both" ? "" : "from ") + "£" + (base + extra);
       if (total !== last && last) { out.classList.remove("bump"); void out.offsetWidth; out.classList.add("bump"); }
       last = total; out.textContent = total; det.textContent = label + ", plus VAT. " + zone;
-      var est = form.querySelector('[name="estimate"]'); if (est) est.value = total + " + VAT (" + label + (extra ? ", incl. travel" : "") + ")";
+      var est = form.querySelector('[name="estimate"]'); if (est) est.value = total + " + VAT (" + label + ")";
       return { valid: valid, code: code };
     }
     form.addEventListener("change", calc);
@@ -200,7 +289,7 @@
     pc.addEventListener("blur", function () {
       if (!pc.value.trim()) { pcMsg.textContent = ""; pcMsg.className = "field-msg"; pc.removeAttribute("aria-invalid"); return; }
       var r = calc(); pc.value = r.code;
-      if (r.valid) { pcMsg.textContent = mainZone(r.code) ? "Inside our main area." : "We cover this area with a £" + TRAVEL + " travel supplement."; pcMsg.className = "field-msg ok"; pc.removeAttribute("aria-invalid"); }
+      if (r.valid) { pcMsg.textContent = "We cover this area."; pcMsg.className = "field-msg ok"; pc.removeAttribute("aria-invalid"); }
       else { pcMsg.textContent = "Enter a full UK postcode, for example G12 8QQ."; pcMsg.className = "field-msg bad"; pc.setAttribute("aria-invalid", "true"); }
     });
     calc();
@@ -267,12 +356,5 @@
     cl.addEventListener("change", upd); upd();
   });
 
-  /* ---------- coverage map ---------- */
-  var cms = $$(".cm");
-  if (cms.length) {
-    if ("IntersectionObserver" in window && !reduce) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }); }, { threshold: .3 });
-      cms.forEach(function (c) { io.observe(c); });
-    } else cms.forEach(function (c) { c.classList.add("in"); });
-  }
+  onScroll();
 })();

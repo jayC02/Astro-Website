@@ -43,6 +43,18 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/epc-rating-estimator",
+      "destination": "/domestic-epc/",
+      "permanent": true
+    },
+    {
+      "source": "/epc-rating-estimator/",
+      "destination": "/domestic-epc/",
+      "permanent": true
+    }
+  ],
   "framework": null,
   "installCommand": "",
   "buildCommand": ""

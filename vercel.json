@@ -43,19 +43,6 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.scotlandepc.com"
-        }
-      ],
-      "destination": "https://scotlandepc.com/:path*",
-      "permanent": true
-    }
-  ],
   "framework": null,
   "installCommand": "",
   "buildCommand": ""

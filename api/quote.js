@@ -18,7 +18,7 @@ const TO_EMAIL = process.env.QUOTE_TO_EMAIL || 'info@scottishenergyservices.co.u
 const FROM_EMAIL = process.env.QUOTE_FROM_EMAIL || 'Scotland EPC <info@scottishenergyservices.co.uk>';
 const NOTIFY_FROM = process.env.QUOTE_NOTIFY_FROM || 'Scotland EPC Website <info@scottishenergyservices.co.uk>';
 const PHONE = '07483 881889';
-const SITE = 'https://scotlandepc.com';
+const SITE = 'https://www.scotlandepc.com';
 
 const SERVICES = { EPC: 'EPC', Legionella: 'Legionella risk assessment', Both: 'EPC and legionella risk assessment' };
 const TYPES = ['Flat', 'Maisonette', 'Bungalow', 'House'];

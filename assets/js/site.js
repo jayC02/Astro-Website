@@ -337,6 +337,7 @@
           success.querySelector('[data-fs="name"]').textContent = name ? ', ' + name : '';
           success.querySelector('[data-fs="email"]').textContent = (data.get('email') || '').toString();
           success.querySelector('[data-fs="confirm"]').hidden = j.confirmationSent === false;
+          if (window.trackQuoteLead) window.trackQuoteLead();
           form.hidden = true; success.hidden = false; success.classList.add('show');
           success.focus({ preventScroll: true });
           success.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });

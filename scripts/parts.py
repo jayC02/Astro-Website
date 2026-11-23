@@ -11,7 +11,7 @@ PHONE = '07483 881889'
 TEL = 'tel:+447483881889'
 UPDATED = '18 November 2026'
 UPDATED_ISO = '2026-11-18'
-V = '6'  # bump to refresh cached CSS and JS
+V = '7'  # bump to refresh cached CSS and JS
 
 PRICES = [('Flat EPC', 'from £70'), ('Maisonette EPC', 'from £75'), ('Bungalow EPC', 'from £80'),
           ('House EPC', 'from £85'), ('Legionella risk assessment', 'from £65'), ('EPC and legionella together', '£120')]
@@ -140,6 +140,7 @@ def head(path, title, desc, ld_nodes=(), og_title=None):
 <link rel="preload" href="/assets/fonts/lora-var.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css?v={V}">
 <script type="application/ld+json">{ld}</script>
+<script src="/assets/js/consent.js?v={V}" defer></script>
 <script src="/assets/js/site.js?v={V}" defer></script>
 </head>
 <body>
@@ -200,10 +201,16 @@ def footer():
     </div>
     <div class="footer-sister">
       <p>Scotland EPC is part of <a href="https://www.scottishenergyservices.co.uk/">Scottish Energy Services</a>. Fire risk assessments by our sister company <a href="https://fireriskscotland.com/">Fire Risk Scotland</a>.</p>
-      <p>&copy; 2026 Scotland EPC. <a href="/privacy/">Privacy</a></p>
+      <p>&copy; 2026 Scotland EPC. <a href="/privacy/">Privacy</a> <button class="cookie-settings" type="button" data-cookie-settings>Cookie settings</button></p>
     </div>
   </div>
 </footer>
+<section class="cookie-notice" data-cookie-notice aria-label="Cookie preferences" hidden>
+  <div class="wrap">
+    <p><strong>Your privacy choices</strong> We use Google Ads measurement to see which adverts lead to quote requests. It never receives the details you type into our forms. <a href="/privacy/#cookies">Privacy notice</a>.</p>
+    <div class="cookie-actions"><button class="btn btn-outline btn-sm" type="button" data-cookie-choice="none">Reject</button><button class="btn btn-primary btn-sm" type="button" data-cookie-choice="all">Accept</button></div>
+  </div>
+</section>
 <div class="mobile-bar"><a class="btn btn-outline" href="{TEL}">Call {PHONE}</a><a class="btn btn-primary" href="/contact/">Get a price</a></div>
 </body>
 </html>

@@ -784,8 +784,10 @@ def privacy():
 <p>We share information only where needed to provide the service: with our accreditation body and the Scottish EPC Register for EPCs, and with the email provider that sends messages from our website form. We do not sell your information or use it for marketing without your permission.</p>
 <h2>How long we keep it</h2>
 <p>Enquiries that do not lead to a booking are deleted within 12 months. Records of completed work are kept for as long as we need them for accounting and accreditation, normally up to six years.</p>
-<h2>Cookies</h2>
-<p>This website does not use cookies for tracking or advertising. The price calculator and checklist work entirely in your browser. The calculator remembers your last choice of service and property type for the current visit only, so the quote form can start with it, and nothing is sent until you submit the form.</p>
+<h2 id="cookies">Cookies and advertising measurement</h2>
+<p>We advertise on Google Search. Unless you reject it, this website loads Google Ads measurement so we can see which adverts lead to quote requests. Google may set first-party cookies such as <code>_gcl_au</code> and read the ad click identifier in the page address. When a quote request is accepted, we tell Google that a request was made. We never send your name, email address, phone number, postcode or message to Google.</p>
+<p>You can accept or reject this measurement in the banner, and change your mind at any time with the Cookie settings link at the bottom of every page. If you reject it, Google's code is not loaded and we remember your choice for six months in a small preference cookie and your browser's storage.</p>
+<p>The price calculator and checklist work entirely in your browser. The calculator remembers your last choice of service and property type for the current visit only, so the quote form can start with it, and nothing is sent until you submit the form.</p>
 <h2>Your rights</h2>
 <p>You can ask for a copy of your information, ask us to correct or delete it, or object to how we use it. Call {PHONE} or write to us at the address above. You can also complain to the Information Commissioner's Office at ico.org.uk.</p>'''
     desc = 'How Scotland EPC, part of Scottish Energy Services, uses your personal information.'

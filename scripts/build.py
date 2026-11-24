@@ -12,7 +12,7 @@ from pathlib import Path
 
 from parts import (PHONE, TEL, SITE, UPDATED_ISO, TICK, MARK, ico, ticks, head, header, footer, cta_band, page_head, article,
                    crumbs_ld, faq_list, faq_ld, faqs_from_html, bands_card, band_table, thermo, calc, calc_fields, calc_total,
-                   explorer, dates_list, report_mock, coverage_map, written_by, quote_box, strip_tags)
+                   explorer, dates_list, report_mock, coverage_map, written_by, quote_box, strip_tags, assessor_photo)
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = Path(__file__).resolve().parent / 'content'
@@ -105,6 +105,12 @@ def home():
             <div><dt>Both, one visit</dt><dd>£120</dd></div>
           </dl>
           <p class="vat-note">All prices plus VAT. Lodged on the Scottish EPC Register.</p>
+        </div>
+        <div class="hero-fade">
+          <div class="assessor-chip">
+            {assessor_photo('eager')}
+            <p><strong>Your EPC assessor</strong><br>Accredited domestic energy assessor. Book your EPC and legionella assessment in one visit.</p>
+          </div>
         </div>
       </div>
       <div class="hero-fade">{explorer('epc')}</div>
@@ -220,6 +226,19 @@ def home():
         <li><div><strong>Answers when you need them</strong><span>A call or email if you have questions about the rating or the actions.</span></div></li>
       </ol>
       <div class="actions"><a class="btn btn-primary" href="/contact/">Get a price</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="your-epc-assessor">
+  <div class="wrap profile v2">
+    <div class="profile-ring" data-reveal="zoom">{assessor_photo()}</div>
+    <div data-reveal>
+      <h2 id="your-epc-assessor">Meet your EPC assessor</h2>
+      <p class="lede">An accredited domestic energy assessor visits your property, lodges your EPC on the Scottish EPC Register and emails you the certificate and recommendations.</p>
+      <p>If you book a legionella risk assessment too, both checks can be done in one visit.</p>
+      <ul class="creds"><li>Accredited domestic energy assessor</li><li>Glasgow based, Scotland wide</li></ul>
+      <div class="actions"><a href="/about/#your-epc-assessor">More about your assessor and how we work</a></div>
     </div>
   </div>
 </section>
@@ -662,7 +681,16 @@ def faq_page():
 
 # =========================================================== About
 def about():
-    prose = f'''<h2>Who we are</h2>
+    prose = f'''<h2 id="your-epc-assessor">Your EPC assessor</h2>
+<div class="profile v2">
+  <div class="profile-ring" data-reveal="zoom">{assessor_photo('eager')}</div>
+  <div>
+    <p class="lede">An accredited domestic energy assessor records the insulation, heating, hot water and construction details that determine your home's EPC rating.</p>
+    <p>Your EPC is lodged on the Scottish EPC Register, normally within 24 hours of the visit. You'll also receive a report explaining which improvements could raise the rating.</p>
+    <ul class="creds"><li>Accredited domestic energy assessor</li><li>Glasgow based, Scotland wide</li></ul>
+  </div>
+</div>
+<h2>Who we are</h2>
 <p>Scotland EPC is the domestic service of <a href="https://www.scottishenergyservices.co.uk/">Scottish Energy Services</a>, an energy and building compliance consultancy based at 272 Bath Street in Glasgow city centre. Scottish Energy Services produces SAP and SBEM calculations, commercial EPCs and other compliance work for developers, architects and businesses. Scotland EPC brings the same standards to homes, landlords and letting agents.</p>
 <h2>How we work</h2>
 <ul class="features">

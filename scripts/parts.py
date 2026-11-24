@@ -11,7 +11,7 @@ PHONE = '07483 881889'
 TEL = 'tel:+447483881889'
 UPDATED = '18 November 2026'
 UPDATED_ISO = '2026-11-18'
-V = '7'  # bump to refresh cached CSS and JS
+V = '8'  # bump to refresh cached CSS and JS
 
 PRICES = [('Flat EPC', 'from £70'), ('Maisonette EPC', 'from £75'), ('Bungalow EPC', 'from £80'),
           ('House EPC', 'from £85'), ('Legionella risk assessment', 'from £65'), ('EPC and legionella together', '£120')]
@@ -520,6 +520,13 @@ DATES = [
 def dates_list(h='h3'):
     return '<ol class="dates">' + ''.join(
         f'<li class="{c}"><div class="when">{w}<small>{s}</small></div><div><{h}>{t}</{h}><p>{p}</p></div></li>' for c, w, s, t, p in DATES) + '</ol>'
+
+
+# ---------------------------------------------------------------- assessor photo
+def assessor_photo(loading='lazy'):
+    return f'''<picture class="assessor-photo">
+  <img src="/assets/img/epc-assessor.webp" alt="Scotland EPC assessor" width="800" height="800" loading="{loading}" decoding="async">
+</picture>'''
 
 
 # ---------------------------------------------------------------- report mock-up
